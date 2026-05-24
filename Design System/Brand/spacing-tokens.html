@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-display); background: #fff; padding: 20px 24px; }
+.title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #9e9e9e; margin-bottom: 14px; }
+.scale { display: flex; align-items: flex-end; gap: 12px; }
+.step { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.bar { background: #2e7031; border-radius: 4px; width: 32px; }
+.step-label { font-size: 9px; color: #bdbdbd; font-family: monospace; text-align: center; }
+.step-val { font-size: 9px; color: #5a5a5a; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="title">Spacing Scale (4px base unit)</div>
+<div class="scale">
+  <div class="step"><div class="bar" style="height:4px;"></div><div class="step-val">4</div><div class="step-label">--space-1</div></div>
+  <div class="step"><div class="bar" style="height:8px;"></div><div class="step-val">8</div><div class="step-label">--space-2</div></div>
+  <div class="step"><div class="bar" style="height:12px;"></div><div class="step-val">12</div><div class="step-label">--space-3</div></div>
+  <div class="step"><div class="bar" style="height:16px;"></div><div class="step-val">16</div><div class="step-label">--space-4</div></div>
+  <div class="step"><div class="bar" style="height:20px;"></div><div class="step-val">20</div><div class="step-label">--space-5</div></div>
+  <div class="step"><div class="bar" style="height:24px;"></div><div class="step-val">24</div><div class="step-label">--space-6</div></div>
+  <div class="step"><div class="bar" style="height:32px;"></div><div class="step-val">32</div><div class="step-label">--space-8</div></div>
+  <div class="step"><div class="bar" style="height:40px;"></div><div class="step-val">40</div><div class="step-label">--space-10</div></div>
+  <div class="step"><div class="bar" style="height:48px;"></div><div class="step-val">48</div><div class="step-label">--space-12</div></div>
+  <div class="step"><div class="bar" style="height:64px;"></div><div class="step-val">64</div><div class="step-label">--space-16</div></div>
+  <div class="step"><div class="bar" style="height:80px;"></div><div class="step-val">80</div><div class="step-label">--space-20</div></div>
+  <div class="step"><div class="bar" style="height:96px;background:#1b4d1e;"></div><div class="step-val">96</div><div class="step-label">--space-24</div></div>
+</div>
+</body>
+</html>

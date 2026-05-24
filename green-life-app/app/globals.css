@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-primary: #2e7031;
+  --brand-secondary: #6d4c41;
+  --brand-accent: #66bb6a;
+  --brand-dark: #1b4d1e;
+  --bg-base: #f8f8f6;
+  --surface: #ffffff;
+  --surface-alt: #f1f8f1;
+  --surface-earth: #efebe9;
+  --text-primary: #1a1a1a;
+  --text-secondary: #5a5a5a;
+  --text-muted: #9e9e9e;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ============================================================
+   FLUID TYPOGRAPHY
+   Sizes scale smoothly between min and max viewport widths
+   (mobile-first; clamps avoid sudden breakpoint jumps).
+   ============================================================ */
+.text-fluid-hero {
+  font-size: clamp(30px, 6.8vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+.text-fluid-h1 {
+  font-size: clamp(28px, 5.4vw, 46px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+.text-fluid-h2 {
+  font-size: clamp(24px, 4.2vw, 36px);
+  line-height: 1.2;
+}
+.text-fluid-h3 {
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.3;
+}
+.text-fluid-body-lg {
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.65;
+}
+.text-fluid-cta {
+  font-size: clamp(14px, 1.1vw, 16px);
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-open-sans), 'Open Sans', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Floor space for the floating CTA / mobile bottom bar so it never overlaps content. */
+  padding-bottom: calc(72px + env(safe-area-inset-bottom));
+  overflow-x: hidden;
+}
+@media (min-width: 640px) {
+  body { padding-bottom: 92px; }
+}
+@media (min-width: 1024px) {
+  body { padding-bottom: 96px; }
+}
+
+img, video, svg { max-width: 100%; height: auto; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat), 'Montserrat', sans-serif;
+  color: var(--text-primary);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: var(--brand-accent);
+  color: var(--brand-dark);
+}
+
+/* Hide scrollbars on horizontal scroll containers but keep functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Subtle photo-style gradient background for hero */
+.hero-bg {
+  background:
+    radial-gradient(ellipse at top, rgba(102, 187, 106, 0.25), transparent 60%),
+    radial-gradient(ellipse at bottom right, rgba(109, 76, 65, 0.30), transparent 55%),
+    linear-gradient(135deg, #0f3a12 0%, #1b4d1e 45%, #245227 100%);
+}
+
+.section-pad {
+  padding-top: clamp(48px, 7vw, 88px);
+  padding-bottom: clamp(48px, 7vw, 88px);
+}
+
+.container-page {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(16px, 3vw, 32px);
+  padding-right: clamp(16px, 3vw, 32px);
+}

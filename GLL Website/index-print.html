@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Life Landscaping Inc | Burtonsville, MD</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: 'Open Sans', sans-serif; color: #1a1a1a; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+:root {
+  --green-900: #1b4d1e; --green-800: #245227; --green-700: #2e7031;
+  --green-600: #3a8c3e; --green-400: #66bb6a; --green-100: #c8e6c9; --green-50: #f1f8f1;
+  --brown-50: #efebe9;
+  --neutral-900: #1a1a1a; --neutral-700: #3d3d3d; --neutral-600: #5a5a5a;
+  --neutral-400: #9e9e9e; --neutral-200: #e0e0e0; --off-white: #f8f8f6;
+}
+
+/* ── Page setup ── */
+@page { size: letter portrait; margin: 0; }
+
+/* ── Pages ── */
+.page {
+  width: 8.5in;
+  min-height: 11in;
+  position: relative;
+  break-after: page;
+  overflow: hidden;
+  background: #fff;
+}
+.page:last-child { break-after: auto; }
+
+/* ── Page 1: Hero ── */
+.p1 {
+  background: var(--green-900);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 11in;
+}
+.p1-photo {
+  position: absolute; inset: 0;
+  background-image: url('assets/7DFC94E3-BF06-46D1-A676-79049D7845F9.jpeg');
+  background-size: cover; background-position: center top;
+  opacity: 0.22;
+}
+.p1-content {
+  position: relative; z-index: 2;
+  padding: 0 1in 1in;
+}
+.p1-logo { margin-bottom: 0.6in; }
+.p1-logo img { height: 90px; filter: brightness(10); }
+.p1-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 9999px; padding: 6px 18px 6px 12px; margin-bottom: 24px;
+}
+.p1-badge-dot { width: 8px; height: 8px; background: var(--green-400); border-radius: 50%; flex-shrink: 0; }
+.p1-badge span { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.88); letter-spacing: .05em; }
+.p1-title { font-family: 'Montserrat', sans-serif; font-size: 62pt; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; color: #fff; margin-bottom: 20px; }
+.p1-title em { color: var(--green-400); font-style: normal; }
+.p1-sub { font-size: 14pt; color: rgba(255,255,255,0.80); line-height: 1.6; max-width: 5.5in; margin-bottom: 40px; }
+.p1-stats { display: flex; gap: 48px; padding-top: 36px; border-top: 1px solid rgba(255,255,255,0.18); }
+.p1-stat-num { font-family: 'Montserrat', sans-serif; font-size: 28pt; font-weight: 800; color: #fff; line-height: 1; }
+.p1-stat-label { font-size: 10pt; color: rgba(255,255,255,0.58); margin-top: 4px; }
+.p1-trust {
+  position: absolute; top: 1in; right: 1in;
+  display: flex; flex-direction: column; gap: 12px; align-items: flex-end;
+}
+.p1-trust-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 9999px; padding: 7px 16px;
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  color: rgba(255,255,255,0.88); letter-spacing: .04em;
+}
+.p1-trust-badge svg { color: var(--green-400); }
+
+/* ── Page 2: Services ── */
+.p2 { background: var(--off-white); padding: 0.75in 1in; }
+.page-header { margin-bottom: 0.4in; }
+.overline { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--green-700); display: block; margin-bottom: 8px; }
+.section-title { font-family: 'Montserrat', sans-serif; font-size: 28pt; font-weight: 700; line-height: 1.2; color: var(--neutral-900); margin-bottom: 10px; }
+.section-sub { font-size: 11pt; color: var(--neutral-600); line-height: 1.6; max-width: 5in; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 0.3in; }
+.service-card { background: #fff; border-radius: 10px; padding: 22px 18px 18px; break-inside: avoid; }
+.service-icon { width: 44px; height: 44px; background: var(--green-50); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+.service-icon svg { color: var(--green-700); }
+.service-card-title { font-family: 'Montserrat', sans-serif; font-size: 12pt; font-weight: 700; color: var(--neutral-900); margin-bottom: 6px; }
+.service-card-desc { font-size: 10pt; color: var(--neutral-600); line-height: 1.55; }
+.service-card.accent { background: var(--green-700); }
+.service-card.accent .service-icon { background: rgba(255,255,255,0.15); }
+.service-card.accent .service-icon svg { color: #fff; }
+.service-card.accent .service-card-title { color: #fff; }
+.service-card.accent .service-card-desc { color: rgba(255,255,255,0.8); }
+
+/* ── Page 3: Why Us + Photo ── */
+.p3 { background: var(--green-900); padding: 0.75in 1in; display: flex; flex-direction: column; justify-content: center; }
+.p3-grid { display: grid; grid-template-columns: 1fr 3.2in; gap: 0.6in; align-items: center; }
+.trust-features { display: flex; flex-direction: column; gap: 18px; margin-top: 28px; }
+.trust-feature { display: flex; align-items: flex-start; gap: 12px; }
+.trust-feature-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.trust-feature-icon svg { color: var(--green-400); }
+.trust-feature-title { font-family: 'Montserrat', sans-serif; font-size: 12pt; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.trust-feature-desc { font-size: 10pt; color: rgba(255,255,255,0.62); line-height: 1.55; }
+.p3-photo { border-radius: 14px; overflow: hidden; }
+.p3-photo img { width: 100%; height: 4.5in; object-fit: cover; display: block; }
+.p3-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; background: rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; margin-top: 0.4in; }
+.p3-stat { background: rgba(255,255,255,0.06); padding: 24px 20px; text-align: center; }
+.p3-stat-num { font-family: 'Montserrat', sans-serif; font-size: 28pt; font-weight: 800; color: #fff; line-height: 1; }
+.p3-stat-num.accent { color: var(--green-400); }
+.p3-stat-label { font-size: 9pt; color: rgba(255,255,255,0.52); margin-top: 6px; letter-spacing: .03em; }
+
+/* ── Page 4: Reviews + Areas + CTA ── */
+.p4 { padding: 0.75in 1in; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 0.3in; }
+.testimonial-card { background: #fff; border-radius: 10px; padding: 20px 18px; border: 1px solid var(--neutral-200); break-inside: avoid; }
+.stars { display: flex; gap: 2px; margin-bottom: 10px; }
+.stars svg { color: #f57c00; fill: #f57c00; }
+.testimonial-text { font-size: 10pt; color: var(--neutral-700); line-height: 1.6; font-style: italic; margin-bottom: 14px; }
+.testimonial-author { display: flex; align-items: center; gap: 8px; }
+.author-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--green-100); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; color: var(--green-700); flex-shrink: 0; }
+.author-name { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--neutral-900); }
+.author-loc { font-size: 10px; color: var(--neutral-400); }
+.areas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 0.25in; }
+.area-chip { display: flex; align-items: center; gap: 6px; background: var(--green-50); border-radius: 6px; padding: 9px 12px; font-family: 'Montserrat', sans-serif; font-size: 10pt; font-weight: 600; color: var(--neutral-800); }
+.area-chip svg { color: var(--green-600); flex-shrink: 0; }
+.cta-box { background: var(--green-700); border-radius: 12px; padding: 32px 36px; margin-top: 0.35in; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.cta-title { font-family: 'Montserrat', sans-serif; font-size: 18pt; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 6px; }
+.cta-title em { color: var(--green-400); font-style: normal; }
+.cta-sub { font-size: 10pt; color: rgba(255,255,255,0.72); }
+.cta-contact { text-align: right; }
+.cta-phone { font-family: 'Montserrat', sans-serif; font-size: 18pt; font-weight: 800; color: #fff; }
+.cta-url { font-family: 'Montserrat', sans-serif; font-size: 10pt; font-weight: 600; color: var(--green-400); margin-top: 4px; }
+
+/* ── Photo strip (between p2 and p3) ── */
+.photo-strip { display: grid; grid-template-columns: repeat(5,1fr); height: 1.6in; break-after: avoid; }
+.photo-strip div { overflow: hidden; }
+.photo-strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── Section divider ── */
+.divider { border: none; border-top: 1px solid var(--neutral-200); margin: 0.35in 0; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: Hero -->
+<div class="page p1">
+  <div class="p1-photo"></div>
+  <div class="p1-trust">
+    <div class="p1-trust-badge"><i data-lucide="shield-check" width="13" height="13"></i> Licensed &amp; Insured</div>
+    <div class="p1-trust-badge"><i data-lucide="calendar-check" width="13" height="13"></i> Serving Since 2005</div>
+    <div class="p1-trust-badge"><i data-lucide="tag" width="13" height="13"></i> Free Estimates</div>
+  </div>
+  <div class="p1-content">
+    <div class="p1-logo"><img src="assets/logo-primary.png" alt="Green Life Landscaping Inc"></div>
+    <div class="p1-badge">
+      <div class="p1-badge-dot"></div>
+      <span>Serving Burtonsville &amp; Montgomery County Since 2005</span>
+    </div>
+    <h1 class="p1-title">Landscaping Services<br>in <em>Burtonsville, MD</em></h1>
+    <p class="p1-sub">Dependable lawn care, professional landscaping, and reliable outdoor services — done right, every time. Your property deserves a crew that actually shows up.</p>
+    <div class="p1-stats">
+      <div><div class="p1-stat-num">20+</div><div class="p1-stat-label">Years in Business</div></div>
+      <div><div class="p1-stat-num">500+</div><div class="p1-stat-label">Projects Completed</div></div>
+      <div><div class="p1-stat-num">5.0 ★</div><div class="p1-stat-label">Google Rating</div></div>
+      <div><div class="p1-stat-num">100%</div><div class="p1-stat-label">Licensed &amp; Insured</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: Services -->
+<div class="page p2">
+  <div class="page-header">
+    <span class="overline">What We Do</span>
+    <h2 class="section-title">Full-Service Outdoor Solutions</h2>
+    <p class="section-sub">From weekly lawn maintenance to large-scale landscaping projects — we handle everything your property needs, with the consistency you can count on.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><i data-lucide="scissors" width="22" height="22"></i></div>
+      <div class="service-card-title">Lawn Care Services</div>
+      <div class="service-card-desc">Regular mowing, aeration, dethatching, seeding, and fertilization. Consistent care that keeps your lawn healthy season after season.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i data-lucide="flower-2" width="22" height="22"></i></div>
+      <div class="service-card-title">Landscaping Services</div>
+      <div class="service-card-desc">Design, installation, and ongoing maintenance. We transform overgrown or bare outdoor spaces into structured, attractive landscapes.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i data-lucide="tree-pine" width="22" height="22"></i></div>
+      <div class="service-card-title">Tree Services</div>
+      <div class="service-card-desc">Safe tree removal, precision pruning, trimming, and stump grinding by experienced crews with proper equipment and full insurance.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i data-lucide="snowflake" width="22" height="22"></i></div>
+      <div class="service-card-title">Snow Removal</div>
+      <div class="service-card-desc">Residential and commercial snow plowing, salting, and ice management. Seasonal contracts available. Available 24/7 during storms.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><i data-lucide="layers" width="22" height="22"></i></div>
+      <div class="service-card-title">Hardscaping</div>
+      <div class="service-card-desc">Patios, retaining walls, walkways, and outdoor structures built with quality materials and proper technique — designed to last.</div>
+    </div>
+    <div class="service-card accent">
+      <div class="service-icon"><i data-lucide="phone" width="22" height="22"></i></div>
+      <div class="service-card-title">Not Sure What You Need?</div>
+      <div class="service-card-desc">Call us at (410) 905-2697 and we'll assess your property and tell you exactly what it needs. Free, no-obligation estimates.</div>
+    </div>
+  </div>
+
+  <!-- Photo strip -->
+  <div class="photo-strip" style="margin-top: 0.35in;">
+    <div><img src="assets/6E8B3F19-DEF5-4109-83D5-AE1EBB245D9D.jpeg" alt="Concrete steps and mulch bed"></div>
+    <div><img src="assets/EB674BB6-98C5-442B-85BE-3830FEC7730B.jpeg" alt="Walkway and deck stairs"></div>
+    <div><img src="assets/2964D319-17AF-40B5-82CB-662F4E065982.jpeg" alt="Crew building deck" style="object-position:center top;"></div>
+    <div><img src="assets/A548D904-ADA3-48E2-9591-6E8FA5E7AA41.jpeg" alt="Crew member at work" style="object-position:center 20%;"></div>
+    <div><img src="assets/photo-tree-service.jpeg" alt="Tree service"></div>
+  </div>
+</div>
+
+<!-- PAGE 3: Why Us -->
+<div class="page p3">
+  <div class="p3-grid">
+    <div>
+      <span class="overline" style="color:var(--green-400);">Why Green Life Landscaping</span>
+      <h2 class="section-title" style="color:#fff; font-size:26pt;">Stop Dealing With Unreliable Landscapers.</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.72);">We're a Maryland-based crew that shows up when scheduled, does the work right, and stands behind every job.</p>
+      <div class="trust-features">
+        <div class="trust-feature">
+          <div class="trust-feature-icon"><i data-lucide="shield-check" width="18" height="18"></i></div>
+          <div><div class="trust-feature-title">Fully Licensed &amp; Insured</div><div class="trust-feature-desc">Maryland-certified and fully insured on every job. You're protected — and so is your property.</div></div>
+        </div>
+        <div class="trust-feature">
+          <div class="trust-feature-icon"><i data-lucide="calendar-check" width="18" height="18"></i></div>
+          <div><div class="trust-feature-title">In Business Since 2005</div><div class="trust-feature-desc">Over 20 years serving Burtonsville and Montgomery County. Experience you can see in every project.</div></div>
+        </div>
+        <div class="trust-feature">
+          <div class="trust-feature-icon"><i data-lucide="users" width="18" height="18"></i></div>
+          <div><div class="trust-feature-title">The Same Crew. Every Time.</div><div class="trust-feature-desc">No rotating strangers. The same professionals care for your property — they know your yard.</div></div>
+        </div>
+        <div class="trust-feature">
+          <div class="trust-feature-icon"><i data-lucide="leaf" width="18" height="18"></i></div>
+          <div><div class="trust-feature-title">Eco-Conscious Methods</div><div class="trust-feature-desc">Sustainable practices that protect your lawn's long-term health and the local environment.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="p3-photo">
+      <img src="assets/A548D904-ADA3-48E2-9591-6E8FA5E7AA41.jpeg" alt="Green Life crew at work in Burtonsville MD">
+    </div>
+  </div>
+  <div class="p3-stats">
+    <div class="p3-stat"><div class="p3-stat-num">2005</div><div class="p3-stat-label">Year Founded</div></div>
+    <div class="p3-stat"><div class="p3-stat-num accent">500+</div><div class="p3-stat-label">Projects Completed</div></div>
+    <div class="p3-stat"><div class="p3-stat-num">5.0★</div><div class="p3-stat-label">Google Rating</div></div>
+    <div class="p3-stat"><div class="p3-stat-num accent">100%</div><div class="p3-stat-label">Licensed &amp; Insured</div></div>
+  </div>
+</div>
+
+<!-- PAGE 4: Reviews + Areas + CTA -->
+<div class="page p4">
+  <span class="overline">What Our Customers Say</span>
+  <h2 class="section-title">Real Reviews From Real Clients</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars"><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i></div>
+      <p class="testimonial-text">"Green Life showed up exactly when they said, worked clean, and the yard looks incredible. I've hired three other landscapers before — none came close to the quality or reliability."</p>
+      <div class="testimonial-author"><div class="author-avatar">SM</div><div><div class="author-name">Sarah M.</div><div class="author-loc">Burtonsville, MD</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars"><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i></div>
+      <p class="testimonial-text">"Had a large tree come down in a storm. They were out the next morning, cleaned everything up, and gave me a fair price. Honest work from honest people."</p>
+      <div class="testimonial-author"><div class="author-avatar">RJ</div><div><div class="author-name">Robert J.</div><div class="author-loc">Silver Spring, MD</div></div></div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars"><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i></div>
+      <p class="testimonial-text">"We've used Green Life for lawn care and seasonal cleanups for three years. They're consistent, professional, and our yard has never looked better."</p>
+      <div class="testimonial-author"><div class="author-avatar">LT</div><div><div class="author-name">Lisa T.</div><div class="author-loc">Rockville, MD</div></div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <span class="overline">Where We Work</span>
+  <h2 class="section-title" style="font-size:22pt;">Serving Burtonsville &amp; Surrounding Areas</h2>
+  <div class="areas-grid">
+    <div class="area-chip"><i data-lucide="map-pin" width="14" height="14"></i> Burtonsville, MD</div>
+    <div class="area-chip"><i data-lucide="map-pin" width="14" height="14"></i> Silver Spring, MD</div>
+    <div class="area-chip"><i data-lucide="map-pin" width="14" height="14"></i> Rockville, MD</div>
+    <div class="area-chip"><i data-lucide="map-pin" width="14" height="14"></i> Germantown, MD</div>
+    <div class="area-chip"><i data-lucide="map-pin" width="14" height="14"></i> Gaithersburg, MD</div>
+    <div class="area-chip"><i data-lucide="map-pin" width="14" height="14"></i> Olney, MD</div>
+    <div class="area-chip"><i data-lucide="map-pin" width="14" height="14"></i> Laurel, MD</div>
+    <div class="area-chip"><i data-lucide="map-pin" width="14" height="14"></i> Columbia, MD</div>
+    <div class="area-chip"><i data-lucide="map-pin" width="14" height="14"></i> Clarksville, MD</div>
+  </div>
+
+  <div class="cta-box">
+    <div>
+      <div class="cta-title">Ready for a yard you're<br><em>proud to come home to?</em></div>
+      <div class="cta-sub">Free estimates. No pressure. Honest work from a crew that shows up.</div>
+    </div>
+    <div class="cta-contact">
+      <div class="cta-phone">(410) 905-2697</div>
+      <div class="cta-url">greenlifelandscapingmd.com</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  lucide.createIcons();
+  document.fonts.ready.then(function() {
+    setTimeout(function() { window.print(); }, 500);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-display); background: #f8f8f6; padding: 20px 24px; }
+.title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #9e9e9e; margin-bottom: 16px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+/* Primary */
+.btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; letter-spacing: .03em; border: none; cursor: pointer; border-radius: 8px; transition: all 250ms ease; text-decoration: none; }
+.btn-primary { background: #2e7031; color: #fff; padding: 12px 24px; font-size: 15px; box-shadow: 0 4px 20px rgba(46,112,49,0.20); }
+.btn-primary:hover { background: #245227; transform: translateY(-1px); }
+.btn-secondary { background: #fff; color: #2e7031; padding: 12px 24px; font-size: 15px; border: 2px solid #2e7031; }
+.btn-ghost { background: transparent; color: #2e7031; padding: 12px 24px; font-size: 15px; border: 1.5px solid #a5d6a7; }
+.btn-dark { background: #1b4d1e; color: #fff; padding: 12px 24px; font-size: 15px; }
+.btn-sm { padding: 8px 16px; font-size: 13px; border-radius: 6px; }
+.btn-lg { padding: 16px 32px; font-size: 17px; border-radius: 10px; }
+.btn-earth { background: #6d4c41; color: #fff; padding: 12px 24px; font-size: 15px; }
+.btn-disabled { background: #e0e0e0; color: #9e9e9e; padding: 12px 24px; font-size: 15px; cursor: not-allowed; }
+.section-label { font-size: 9px; color: #bdbdbd; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; width: 100%; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="title">Button Variants</div>
+<div class="row">
+  <button class="btn btn-primary">Book Free Estimate</button>
+  <button class="btn btn-secondary">Learn More</button>
+  <button class="btn btn-ghost">View Services</button>
+  <button class="btn btn-dark">Get a Quote</button>
+  <button class="btn btn-earth">Contact Us</button>
+</div>
+<div class="row">
+  <span class="section-label">Sizes</span>
+  <button class="btn btn-primary btn-sm">Small CTA</button>
+  <button class="btn btn-primary">Default CTA</button>
+  <button class="btn btn-primary btn-lg">Large CTA</button>
+  <button class="btn btn-disabled" disabled>Unavailable</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-display); background: #f0f0f0; padding: 20px 24px; }
+.title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #9e9e9e; margin-bottom: 16px; }
+.row { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
+.card { background: #fff; border-radius: 12px; width: 100px; height: 64px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; }
+.card-label { font-size: 9px; font-family: monospace; color: #5a5a5a; text-align: center; margin-top: 8px; }
+.item { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+<div class="title">Shadow System</div>
+<div class="row">
+  <div class="item">
+    <div class="card" style="box-shadow: 0 1px 2px rgba(0,0,0,0.06);"></div>
+    <div class="card-label">xs<br>resting-flat</div>
+  </div>
+  <div class="item">
+    <div class="card" style="box-shadow: 0 2px 6px rgba(0,0,0,0.08);"></div>
+    <div class="card-label">sm<br>card-default</div>
+  </div>
+  <div class="item">
+    <div class="card" style="box-shadow: 0 4px 16px rgba(0,0,0,0.10);"></div>
+    <div class="card-label">md<br>dropdown</div>
+  </div>
+  <div class="item">
+    <div class="card" style="box-shadow: 0 8px 32px rgba(0,0,0,0.12);"></div>
+    <div class="card-label">lg<br>card-hover</div>
+  </div>
+  <div class="item">
+    <div class="card" style="box-shadow: 0 16px 48px rgba(0,0,0,0.14);"></div>
+    <div class="card-label">xl<br>modal</div>
+  </div>
+  <div class="item">
+    <div class="card" style="box-shadow: 0 4px 20px rgba(46,112,49,0.22);background:#2e7031;"></div>
+    <div class="card-label">green<br>cta-glow</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Open Sans', sans-serif; background: #f0f0f0; padding: 0; }
+nav { background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.08); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.logo-area { display: flex; align-items: center; gap: 10px; }
+.logo-area img { height: 44px; width: auto; }
+.nav-links { display: flex; gap: 4px; align-items: center; }
+.nav-link { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; color: #3d3d3d; text-decoration: none; padding: 8px 12px; border-radius: 6px; transition: all 200ms; }
+.nav-link:hover { color: #2e7031; background: #f1f8f1; }
+.nav-link.active { color: #2e7031; }
+.nav-cta { background: #2e7031; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; padding: 9px 20px; border-radius: 8px; border: none; cursor: pointer; letter-spacing: .03em; box-shadow: 0 4px 14px rgba(46,112,49,0.22); display: flex; align-items: center; gap: 6px; }
+.nav-menu { display: flex; align-items: center; gap: 2px; }
+
+/* Dark variant */
+nav.dark { background: #1b4d1e; box-shadow: none; margin-top: 8px; }
+nav.dark .nav-link { color: rgba(255,255,255,0.75); }
+nav.dark .nav-link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+nav.dark .nav-link.active { color: #66bb6a; }
+nav.dark .nav-cta { background: #66bb6a; color: #1b4d1e; box-shadow: none; }
+</style>
+</head>
+<body>
+<!-- Light nav -->
+<nav>
+  <div class="logo-area">
+    <img src="../assets/logo-primary.png" alt="Green Life Landscaping">
+  </div>
+  <div class="nav-links">
+    <a href="#" class="nav-link active">Services</a>
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-link">Gallery</a>
+    <a href="#" class="nav-link">Contact</a>
+  </div>
+  <button class="nav-cta"><i data-lucide="calendar" width="14" height="14"></i> Book Estimate</button>
+</nav>
+
+<!-- Dark nav -->
+<nav class="dark">
+  <div class="logo-area">
+    <img src="../assets/logo-primary.png" alt="Green Life Landscaping" style="filter:brightness(10);">
+  </div>
+  <div class="nav-links">
+    <a href="#" class="nav-link active">Services</a>
+    <a href="#" class="nav-link">About</a>
+    <a href="#" class="nav-link">Gallery</a>
+    <a href="#" class="nav-link">Contact</a>
+  </div>
+  <button class="nav-cta"><i data-lucide="calendar" width="14" height="14"></i> Book Estimate</button>
+</nav>
+<script>lucide.createIcons();</script>
+</body>
+</html>

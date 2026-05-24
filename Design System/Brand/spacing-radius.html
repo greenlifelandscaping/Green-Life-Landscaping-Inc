@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-display); background: #f8f8f6; padding: 20px 24px; }
+.title { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #9e9e9e; margin-bottom: 14px; }
+.row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.chip { background: #2e7031; display: flex; align-items: center; justify-content: center; }
+.label { font-size: 9px; font-family: monospace; color: #5a5a5a; text-align: center; margin-top: 6px; }
+.item { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+<div class="title">Border Radius Tokens</div>
+<div class="row">
+  <div class="item"><div class="chip" style="width:48px;height:48px;border-radius:4px;"></div><div class="label">sm<br>4px</div></div>
+  <div class="item"><div class="chip" style="width:48px;height:48px;border-radius:8px;"></div><div class="label">md<br>8px</div></div>
+  <div class="item"><div class="chip" style="width:48px;height:48px;border-radius:12px;"></div><div class="label">lg<br>12px</div></div>
+  <div class="item"><div class="chip" style="width:48px;height:48px;border-radius:16px;"></div><div class="label">xl<br>16px</div></div>
+  <div class="item"><div class="chip" style="width:48px;height:48px;border-radius:24px;"></div><div class="label">2xl<br>24px</div></div>
+  <div class="item"><div class="chip" style="width:80px;height:36px;border-radius:9999px;"></div><div class="label">pill<br>9999px</div></div>
+  <div style="margin-left:16px;font-size:10px;color:#9e9e9e;line-height:1.8;">
+    <div><strong style="color:#5a5a5a;">Buttons:</strong> md (8px)</div>
+    <div><strong style="color:#5a5a5a;">Cards:</strong> lg (12px)</div>
+    <div><strong style="color:#5a5a5a;">Inputs:</strong> md (8px)</div>
+    <div><strong style="color:#5a5a5a;">Badges:</strong> pill</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Life Landscaping — Website</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+/* ── Reset & Base ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Open Sans', sans-serif; background: #f8f8f6; color: #1a1a1a; line-height: 1.6; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ── Tokens ───────────────────────────────────────────── */
+:root {
+  --green-900: #1b4d1e; --green-800: #245227; --green-700: #2e7031;
+  --green-600: #3a8c3e; --green-400: #66bb6a; --green-100: #c8e6c9; --green-50: #f1f8f1;
+  --brown-600: #6d4c41; --brown-50: #efebe9;
+  --neutral-900: #1a1a1a; --neutral-700: #3d3d3d; --neutral-600: #5a5a5a;
+  --neutral-400: #9e9e9e; --neutral-200: #e0e0e0; --neutral-100: #f0f0f0;
+  --off-white: #f8f8f6; --white: #ffffff;
+  --shadow-sm: 0 2px 6px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  --shadow-green: 0 4px 20px rgba(46,112,49,0.22);
+}
+
+/* ── Utility ──────────────────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.section-pad { padding: 88px 0; }
+.overline { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--green-700); display: block; margin-bottom: 10px; }
+.section-title { font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 700; line-height: 1.25; color: var(--neutral-900); margin-bottom: 16px; }
+.section-sub { font-size: 17px; color: var(--neutral-600); line-height: 1.65; max-width: 560px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: .03em; border: none; border-radius: 8px; cursor: pointer; transition: all 250ms ease; }
+.btn-primary { background: var(--green-700); color: #fff; padding: 13px 28px; box-shadow: var(--shadow-green); }
+.btn-primary:hover { background: var(--green-800); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--green-700); padding: 12px 26px; border: 2px solid var(--green-700); }
+.btn-outline:hover { background: var(--green-50); }
+.btn-white { background: #fff; color: var(--green-700); padding: 13px 28px; }
+.btn-white:hover { background: var(--green-50); }
+
+/* ── Navigation ───────────────────────────────────────── */
+.nav { position: sticky; top: 0; z-index: 100; background: #fff; box-shadow: var(--shadow-sm); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+.nav-logo img { height: 50px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-link { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; color: var(--neutral-700); padding: 8px 14px; border-radius: 6px; transition: all 200ms; }
+.nav-link:hover, .nav-link.active { color: var(--green-700); background: var(--green-50); }
+.nav-cta { background: var(--green-700); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; padding: 10px 22px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px; letter-spacing: .03em; box-shadow: var(--shadow-green); transition: all 250ms; }
+.nav-cta:hover { background: var(--green-800); }
+
+/* ── Hero ─────────────────────────────────────────────── */
+.hero { position: relative; min-height: 560px; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1b4d1e 0%, #2e7031 50%, #3a8c3e 100%); }
+.hero-bg-photo { position: absolute; inset: 0; background-image: url('../../assets/photo-tree-service.jpeg'); background-size: cover; background-position: center; opacity: 0.18; }
+.hero-content { position: relative; z-index: 2; padding: 80px 0; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 9999px; padding: 5px 14px 5px 8px; margin-bottom: 24px; }
+.hero-badge-dot { width: 8px; height: 8px; background: var(--green-400); border-radius: 50%; }
+.hero-badge span { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.9); letter-spacing: .04em; }
+.hero-title { font-family: 'Montserrat', sans-serif; font-size: 58px; font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; color: #fff; margin-bottom: 20px; max-width: 660px; }
+.hero-title em { color: var(--green-400); font-style: normal; }
+.hero-sub { font-size: 18px; color: rgba(255,255,255,0.82); line-height: 1.65; max-width: 520px; margin-bottom: 36px; }
+.hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.hero-stats { display: flex; gap: 40px; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.15); }
+.hero-stat-num { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 800; color: #fff; line-height: 1; }
+.hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 4px; }
+
+/* ── Services Grid ────────────────────────────────────── */
+.services-section { background: var(--off-white); }
+.services-header { text-align: center; margin-bottom: 52px; }
+.services-header .section-sub { margin: 0 auto; }
+.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.service-card { background: #fff; border-radius: 12px; padding: 28px 22px 22px; box-shadow: var(--shadow-sm); transition: all 250ms ease; cursor: pointer; }
+.service-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.service-icon { width: 48px; height: 48px; background: var(--green-50); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.service-icon svg { color: var(--green-700); }
+.service-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: var(--neutral-900); margin-bottom: 6px; }
+.service-desc { font-size: 13px; color: var(--neutral-600); line-height: 1.55; }
+.service-link { display: inline-flex; align-items: center; gap: 4px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--green-700); margin-top: 12px; letter-spacing: .03em; }
+
+/* ── Why Choose Us ────────────────────────────────────── */
+.why-section { background: var(--green-900); }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.why-text .section-title { color: #fff; }
+.why-text .section-sub { color: rgba(255,255,255,0.72); }
+.why-text .overline { color: var(--green-400); }
+.why-features { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
+.why-feature { display: flex; align-items: flex-start; gap: 14px; }
+.why-feature-icon { width: 40px; height: 40px; background: rgba(255,255,255,0.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.why-feature-icon svg { color: var(--green-400); }
+.why-feature-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+.why-feature-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.55; }
+.why-photo { border-radius: 16px; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.30); }
+.why-photo img { width: 100%; height: 460px; object-fit: cover; }
+
+/* ── Testimonials ─────────────────────────────────────── */
+.testimonials-section { background: var(--brown-50); }
+.testimonials-header { text-align: center; margin-bottom: 48px; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.testimonial-card { background: #fff; border-radius: 12px; padding: 24px; box-shadow: var(--shadow-sm); }
+.stars { display: flex; gap: 3px; margin-bottom: 12px; }
+.stars svg { color: #f57c00; }
+.testimonial-text { font-size: 14px; color: var(--neutral-700); line-height: 1.65; font-style: italic; margin-bottom: 16px; }
+.testimonial-author { display: flex; align-items: center; gap: 10px; }
+.author-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--green-100); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px; color: var(--green-700); }
+.author-name { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--neutral-900); }
+.author-loc { font-size: 12px; color: var(--neutral-400); }
+
+/* ── CTA Banner ───────────────────────────────────────── */
+.cta-section { background: var(--green-700); }
+.cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; padding: 64px 0; }
+.cta-text { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 700; color: #fff; line-height: 1.3; }
+.cta-text span { color: var(--green-400); }
+.cta-sub { font-size: 16px; color: rgba(255,255,255,0.75); margin-top: 8px; }
+
+/* ── Contact Section ──────────────────────────────────── */
+.contact-section { background: #fff; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+.contact-info { padding-top: 8px; }
+.contact-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 28px; }
+.contact-item-icon { width: 44px; height: 44px; background: var(--green-50); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-item-icon svg { color: var(--green-700); }
+.contact-item-label { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--neutral-400); margin-bottom: 2px; }
+.contact-item-val { font-size: 15px; color: var(--neutral-800); font-weight: 500; }
+.form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group label { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--neutral-700); }
+.input-wrap { position: relative; display: flex; align-items: center; }
+.input-wrap svg { position: absolute; left: 12px; color: var(--neutral-400); pointer-events: none; }
+input, select, textarea { width: 100%; font-family: 'Open Sans', sans-serif; font-size: 14px; color: var(--neutral-900); background: #fff; border: 1.5px solid var(--neutral-200); border-radius: 8px; padding: 10px 12px 10px 36px; outline: none; transition: border-color 200ms; }
+input:focus, select:focus, textarea:focus { border-color: var(--green-700); box-shadow: 0 0 0 3px rgba(46,112,49,0.10); }
+select { appearance: none; }
+textarea { padding-left: 12px; min-height: 100px; resize: vertical; }
+.submit-btn { background: var(--green-700); color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: .04em; border: none; border-radius: 8px; padding: 14px; cursor: pointer; box-shadow: var(--shadow-green); transition: all 250ms; }
+.submit-btn:hover { background: var(--green-800); }
+
+/* ── Footer ───────────────────────────────────────────── */
+footer { background: var(--green-900); color: rgba(255,255,255,0.7); padding: 56px 0 28px; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-logo img { height: 52px; filter: brightness(10); margin-bottom: 14px; }
+.footer-tagline { font-size: 13px; line-height: 1.65; max-width: 240px; }
+.footer-col-title { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: #fff; letter-spacing: .04em; margin-bottom: 16px; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.65); transition: color 200ms; }
+.footer-links a:hover { color: var(--green-400); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.10); font-size: 12px; }
+.footer-bottom a { color: var(--green-400); }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo"><img src="../../assets/logo-primary.png" alt="Green Life Landscaping"></a>
+      <div class="nav-links">
+        <a href="#services" class="nav-link active">Services</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#testimonials" class="nav-link">Reviews</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <button class="nav-cta"><i data-lucide="calendar" width="14" height="14"></i> Book Free Estimate</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-photo"></div>
+  <div class="container hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span>Maryland's Trusted Landscaping Pros</span>
+    </div>
+    <h1 class="hero-title">Transform Your<br><em>Outdoor Space</em></h1>
+    <p class="hero-sub">Reliable, eco-friendly landscaping for residential and commercial properties. We show up. We do the work. Your yard thanks us.</p>
+    <div class="hero-actions">
+      <button class="btn btn-white"><i data-lucide="calendar" width="16" height="16"></i> Book Free Estimate</button>
+      <button class="btn btn-outline" style="color:rgba(255,255,255,0.9);border-color:rgba(255,255,255,0.4);">
+        <i data-lucide="play-circle" width="16" height="16"></i> See Our Work
+      </button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Years of Experience</div></div>
+      <div><div class="hero-stat-num">500+</div><div class="hero-stat-label">Projects Completed</div></div>
+      <div><div class="hero-stat-num">5.0★</div><div class="hero-stat-label">Average Rating</div></div>
+      <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Licensed & Insured</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services-section section-pad" id="services">
+  <div class="container">
+    <div class="services-header">
+      <span class="overline">What We Do</span>
+      <h2 class="section-title">Full-Service Outdoor Solutions</h2>
+      <p class="section-sub">From weekly lawn care to complete outdoor construction — we handle it all with consistency and care.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i data-lucide="scissors" width="22" height="22"></i></div>
+        <div class="service-title">Lawn Care</div>
+        <div class="service-desc">Mowing, aeration, dethatching, and overseeding for a lawn that actually looks maintained.</div>
+        <a href="#" class="service-link">Learn more <i data-lucide="arrow-right" width="12" height="12"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i data-lucide="wind" width="22" height="22"></i></div>
+        <div class="service-title">Cleanups</div>
+        <div class="service-desc">Leaf removal, gutter clearing, and seasonal property cleanups done right.</div>
+        <a href="#" class="service-link">Learn more <i data-lucide="arrow-right" width="12" height="12"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i data-lucide="tree-pine" width="22" height="22"></i></div>
+        <div class="service-title">Tree Services</div>
+        <div class="service-desc">Safe removal, precision pruning, and trimming by experienced professionals.</div>
+        <a href="#" class="service-link">Learn more <i data-lucide="arrow-right" width="12" height="12"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i data-lucide="layers" width="22" height="22"></i></div>
+        <div class="service-title">Hardscaping</div>
+        <div class="service-desc">Patios, retaining walls, and structural outdoor work built to last.</div>
+        <a href="#" class="service-link">Learn more <i data-lucide="arrow-right" width="12" height="12"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i data-lucide="fence" width="22" height="22"></i></div>
+        <div class="service-title">Fence Installation</div>
+        <div class="service-desc">New fence installation and repair for privacy, security, and curb appeal.</div>
+        <a href="#" class="service-link">Learn more <i data-lucide="arrow-right" width="12" height="12"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i data-lucide="flower-2" width="22" height="22"></i></div>
+        <div class="service-title">Mulch & Plant Care</div>
+        <div class="service-desc">Mulching, planting, and ongoing plant health to keep beds looking sharp.</div>
+        <a href="#" class="service-link">Learn more <i data-lucide="arrow-right" width="12" height="12"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i data-lucide="droplets" width="22" height="22"></i></div>
+        <div class="service-title">Drainage Solutions</div>
+        <div class="service-desc">French drains, grading, and water management to protect your property.</div>
+        <a href="#" class="service-link">Learn more <i data-lucide="arrow-right" width="12" height="12"></i></a>
+      </div>
+      <div class="service-card" style="background:var(--green-700);cursor:pointer;">
+        <div class="service-icon" style="background:rgba(255,255,255,0.12);"><i data-lucide="phone" width="22" height="22" style="color:#fff;"></i></div>
+        <div class="service-title" style="color:#fff;">Not Sure?</div>
+        <div class="service-desc" style="color:rgba(255,255,255,0.75);">Tell us about your property. We'll figure out the right plan.</div>
+        <a href="#contact" class="service-link" style="color:var(--green-400);">Get free advice <i data-lucide="arrow-right" width="12" height="12"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Green Life -->
+<section class="why-section section-pad" id="about">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-text">
+        <span class="overline">Why Green Life</span>
+        <h2 class="section-title">Built for Beauty.<br>Designed for Function.</h2>
+        <p class="section-sub">We're not a call center with subcontractors. We're a local Maryland crew that shows up, does the work, and stands behind it.</p>
+        <div class="why-features">
+          <div class="why-feature">
+            <div class="why-feature-icon"><i data-lucide="leaf" width="18" height="18"></i></div>
+            <div><div class="why-feature-title">Eco-Friendly Practices</div><div class="why-feature-desc">Sustainable methods that protect your lawn and the environment long-term.</div></div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon"><i data-lucide="shield-check" width="18" height="18"></i></div>
+            <div><div class="why-feature-title">Fully Licensed & Insured</div><div class="why-feature-desc">Maryland-certified, fully insured on every single job. No exceptions.</div></div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon"><i data-lucide="repeat" width="18" height="18"></i></div>
+            <div><div class="why-feature-title">Consistent, Long-Term Service</div><div class="why-feature-desc">The same crew. The same standards. Every time we come to your property.</div></div>
+          </div>
+          <div class="why-feature">
+            <div class="why-feature-icon"><i data-lucide="tool" width="18" height="18"></i></div>
+            <div><div class="why-feature-title">Full-Service, One Call</div><div class="why-feature-desc">Design, build, and maintain — everything from first consult to ongoing care.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="why-photo">
+        <img src="../../assets/photo-tree-service.jpeg" alt="Green Life crew at work">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials-section section-pad" id="testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <span class="overline">What Clients Say</span>
+      <h2 class="section-title">Real Results, Real Reviews</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">
+          <i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i>
+        </div>
+        <p class="testimonial-text">"Green Life showed up exactly when they said, worked clean, and the yard looks incredible. I've had three other landscapers before — none came close."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SM</div>
+          <div><div class="author-name">Sarah M.</div><div class="author-loc">Ellicott City, MD</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">
+          <i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i>
+        </div>
+        <p class="testimonial-text">"Had a massive tree come down in a storm. They were out within 24 hours, cleaned everything up, and gave me a fair price. Highly recommend."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RJ</div>
+          <div><div class="author-name">Robert J.</div><div class="author-loc">Columbia, MD</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">
+          <i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i><i data-lucide="star" width="14" height="14"></i>
+        </div>
+        <p class="testimonial-text">"They built our patio and did the drainage work in the backyard. Two years later, zero issues. These guys know what they're doing."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">LT</div>
+          <div><div class="author-name">Lisa T.</div><div class="author-loc">Laurel, MD</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <div class="cta-text">Ready for a yard you're<br><span>proud to come home to?</span></div>
+        <div class="cta-sub">Free estimates. No pressure. Just honest work.</div>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <button class="btn btn-white"><i data-lucide="calendar" width="16" height="16"></i> Book Free Estimate</button>
+        <button class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4);">
+          <i data-lucide="phone" width="16" height="16"></i> Call Us Now
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section section-pad" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="overline">Get In Touch</span>
+        <h2 class="section-title">Let's Talk About<br>Your Property</h2>
+        <p class="section-sub" style="margin-bottom:36px;">Fill out the form and we'll get back to you within one business day with a no-obligation estimate.</p>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i data-lucide="phone" width="20" height="20"></i></div>
+          <div><div class="contact-item-label">Phone</div><div class="contact-item-val">(410) 555-0100</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i data-lucide="mail" width="20" height="20"></i></div>
+          <div><div class="contact-item-label">Email</div><div class="contact-item-val">info@greenlifelandscaping.com</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i data-lucide="map-pin" width="20" height="20"></i></div>
+          <div><div class="contact-item-label">Service Area</div><div class="contact-item-val">Maryland — Baltimore, Howard,<br>Montgomery & PG Counties</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><i data-lucide="clock" width="20" height="20"></i></div>
+          <div><div class="contact-item-label">Hours</div><div class="contact-item-val">Mon–Sat: 7am–6pm</div></div>
+        </div>
+        <div style="margin-top:8px;">
+          <img src="../../assets/photo-team-owner.jpeg" alt="Green Life owner" style="width:200px;height:200px;object-fit:cover;object-position:top;border-radius:12px;box-shadow:var(--shadow-md);">
+        </div>
+      </div>
+      <div>
+        <div class="form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <div class="input-wrap"><i data-lucide="user" width="14" height="14"></i><input type="text" placeholder="John Smith"></div>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <div class="input-wrap"><i data-lucide="phone" width="14" height="14"></i><input type="tel" placeholder="(410) 555-0000"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <div class="input-wrap"><i data-lucide="mail" width="14" height="14"></i><input type="email" placeholder="you@email.com"></div>
+          </div>
+          <div class="form-group">
+            <label>Service Needed</label>
+            <div class="input-wrap"><i data-lucide="list" width="14" height="14"></i>
+              <select>
+                <option>Select a service…</option>
+                <option>Lawn Care</option>
+                <option>Seasonal Cleanup</option>
+                <option>Tree Services</option>
+                <option>Hardscaping</option>
+                <option>Fence Installation / Repair</option>
+                <option>Mulch & Plant Care</option>
+                <option>Drainage Solutions</option>
+                <option>Not sure — need advice</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tell Us About Your Project</label>
+            <textarea placeholder="Describe your property, what you need, and any specific concerns…"></textarea>
+          </div>
+          <button class="submit-btn">Book Free Estimate →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="../../assets/logo-primary.png" alt="Green Life Landscaping"></div>
+        <p class="footer-tagline">Maryland's trusted full-service landscaping company. Reliable, eco-friendly, and built for the long haul.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-links">
+          <a href="#">Lawn Care</a>
+          <a href="#">Seasonal Cleanups</a>
+          <a href="#">Tree Services</a>
+          <a href="#">Hardscaping</a>
+          <a href="#">Fence Installation</a>
+          <a href="#">Mulch & Plants</a>
+          <a href="#">Drainage Solutions</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="#">About Us</a>
+          <a href="#">Gallery</a>
+          <a href="#">Reviews</a>
+          <a href="#">Contact</a>
+          <a href="#">Book Estimate</a>
+        </div>
+        <div style="margin-top:24px;">
+          <div class="footer-col-title">Service Area</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7;">Baltimore County<br>Howard County<br>Montgomery County<br>Prince George's County</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Green Life Landscaping Services Inc. All rights reserved.</span>
+      <span>Maryland Licensed &amp; Insured · <a href="#">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

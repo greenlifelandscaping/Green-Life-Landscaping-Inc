@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How to Rebuild GreenLife Landscaping in WordPress — A Visual Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --g900:#1b4d1e; --g800:#245227; --g700:#2e7031; --g600:#3a8c3e; --g400:#66bb6a; --g100:#c8e6c9; --g50:#f1f8f1;
+    --h900:#2f5862; --h700:#4a7c82; --h300:#b9d4d4; --h50:#eef5f5;
+    --n900:#1a1a1a; --n800:#2c2c2c; --n700:#3d3d3d; --n600:#5a5a5a; --n400:#9e9e9e; --n300:#cccccc; --n200:#e0e0e0; --n100:#ededed;
+    --bone:#faf8f3; --cream:#f5efe2;
+    --warn:#b8651b; --warn-bg:#fdf3e7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-family: 'Montserrat', system-ui, sans-serif; color: var(--n800); background: #ddd; }
+  body { font-size: 11pt; line-height: 1.55; }
+  a { color: var(--g700); text-decoration: none; }
+  strong { font-weight: 700; color: var(--n900); }
+  em { font-style: italic; }
+
+  /* Page setup */
+  @page { size: A4 portrait; margin: 0; }
+  .page {
+    width: 210mm; min-height: 297mm; background: #fff; margin: 18px auto; box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+    padding: 22mm 20mm 20mm; position: relative; overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+  @media print {
+    html, body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { box-shadow: none; margin: 0; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  }
+
+  /* Header / footer marks on inner pages */
+  .page-header { position: absolute; top: 10mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; align-items: center; font-size: 9pt; color: var(--n400); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+  .page-header .leaf { width: 14px; height: 14px; background: var(--g700); border-radius: 50% 0 50% 50%; transform: rotate(-45deg); }
+  .page-header-left { display: flex; align-items: center; gap: 10px; }
+  .page-footer { position: absolute; bottom: 10mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; font-size: 9pt; color: var(--n400); }
+  .page-footer .pgnum { font-weight: 700; color: var(--g700); }
+
+  /* Type */
+  h1, h2, h3, h4 { font-family: 'Montserrat'; color: var(--n900); line-height: 1.15; }
+  h2 { font-size: 30pt; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+  h3 { font-size: 16pt; font-weight: 700; margin-bottom: 6px; }
+  h4 { font-size: 11pt; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 4px; }
+  p { margin-bottom: 9px; }
+  .overline { font-size: 9pt; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--g700); display: block; margin-bottom: 10px; }
+  .lede { font-family: 'Fraunces', serif; font-size: 13pt; line-height: 1.5; color: var(--n700); }
+  code { font-family: 'JetBrains Mono'; font-size: 9pt; background: var(--n100); padding: 1px 5px; border-radius: 3px; color: var(--n900); }
+
+  /* ==== COVER ==== */
+  .cover { background: linear-gradient(165deg, var(--g900) 0%, var(--g800) 50%, #1a3d20 100%); color: #fff; padding: 0; position: relative; }
+  .cover-inner { position: absolute; inset: 0; padding: 22mm 20mm; display: flex; flex-direction: column; }
+  .cover-mark { display: flex; align-items: center; gap: 10px; font-size: 10pt; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.7); }
+  .cover-leaf { width: 22px; height: 22px; background: var(--g400); border-radius: 50% 0 50% 50%; transform: rotate(-45deg); }
+  .cover-tag { margin-top: auto; }
+  .cover-overline { font-size: 10pt; letter-spacing: .25em; text-transform: uppercase; font-weight: 700; color: var(--g400); margin-bottom: 16px; }
+  .cover-title { font-family: 'Montserrat'; font-size: 48pt; font-weight: 800; line-height: 1; letter-spacing: -0.025em; color: #fff; max-width: 95%; }
+  .cover-title em { font-style: normal; color: var(--g400); }
+  .cover-sub { font-family: 'Fraunces'; font-size: 16pt; line-height: 1.4; color: rgba(255,255,255,0.78); margin-top: 22px; max-width: 88%; }
+  .cover-meta { display: flex; gap: 36px; margin-top: 40px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,0.18); }
+  .cover-meta-cell { font-size: 10pt; }
+  .cover-meta-cell .l { display: block; color: rgba(255,255,255,0.52); letter-spacing: .12em; text-transform: uppercase; font-weight: 600; font-size: 8.5pt; margin-bottom: 4px; }
+  .cover-meta-cell .v { color: #fff; font-weight: 600; }
+  .cover-bg-photo { position: absolute; right: -40mm; top: -10mm; width: 130mm; height: 130mm; border-radius: 50%; opacity: 0.18; background-size: cover; background-position: center; }
+  .cover-corner { position: absolute; right: 22mm; top: 22mm; font-size: 9pt; color: rgba(255,255,255,0.5); letter-spacing: .15em; text-transform: uppercase; }
+
+  /* ==== TOC ==== */
+  .toc-list { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+  .toc-row { display: grid; grid-template-columns: 36px 1fr auto; gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--n200); }
+  .toc-num { font-family: 'Fraunces'; font-size: 22pt; color: var(--g700); font-weight: 600; line-height: 1; }
+  .toc-name { font-size: 13pt; font-weight: 700; color: var(--n900); }
+  .toc-desc { display: block; font-size: 10pt; font-weight: 500; color: var(--n600); margin-top: 3px; line-height: 1.4; }
+  .toc-pg { font-family: 'JetBrains Mono'; font-size: 10pt; color: var(--n400); font-weight: 600; }
+
+  /* ==== Generic blocks ==== */
+  .lead-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 18px; }
+  .stat-card { background: var(--g50); border: 1px solid var(--g100); border-radius: 10px; padding: 16px 18px; }
+  .stat-card .l { font-size: 9pt; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--g700); margin-bottom: 6px; }
+  .stat-card .v { font-family: 'Fraunces'; font-size: 22pt; color: var(--n900); font-weight: 600; line-height: 1.05; }
+  .stat-card .n { font-size: 9.5pt; color: var(--n600); margin-top: 4px; }
+
+  .callout { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding: 12px 14px; border-radius: 8px; margin: 12px 0; font-size: 10pt; line-height: 1.5; }
+  .callout-tip { background: var(--g50); border-left: 3px solid var(--g700); }
+  .callout-warn { background: var(--warn-bg); border-left: 3px solid var(--warn); }
+  .callout-info { background: var(--h50); border-left: 3px solid var(--h700); }
+  .callout-icon { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces'; font-weight: 700; font-size: 14pt; line-height: 1; }
+  .callout-tip .callout-icon { background: var(--g700); color: #fff; }
+  .callout-warn .callout-icon { background: var(--warn); color: #fff; }
+  .callout-info .callout-icon { background: var(--h700); color: #fff; }
+  .callout strong { display: block; margin-bottom: 2px; font-size: 10pt; }
+
+  /* Step blocks */
+  .step { display: grid; grid-template-columns: 44px 1fr; gap: 18px; margin: 18px 0; align-items: start; }
+  .step-num { width: 38px; height: 38px; border-radius: 50%; background: var(--g700); color: #fff; font-family: 'Montserrat'; font-weight: 800; font-size: 13pt; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(46,112,49,0.28); }
+  .step-body h4 { font-size: 12pt; margin-bottom: 4px; }
+  .step-body p { font-size: 10pt; line-height: 1.55; }
+  .step-body ul { padding-left: 16px; font-size: 10pt; line-height: 1.6; }
+  .step-body li { margin-bottom: 3px; }
+
+  /* Plugin cards */
+  .plug-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .plug { border: 1px solid var(--n200); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 8px; background: #fff; }
+  .plug-head { display: flex; align-items: center; gap: 10px; }
+  .plug-icon { width: 38px; height: 38px; border-radius: 9px; background: var(--g50); color: var(--g700); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat'; font-weight: 800; font-size: 14pt; flex-shrink: 0; }
+  .plug-icon-h { background: var(--h50); color: var(--h700); }
+  .plug-icon-w { background: var(--warn-bg); color: var(--warn); }
+  .plug-name { font-weight: 700; font-size: 11pt; color: var(--n900); }
+  .plug-cat { font-size: 8pt; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--n400); }
+  .plug-desc { font-size: 9.5pt; line-height: 1.5; color: var(--n700); }
+  .plug-meta { display: flex; gap: 8px; margin-top: auto; padding-top: 6px; border-top: 1px dashed var(--n200); font-size: 8.5pt; color: var(--n600); }
+  .plug-meta b { color: var(--n900); font-weight: 700; }
+  .plug-pill { font-size: 8pt; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 2px 7px; border-radius: 999px; background: var(--g50); color: var(--g700); }
+  .plug-pill-paid { background: var(--warn-bg); color: var(--warn); }
+
+  /* Mockups (CSS-drawn UI) */
+  .mockup { border: 1px solid var(--n200); border-radius: 10px; overflow: hidden; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin: 12px 0; }
+  .mock-bar { background: var(--n100); border-bottom: 1px solid var(--n200); padding: 6px 12px; display: flex; align-items: center; gap: 6px; font-size: 8pt; color: var(--n600); }
+  .mock-dots { display: flex; gap: 4px; margin-right: 8px; }
+  .mock-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--n300); }
+  .mock-dots span:nth-child(1) { background: #e74c3c; }
+  .mock-dots span:nth-child(2) { background: #f1c40f; }
+  .mock-dots span:nth-child(3) { background: #2ecc71; }
+  .mock-url { background: #fff; border: 1px solid var(--n200); border-radius: 4px; padding: 2px 8px; font-family: 'JetBrains Mono'; font-size: 8pt; flex: 1; color: var(--n600); }
+  .mock-body { padding: 14px; }
+
+  /* WP admin sidebar mockup */
+  .wp-admin { display: grid; grid-template-columns: 140px 1fr; min-height: 220px; }
+  .wp-side { background: #1d2327; color: #fff; padding: 8px 0; font-size: 9pt; }
+  .wp-side-row { padding: 7px 14px; display: flex; gap: 8px; align-items: center; color: #c3c4c7; }
+  .wp-side-row.active { background: var(--g700); color: #fff; font-weight: 700; }
+  .wp-side-row .ic { width: 12px; height: 12px; background: currentColor; opacity: 0.6; mask-size: contain; }
+  .wp-main { padding: 16px; background: #f0f0f1; }
+  .wp-h1 { font-size: 14pt; font-weight: 600; color: var(--n900); margin-bottom: 12px; font-family: 'Montserrat'; }
+  .wp-search { display: flex; gap: 8px; margin-bottom: 12px; }
+  .wp-search-box { flex: 1; background: #fff; border: 1px solid var(--n300); border-radius: 4px; padding: 5px 8px; font-size: 9pt; color: var(--n600); font-family: 'JetBrains Mono'; }
+  .wp-search-btn { background: var(--n900); color: #fff; padding: 5px 12px; border-radius: 4px; font-size: 9pt; font-weight: 600; }
+  .wp-result { background: #fff; border: 1px solid var(--n200); border-radius: 6px; padding: 10px; display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+  .wp-result-icon { width: 36px; height: 36px; background: var(--g50); border-radius: 6px; }
+  .wp-result-name { font-weight: 700; font-size: 9.5pt; }
+  .wp-result-desc { font-size: 8.5pt; color: var(--n600); }
+  .wp-install-btn { margin-left: auto; background: var(--g700); color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 8.5pt; font-weight: 700; }
+
+  /* Page block diagram */
+  .pageblock { border: 1px solid var(--n200); border-radius: 8px; margin-bottom: 8px; padding: 8px 12px; display: grid; grid-template-columns: 130px 1fr auto; gap: 12px; align-items: center; font-size: 9.5pt; }
+  .pageblock-name { font-weight: 700; color: var(--n900); }
+  .pageblock-block { font-family: 'JetBrains Mono'; font-size: 8.5pt; color: var(--g700); background: var(--g50); padding: 2px 7px; border-radius: 4px; display: inline-block; }
+  .pageblock-note { font-size: 9pt; color: var(--n600); }
+
+  /* Phase header */
+  .phase-head { display: grid; grid-template-columns: 80px 1fr; gap: 22px; align-items: center; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 2px solid var(--g700); }
+  .phase-num { font-family: 'Fraunces'; font-size: 64pt; line-height: 0.9; color: var(--g700); font-weight: 600; }
+  .phase-meta .overline { margin-bottom: 6px; }
+  .phase-meta h2 { font-size: 26pt; }
+  .phase-time { display: inline-flex; align-items: center; gap: 6px; font-size: 9pt; color: var(--n600); padding: 4px 10px; border: 1px solid var(--n200); border-radius: 999px; margin-top: 8px; font-weight: 600; }
+
+  /* Roadmap */
+  .roadmap { display: flex; flex-direction: column; gap: 0; margin-top: 18px; position: relative; }
+  .roadmap::before { content: ""; position: absolute; left: 24px; top: 24px; bottom: 24px; width: 2px; background: var(--g100); z-index: 0; }
+  .road-step { display: grid; grid-template-columns: 50px 1fr; gap: 16px; align-items: start; padding: 10px 0; position: relative; z-index: 1; }
+  .road-num { width: 50px; height: 50px; border-radius: 50%; background: #fff; border: 2px solid var(--g700); color: var(--g700); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13pt; font-family: 'Montserrat'; }
+  .road-body h4 { font-size: 12pt; margin-bottom: 2px; }
+  .road-body .road-time { font-size: 9pt; color: var(--n600); font-weight: 600; }
+  .road-body p { font-size: 10pt; margin-top: 4px; color: var(--n700); }
+
+  /* Hero preview thumbnail (first page) */
+  .preview-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; margin-top: 16px; height: 80mm; }
+  .preview-main { border-radius: 8px; overflow: hidden; background-size: cover; background-position: center; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .preview-main::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(27,77,30,0.65) 100%); }
+  .preview-side { display: grid; grid-template-rows: 1fr 1fr; gap: 8px; }
+  .preview-thumb { border-radius: 6px; background-size: cover; background-position: center; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
+
+  /* Two-col content layout */
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .twocol-narrow { display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin: 8px 0; }
+  th { background: var(--g900); color: #fff; padding: 8px 10px; text-align: left; font-weight: 700; font-size: 9pt; letter-spacing: .04em; }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--n200); vertical-align: top; }
+  tr:nth-child(even) td { background: var(--g50); }
+  td.price { font-family: 'JetBrains Mono'; font-weight: 600; color: var(--g700); white-space: nowrap; }
+
+  /* Checklist */
+  .check { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 7px 0; border-bottom: 1px dashed var(--n200); align-items: start; font-size: 10pt; }
+  .check-box { width: 16px; height: 16px; border: 1.5px solid var(--n400); border-radius: 3px; margin-top: 2px; }
+
+  /* Mega-menu mockup */
+  .mega { border: 1px solid var(--n200); border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.08); margin: 12px 0; }
+  .mega-nav { background: #fff; padding: 8px 16px; display: flex; gap: 18px; align-items: center; border-bottom: 1px solid var(--n200); font-size: 9pt; font-weight: 600; }
+  .mega-logo { display: flex; align-items: center; gap: 6px; font-weight: 800; color: var(--g900); font-size: 10pt; }
+  .mega-logo .l { width: 12px; height: 12px; background: var(--g700); border-radius: 50% 0 50% 50%; transform: rotate(-45deg); }
+  .mega-link { color: var(--n700); }
+  .mega-link.active { color: var(--g700); background: var(--g50); padding: 4px 10px; border-radius: 5px; }
+  .mega-cta { margin-left: auto; background: var(--g700); color: #fff; padding: 4px 12px; border-radius: 5px; font-size: 8.5pt; font-weight: 700; }
+  .mega-panel { background: #fff; border-top: 1px solid var(--n200); padding: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .mega-item { padding: 8px 10px; border-radius: 6px; display: grid; grid-template-columns: 28px 1fr; gap: 8px; align-items: center; }
+  .mega-item:hover { background: var(--g50); }
+  .mega-item .ic { width: 26px; height: 26px; background: var(--g50); border-radius: 6px; }
+  .mega-item-snow .ic { background: var(--h50); }
+  .mega-item-name { font-weight: 700; font-size: 9.5pt; color: var(--n900); display: flex; gap: 6px; align-items: center; }
+  .mega-item-pill { font-size: 7pt; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 1px 6px; border-radius: 999px; background: var(--h50); color: var(--h900); border: 1px solid var(--h300); }
+  .mega-item-desc { font-size: 8pt; color: var(--n600); }
+
+  /* Form mockup */
+  .form-mock { background: #fff; border: 1px solid var(--n200); border-radius: 10px; padding: 14px; }
+  .field { margin-bottom: 8px; }
+  .field-label { font-size: 9pt; font-weight: 700; color: var(--n800); display: block; margin-bottom: 3px; }
+  .field-input { background: #fafafa; border: 1px solid var(--n300); border-radius: 5px; height: 26px; }
+  .field-tarea { background: #fafafa; border: 1px solid var(--n300); border-radius: 5px; height: 56px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .field-btn { background: var(--g700); color: #fff; padding: 8px 18px; border-radius: 5px; font-size: 10pt; font-weight: 700; display: inline-block; margin-top: 4px; }
+
+  /* Footer mark */
+  .end-card { background: linear-gradient(165deg, var(--g900), var(--g800)); color: #fff; border-radius: 16px; padding: 32px; margin-top: 24px; }
+  .end-card h3 { color: #fff; font-size: 22pt; }
+  .end-card p { color: rgba(255,255,255,0.78); font-size: 11pt; }
+  .end-card-sig { font-family: 'Fraunces'; font-style: italic; font-size: 13pt; color: var(--g400); margin-top: 16px; }
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<section class="page cover">
+  <div class="cover-bg-photo" style="background-image:url('assets/proj-front-yard-mulch.jpg')"></div>
+  <div class="cover-inner">
+    <div class="cover-mark">
+      <div class="cover-leaf"></div>
+      <span>GreenLife Landscaping · Documentation</span>
+    </div>
+    <div class="cover-corner">Edition 01 · 2026</div>
+
+    <div class="cover-tag">
+      <div class="cover-overline">Visual setup guide</div>
+      <h1 class="cover-title">Rebuild your<br>website on<br><em>WordPress.</em></h1>
+      <p class="cover-sub">A step-by-step, picture-rich playbook for recreating the GreenLife Landscaping website in WordPress — from buying a domain to launch day.</p>
+
+      <div class="cover-meta">
+        <div class="cover-meta-cell">
+          <span class="l">For</span>
+          <span class="v">GreenLife Landscaping</span>
+        </div>
+        <div class="cover-meta-cell">
+          <span class="l">Skill level</span>
+          <span class="v">Beginner-friendly</span>
+        </div>
+        <div class="cover-meta-cell">
+          <span class="l">Time to launch</span>
+          <span class="v">2 — 3 weekends</span>
+        </div>
+        <div class="cover-meta-cell">
+          <span class="l">Pages</span>
+          <span class="v">22</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OVERVIEW + WHAT YOU'LL HAVE ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Overview</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <span class="overline">Where we're headed</span>
+  <h2>This is what<br>you'll have built.</h2>
+  <p class="lede" style="margin-top:14px; max-width: 90%;">By the end of this guide your WordPress site will look and behave exactly like the prototype — five service pages, a filterable gallery, a working estimate form, the Sergio &amp; Ederson estimator section, and the haint-blue Snow Removal page.</p>
+
+  <div class="preview-grid">
+    <div class="preview-main" style="background-image:url('assets/proj-sunset-front-yard.jpg')"></div>
+    <div class="preview-side">
+      <div class="preview-thumb" style="background-image:url('assets/proj-firepit-adirondack.jpg')"></div>
+      <div class="preview-thumb" style="background-image:url('assets/team-estimator-portrait.jpg')"></div>
+    </div>
+  </div>
+
+  <div class="lead-row" style="margin-top:24px;">
+    <div class="stat-card">
+      <div class="l">Estimated cost</div>
+      <div class="v">$180 — 320</div>
+      <div class="n">Year one — domain, hosting &amp; one premium plugin.</div>
+    </div>
+    <div class="stat-card">
+      <div class="l">Total build time</div>
+      <div class="v">~ 18 hours</div>
+      <div class="n">Spread across two or three weekends, working unhurriedly.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-tip" style="margin-top:18px;">
+    <div class="callout-icon">i</div>
+    <div><strong>How to read this guide</strong>Each phase opens with a big numeral. Inside, numbered steps walk you through clicks. Tinted boxes are tips (green), warnings (orange) and context notes (blue). Visual mockups show roughly what you should see on screen.</div>
+  </div>
+
+  <div class="page-footer"><span>Introduction</span><span class="pgnum">02</span></div>
+</section>
+
+<!-- ============ ROADMAP / TOC ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Roadmap</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <span class="overline">The seven phases</span>
+  <h2>Your roadmap.</h2>
+  <p style="max-width:88%; margin-top:8px;">Work through the phases in order. Each one builds on the last; skipping ahead breaks the foundation. Light-effort phases are marked.</p>
+
+  <div class="roadmap">
+    <div class="road-step">
+      <div class="road-num">1</div>
+      <div class="road-body"><h4>Domain, hosting &amp; WordPress install</h4><span class="road-time">~ 1 hour · One-time setup</span><p>Pick a host, register greenlifelandscaping.com, install WordPress with one click.</p></div>
+    </div>
+    <div class="road-step">
+      <div class="road-num">2</div>
+      <div class="road-body"><h4>Theme &amp; page builder</h4><span class="road-time">~ 30 min · Foundation</span><p>Install Kadence theme + Kadence Blocks. This is what makes WordPress look like our site.</p></div>
+    </div>
+    <div class="road-step">
+      <div class="road-num">3</div>
+      <div class="road-body"><h4>Plugin stack</h4><span class="road-time">~ 1 hour · One-time install</span><p>Eight focused plugins for forms, gallery, SEO, performance, security and backups.</p></div>
+    </div>
+    <div class="road-step">
+      <div class="road-num">4</div>
+      <div class="road-body"><h4>Global setup — logo, colors, header, footer, mega menu</h4><span class="road-time">~ 2 hours · One-time</span><p>The pieces every page shares. Get these right and the rest goes faster.</p></div>
+    </div>
+    <div class="road-step">
+      <div class="road-num">5</div>
+      <div class="road-body"><h4>Build the pages</h4><span class="road-time">~ 8 — 10 hours · The bulk of the work</span><p>Home, About, Services hub, five service pages, Gallery, Contact. Block-by-block.</p></div>
+    </div>
+    <div class="road-step">
+      <div class="road-num">6</div>
+      <div class="road-body"><h4>SEO &amp; local search</h4><span class="road-time">~ 1 hour</span><p>Get Sergio &amp; Ederson found by neighbors searching "landscaping Burtonsville."</p></div>
+    </div>
+    <div class="road-step">
+      <div class="road-num">7</div>
+      <div class="road-body"><h4>Performance, security &amp; launch</h4><span class="road-time">~ 1 hour</span><p>Make it fast, make it safe, point the domain, go live.</p></div>
+    </div>
+  </div>
+
+  <div class="page-footer"><span>Roadmap</span><span class="pgnum">03</span></div>
+</section>
+
+<!-- ============ BEFORE YOU START ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Before you start</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <span class="overline">Pre-flight checklist</span>
+  <h2>Gather these first.</h2>
+  <p style="max-width:88%; margin-top:8px;">An hour spent collecting your assets now saves three hours of hunting later. Drop it all in one folder on your computer called <code>greenlife-website</code>.</p>
+
+  <div class="twocol" style="margin-top:18px;">
+    <div>
+      <h3 style="margin-bottom:10px;">Brand assets</h3>
+      <div class="check"><div class="check-box"></div><div><strong>Logo files</strong> — PNG with transparent background. Three sizes ideal: 200px, 600px, 1200px wide.</div></div>
+      <div class="check"><div class="check-box"></div><div><strong>Brand colors</strong> — already defined: forest green <code>#1b4d1e</code>, leaf green <code>#2e7031</code>, haint blue <code>#4a7c82</code>.</div></div>
+      <div class="check"><div class="check-box"></div><div><strong>Fonts</strong> — Montserrat (free on Google Fonts) for headings &amp; body. Already used in our prototype.</div></div>
+      <div class="check"><div class="check-box"></div><div><strong>Photos</strong> — at minimum: 12 — 18 project photos, 2 estimator portraits (Sergio &amp; Ederson), 1 truck/team shot.</div></div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:10px;">Business info</h3>
+      <div class="check"><div class="check-box"></div><div><strong>Phone numbers</strong> — Sergio (410) 643-3517 · Ederson (410) 905-2697.</div></div>
+      <div class="check"><div class="check-box"></div><div><strong>Service area</strong> — Burtonsville MD + Montgomery County zip codes you cover.</div></div>
+      <div class="check"><div class="check-box"></div><div><strong>Hours</strong> — Mon — Sat, your typical window.</div></div>
+      <div class="check"><div class="check-box"></div><div><strong>Email address</strong> — where estimate requests go. Use a real domain email, not Gmail.</div></div>
+      <div class="check"><div class="check-box"></div><div><strong>License &amp; insurance numbers</strong> — for the footer trust strip.</div></div>
+      <div class="check"><div class="check-box"></div><div><strong>Google Business Profile</strong> — claim it free at google.com/business if you haven't.</div></div>
+    </div>
+  </div>
+
+  <div class="callout callout-warn" style="margin-top:14px;">
+    <div class="callout-icon">!</div>
+    <div><strong>One thing you cannot skip — the photos</strong>Stock-photo landscaping pages get filtered out by Google as low-quality. Real before/after shots from your own jobs are the single biggest trust-builder on a contractor site.</div>
+  </div>
+
+  <h3 style="margin-top:20px;">Year-one cost breakdown</h3>
+  <table>
+    <thead><tr><th>Item</th><th>Vendor</th><th style="text-align:right;">Cost</th></tr></thead>
+    <tbody>
+      <tr><td>Domain name (.com)</td><td>Namecheap or via host</td><td class="price" style="text-align:right;">$12 / yr</td></tr>
+      <tr><td>Hosting</td><td>Hostinger / SiteGround / Bluehost</td><td class="price" style="text-align:right;">$36 — 120 / yr</td></tr>
+      <tr><td>WordPress + Kadence theme</td><td>WordPress.org</td><td class="price" style="text-align:right;">Free</td></tr>
+      <tr><td>Kadence Pro <em>(optional, for mega menu)</em></td><td>Kadence WP</td><td class="price" style="text-align:right;">$129 / yr</td></tr>
+      <tr><td>Fluent Forms / Rank Math / FooGallery</td><td>WordPress.org</td><td class="price" style="text-align:right;">Free</td></tr>
+      <tr><td>Google Workspace email <em>(optional)</em></td><td>Google</td><td class="price" style="text-align:right;">$72 / yr</td></tr>
+      <tr><td colspan="2"><strong>Minimum to launch</strong></td><td class="price" style="text-align:right;"><strong>~ $180 / yr</strong></td></tr>
+      <tr><td colspan="2"><strong>Comfortable build</strong></td><td class="price" style="text-align:right;"><strong>~ $320 / yr</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer"><span>Before you start</span><span class="pgnum">04</span></div>
+</section>
+
+<!-- ============ PHASE 1 ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Phase one</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <div class="phase-head">
+    <div class="phase-num">01</div>
+    <div class="phase-meta">
+      <span class="overline">Foundation</span>
+      <h2>Domain, hosting<br>&amp; WordPress.</h2>
+      <span class="phase-time">⏱ ~ 1 hour · One-time</span>
+    </div>
+  </div>
+
+  <p>Hosting is the patch of land your website lives on. The domain is the address. WordPress is the house. We're going to do all three with a single host that handles everything in one click.</p>
+
+  <h3 style="margin-top:14px;">Pick a host</h3>
+  <table>
+    <thead><tr><th>Host</th><th>Best for</th><th>Year-one</th><th>Renews at</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Hostinger</strong></td><td>Cheapest. Fine for first 2 years.</td><td class="price">$36</td><td class="price">$108</td></tr>
+      <tr><td><strong>SiteGround</strong></td><td>Recommended. Faster, better support.</td><td class="price">$60</td><td class="price">$216</td></tr>
+      <tr><td><strong>Bluehost</strong></td><td>Free domain included. Easiest signup.</td><td class="price">$48</td><td class="price">$155</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">✓</div>
+    <div><strong>Our pick: SiteGround StartUp plan</strong>The dashboard is the cleanest, support actually answers, and they auto-update WordPress for you. The renewal jump stings but you can move hosts later.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Sign up &amp; register your domain</h4>
+      <p>Go to siteground.com → Web Hosting → StartUp. During checkout choose "Register a new domain" and enter <code>greenlifelandscaping.com</code>. Pay for one year. Save the receipt.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Install WordPress in one click</h4>
+      <p>After signup, SiteGround offers a "WordPress Wizard." Click Start Now → Set up site. Pick a username and a strong password (write them in a password manager, not on a Post-it). Wait two minutes.</p>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mock-bar"><div class="mock-dots"><span></span><span></span><span></span></div><div class="mock-url">siteground.com/wp-admin/install.php</div></div>
+    <div class="mock-body" style="background: linear-gradient(180deg, #f6f7f7 0%, #fff 100%); padding: 28px;">
+      <div style="font-family:'Montserrat'; font-weight:800; color: var(--n900); font-size: 18pt; text-align:center;">Welcome to WordPress</div>
+      <p style="text-align:center; font-size:9.5pt; color: var(--n600); margin-top:6px;">Five-minute install. Fill in the few items below.</p>
+      <div style="margin-top:18px; max-width: 320px; margin-left:auto; margin-right:auto;">
+        <div class="field"><span class="field-label">Site Title</span><div class="field-input" style="height:24px; display:flex; align-items:center; padding: 0 8px; font-family:'JetBrains Mono'; font-size:8.5pt; color: var(--n800);">GreenLife Landscaping</div></div>
+        <div class="field"><span class="field-label">Username</span><div class="field-input" style="height:24px;"></div></div>
+        <div class="field"><span class="field-label">Password</span><div class="field-input" style="height:24px;"></div></div>
+        <div class="field"><span class="field-label">Your Email</span><div class="field-input" style="height:24px;"></div></div>
+        <div class="field-btn">Install WordPress</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Log in for the first time</h4>
+      <p>Go to <code>greenlifelandscaping.com/wp-admin</code>. Log in with the credentials you just created. You'll land on the Dashboard. Take a breath — this is "your" website now. Don't change anything yet.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">?</div>
+    <div><strong>Why <code>/wp-admin</code>?</strong>That's WordPress's "back office" — the part only you see. The public-facing site is at the regular domain. Bookmark the wp-admin URL; you'll use it daily for the next two weeks, then weekly forever.</div>
+  </div>
+
+  <div class="page-footer"><span>Phase 01 · Domain &amp; hosting</span><span class="pgnum">05</span></div>
+</section>
+
+<!-- ============ PHASE 2 ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Phase two</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <div class="phase-head">
+    <div class="phase-num">02</div>
+    <div class="phase-meta">
+      <span class="overline">Theme &amp; builder</span>
+      <h2>Make it look like<br>our site.</h2>
+      <span class="phase-time">⏱ ~ 30 min · One-time</span>
+    </div>
+  </div>
+
+  <p>Out of the box WordPress looks like a 2014 blog. The <strong>theme</strong> controls the global look (header style, body font, default colors). The <strong>page builder</strong> is the drag-and-drop tool you use to lay out each page. We're using <strong>Kadence theme</strong> + <strong>Kadence Blocks</strong> together — they're built by the same team, free, fast, and the closest match to the visual language of our prototype.</p>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Install the Kadence theme</h4>
+      <p>From your dashboard: <strong>Appearance → Themes → Add New</strong>. In the search box type <code>Kadence</code>. The first result is the one. Click <strong>Install</strong>, then <strong>Activate</strong>.</p>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mock-bar"><div class="mock-dots"><span></span><span></span><span></span></div><div class="mock-url">greenlifelandscaping.com/wp-admin/themes.php?search=kadence</div></div>
+    <div class="wp-admin">
+      <div class="wp-side">
+        <div class="wp-side-row">▤ Dashboard</div>
+        <div class="wp-side-row">✎ Posts</div>
+        <div class="wp-side-row">▦ Pages</div>
+        <div class="wp-side-row active">🎨 Appearance</div>
+        <div class="wp-side-row" style="padding-left: 26px;">— Themes</div>
+        <div class="wp-side-row" style="padding-left: 26px;">— Customize</div>
+        <div class="wp-side-row" style="padding-left: 26px;">— Widgets</div>
+        <div class="wp-side-row">⊕ Plugins</div>
+      </div>
+      <div class="wp-main">
+        <div class="wp-h1">Add Themes</div>
+        <div class="wp-search">
+          <div class="wp-search-box">kadence</div>
+          <div class="wp-search-btn">Search</div>
+        </div>
+        <div class="wp-result">
+          <div class="wp-result-icon" style="background: linear-gradient(135deg, var(--g700), var(--g400));"></div>
+          <div>
+            <div class="wp-result-name">Kadence</div>
+            <div class="wp-result-desc">Lightweight, fast, accessibility-ready. By Kadence WP. ★★★★★ (700+)</div>
+          </div>
+          <div class="wp-install-btn">Install &amp; Activate</div>
+        </div>
+        <div class="wp-result">
+          <div class="wp-result-icon"></div>
+          <div><div class="wp-result-name">Kadence Blank</div><div class="wp-result-desc">Bare-bones starter — skip this one.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Install Kadence Blocks (the page builder)</h4>
+      <p>Now go to <strong>Plugins → Add New</strong>, search <code>Kadence Blocks</code>. Same drill — Install, then Activate. This adds 30+ drag-and-drop blocks (rows, columns, image cards, accordions, testimonials) to the WordPress editor.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Run the Kadence Starter Wizard</h4>
+      <p>Top of the dashboard you'll see a "Get started with Kadence" banner. Click it. When it asks you to pick a starter template, pick <strong>"Custom"</strong> (don't import one of theirs — we're building our own from the prototype). It'll set sensible defaults: full-width layout, sticky header, footer enabled.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h4>Set your global colors &amp; fonts</h4>
+      <p>Go to <strong>Appearance → Customize → Colors</strong>. Replace the defaults with our brand palette. Then under <strong>Typography</strong>, set Headings = Montserrat (weight 800) and Body = Montserrat (weight 400). These cascade across every page you build.</p>
+      <ul style="margin-top:6px;">
+        <li>Primary: <code>#2e7031</code> (leaf green — buttons &amp; links)</li>
+        <li>Secondary: <code>#1b4d1e</code> (forest green — hero backgrounds)</li>
+        <li>Accent: <code>#4a7c82</code> (haint blue — snow removal)</li>
+        <li>Text: <code>#1a1a1a</code></li>
+        <li>Background: <code>#ffffff</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">✓</div>
+    <div><strong>Save and check</strong>Click "Publish" at the top of the Customizer. Open your site in a new tab — it already feels different. Headings are bolder, the green is right, buttons are the right shape. You're 30 minutes in and the foundation is set.</div>
+  </div>
+
+  <div class="page-footer"><span>Phase 02 · Theme &amp; builder</span><span class="pgnum">06</span></div>
+</section>
+
+<!-- ============ PHASE 3 ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Phase three</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <div class="phase-head">
+    <div class="phase-num">03</div>
+    <div class="phase-meta">
+      <span class="overline">Plugin stack</span>
+      <h2>The eight plugins<br>you actually need.</h2>
+      <span class="phase-time">⏱ ~ 1 hour · One-time</span>
+    </div>
+  </div>
+
+  <p>WordPress has 60,000 plugins. You don't want most of them. Each one you add is more code that has to load on every page and a new place that could break. The eight below cover everything our site does — forms, gallery, SEO, performance, backups, security — and nothing more.</p>
+
+  <p style="font-size:9.5pt; color: var(--n600);">Install each one the same way: <strong>Plugins → Add New →</strong> search by name → Install → Activate. Total time: about 45 minutes.</p>
+
+  <div class="plug-grid">
+    <div class="plug">
+      <div class="plug-head">
+        <div class="plug-icon">F</div>
+        <div><div class="plug-cat">Forms</div><div class="plug-name">Fluent Forms</div></div>
+      </div>
+      <div class="plug-desc">Builds the "Request a Free Estimate" form. Drag-and-drop, conditional fields, sends to Sergio &amp; Ederson's inbox.</div>
+      <div class="plug-meta"><b>Free</b> · <span class="plug-pill">Recommended</span></div>
+    </div>
+    <div class="plug">
+      <div class="plug-head">
+        <div class="plug-icon">G</div>
+        <div><div class="plug-cat">Gallery</div><div class="plug-name">FooGallery</div></div>
+      </div>
+      <div class="plug-desc">Powers the filterable project gallery — Landscaping / Hardscaping / Lawn / Tree / Team. Includes the lightbox.</div>
+      <div class="plug-meta"><b>Free</b> · <span class="plug-pill">Recommended</span></div>
+    </div>
+    <div class="plug">
+      <div class="plug-head">
+        <div class="plug-icon">R</div>
+        <div><div class="plug-cat">SEO</div><div class="plug-name">Rank Math</div></div>
+      </div>
+      <div class="plug-desc">Page titles, meta descriptions, sitemap, LocalBusiness schema. The single most important plugin for getting found on Google.</div>
+      <div class="plug-meta"><b>Free</b> · <span class="plug-pill">Critical</span></div>
+    </div>
+    <div class="plug">
+      <div class="plug-head">
+        <div class="plug-icon">S</div>
+        <div><div class="plug-cat">Email delivery</div><div class="plug-name">FluentSMTP</div></div>
+      </div>
+      <div class="plug-desc">Without this, half your form submissions land in spam folders. Connects WordPress to Gmail or your domain mail.</div>
+      <div class="plug-meta"><b>Free</b> · <span class="plug-pill">Critical</span></div>
+    </div>
+    <div class="plug">
+      <div class="plug-head">
+        <div class="plug-icon plug-icon-h">I</div>
+        <div><div class="plug-cat">Images</div><div class="plug-name">ShortPixel</div></div>
+      </div>
+      <div class="plug-desc">Auto-compresses every project photo and serves modern WebP format. Cuts page weight by ~60% with no visual loss.</div>
+      <div class="plug-meta"><b>Free tier</b> (100 images/mo)</div>
+    </div>
+    <div class="plug">
+      <div class="plug-head">
+        <div class="plug-icon plug-icon-h">P</div>
+        <div><div class="plug-cat">Performance</div><div class="plug-name">LiteSpeed Cache</div></div>
+      </div>
+      <div class="plug-desc">Caching, minification, lazy-loading. Makes every page load 2 — 4× faster. Use only if your host runs on LiteSpeed (most do).</div>
+      <div class="plug-meta"><b>Free</b></div>
+    </div>
+    <div class="plug">
+      <div class="plug-head">
+        <div class="plug-icon plug-icon-w">B</div>
+        <div><div class="plug-cat">Backups</div><div class="plug-name">UpdraftPlus</div></div>
+      </div>
+      <div class="plug-desc">Automatic weekly backup to Google Drive. The day something breaks, this saves you. Set it once and forget it.</div>
+      <div class="plug-meta"><b>Free</b> · <span class="plug-pill">Critical</span></div>
+    </div>
+    <div class="plug">
+      <div class="plug-head">
+        <div class="plug-icon plug-icon-w">W</div>
+        <div><div class="plug-cat">Security</div><div class="plug-name">Wordfence</div></div>
+      </div>
+      <div class="plug-desc">Firewall, login limiter, malware scan. Blocks the constant low-effort hack attempts every WordPress site gets.</div>
+      <div class="plug-meta"><b>Free</b></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:18px;">Optional add-ons</h3>
+  <div class="plug-grid">
+    <div class="plug">
+      <div class="plug-head">
+        <div class="plug-icon plug-icon-w">K</div>
+        <div><div class="plug-cat">Mega menu</div><div class="plug-name">Kadence Pro</div></div>
+      </div>
+      <div class="plug-desc">If you want the fancy Services dropdown (icons + descriptions like in the prototype) you'll need Kadence Pro. The free version still gives you a normal dropdown.</div>
+      <div class="plug-meta"><b>$129/yr</b> · <span class="plug-pill plug-pill-paid">Optional</span></div>
+    </div>
+    <div class="plug">
+      <div class="plug-head">
+        <div class="plug-icon">★</div>
+        <div><div class="plug-cat">Reviews</div><div class="plug-name">Site Reviews</div></div>
+      </div>
+      <div class="plug-desc">Embeds your real Google review stars on the homepage. Pulls them in automatically once a day.</div>
+      <div class="plug-meta"><b>Free</b></div>
+    </div>
+  </div>
+
+  <div class="callout callout-warn" style="margin-top:14px;">
+    <div class="callout-icon">!</div>
+    <div><strong>Resist plugin temptation</strong>Once you start browsing the plugin directory it's hard to stop — sliders, popups, weather widgets, social feeds. Every one of them slows your site down a little. The eight above are the floor and the ceiling. Add nothing else for the first six months.</div>
+  </div>
+
+  <div class="page-footer"><span>Phase 03 · Plugins</span><span class="pgnum">07</span></div>
+</section>
+
+<!-- ============ PHASE 4 — Global setup ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Phase four</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <div class="phase-head">
+    <div class="phase-num">04</div>
+    <div class="phase-meta">
+      <span class="overline">Global setup</span>
+      <h2>Logo, header,<br>footer, mega menu.</h2>
+      <span class="phase-time">⏱ ~ 2 hours · One-time</span>
+    </div>
+  </div>
+
+  <p>Every page on the site shares the same header, footer and global styling. Set these up <strong>before</strong> building any pages — fix the chrome once, instead of fixing it on every page.</p>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Upload your logo</h4>
+      <p><strong>Appearance → Customize → Header → Site Identity</strong>. Upload <code>logo-primary.png</code>. Set "Logo Width" to 180px. Tick "Display Site Title" off — your logo replaces the text.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Build the navigation menu</h4>
+      <p><strong>Appearance → Menus → Create a new menu</strong>. Call it "Main." Add these items in order: Home, About, Services, Gallery, Contact. Save. In <strong>Display Location</strong>, tick "Primary Menu."</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Turn the Services item into a mega menu</h4>
+      <p><em>(Kadence Pro only — skip if you're staying free; you'll get a normal dropdown which is still fine.)</em></p>
+      <p>In Appearance → Menus, click the Services item to expand it. Tick "Mega Menu." A new layout panel appears. Drag in five sub-items (Landscape Design, Hardscaping, Lawn Care, Tree Service, Snow Removal) plus an "All Services" link at the bottom. For each sub-item, click the icon picker and choose a Lucide icon. Add a one-line description.</p>
+    </div>
+  </div>
+
+  <div class="mega">
+    <div class="mega-nav">
+      <div class="mega-logo"><div class="l"></div>GreenLife</div>
+      <span class="mega-link">Home</span>
+      <span class="mega-link">About</span>
+      <span class="mega-link active">Services ▾</span>
+      <span class="mega-link">Gallery</span>
+      <span class="mega-link">Contact</span>
+      <span class="mega-cta">(410) 643-3517</span>
+    </div>
+    <div class="mega-panel">
+      <div class="mega-item"><div class="ic"></div><div><div class="mega-item-name">Landscape Design</div><div class="mega-item-desc">Custom plans, planting &amp; bed work</div></div></div>
+      <div class="mega-item"><div class="ic"></div><div><div class="mega-item-name">Hardscaping</div><div class="mega-item-desc">Patios, walls, walkways, firepits</div></div></div>
+      <div class="mega-item"><div class="ic"></div><div><div class="mega-item-name">Lawn Care</div><div class="mega-item-desc">Mowing, fertilizing, aeration</div></div></div>
+      <div class="mega-item"><div class="ic"></div><div><div class="mega-item-name">Tree Service</div><div class="mega-item-desc">Pruning, removal, stump grinding</div></div></div>
+      <div class="mega-item mega-item-snow" style="grid-column: 1 / -1;"><div class="ic" style="background: var(--h50);"></div><div><div class="mega-item-name">Snow Removal <span class="mega-item-pill">Seasonal</span></div><div class="mega-item-desc">Driveways &amp; walks, on-call response</div></div></div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h4>Build the footer</h4>
+      <p><strong>Appearance → Customize → Footer</strong>. Choose the four-column layout. Drop these widgets, left to right: <strong>(1)</strong> Logo + tagline, <strong>(2)</strong> Services link list, <strong>(3)</strong> Contact info (phone, email, address), <strong>(4)</strong> Hours. Below that, set the bottom row to: "© 2026 GreenLife Landscaping · Licensed &amp; Insured · MD HIC #XXXXXX"</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h4>Add the floating call/estimate bar</h4>
+      <p>That fixed bar at the bottom of every page in the prototype is built with a Kadence Blocks "Sticky" container. Create a row → set position to "Sticky bottom" → drop in two buttons: "Call (410) 643-3517" and "Get Free Estimate." Save as a Reusable Block called <code>Floating CTA</code>. Drop it into your site footer.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-info">
+    <div class="callout-icon">?</div>
+    <div><strong>What's a Reusable Block?</strong>WordPress saves a block once, then lets you drop it on any page. If you edit it later, every place it appears updates. Use it for the floating CTA, footer trust strip, "Why GreenLife" feature row — anything that repeats.</div>
+  </div>
+
+  <div class="page-footer"><span>Phase 04 · Global setup</span><span class="pgnum">08</span></div>
+</section>
+
+<!-- ============ PHASE 5 — HOME PAGE ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Phase five</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <div class="phase-head">
+    <div class="phase-num">05</div>
+    <div class="phase-meta">
+      <span class="overline">Build the pages</span>
+      <h2>The home page,<br>block by block.</h2>
+      <span class="phase-time">⏱ ~ 3 hours · The longest page</span>
+    </div>
+  </div>
+
+  <p>Create a new page: <strong>Pages → Add New</strong>. Title it "Home." On the right sidebar, set <strong>Template = "Full Width — No Title."</strong> Save. Then go to <strong>Settings → Reading</strong> and set "Your homepage displays" to "A static page" → choose Home.</p>
+
+  <p>Now build it block-by-block, top to bottom, by clicking the <strong>+</strong> button between sections. Each row of the table below is one Kadence row.</p>
+
+  <h3 style="margin-top:14px;">Home page anatomy</h3>
+
+  <div class="pageblock">
+    <div class="pageblock-name">1. Hero</div>
+    <div class="pageblock-block">Row Layout · 1 column</div>
+    <div class="pageblock-note">Full-width photo background, dark green overlay 70%. H1 + subheading + 2 buttons.</div>
+  </div>
+  <div class="pageblock">
+    <div class="pageblock-name">2. Trust strip</div>
+    <div class="pageblock-block">Row Layout · 4 columns</div>
+    <div class="pageblock-note">Light cream background. Four icons + labels: 5.0★, Licensed, Insured, 15+ years.</div>
+  </div>
+  <div class="pageblock">
+    <div class="pageblock-name">3. Services grid</div>
+    <div class="pageblock-block">Info Box · ×5</div>
+    <div class="pageblock-note">Five service cards (Landscaping, Hardscaping, Lawn, Tree, Snow). Snow card uses the haint-blue palette.</div>
+  </div>
+  <div class="pageblock">
+    <div class="pageblock-name">4. About teaser</div>
+    <div class="pageblock-block">Row · 2 columns</div>
+    <div class="pageblock-note">Photo left, copy right. "Family-owned in Burtonsville since…" + button to /about.</div>
+  </div>
+  <div class="pageblock">
+    <div class="pageblock-name">5. Gallery preview</div>
+    <div class="pageblock-block">FooGallery shortcode</div>
+    <div class="pageblock-note">Six recent project photos in a responsive grid. "View Full Gallery" link below.</div>
+  </div>
+  <div class="pageblock">
+    <div class="pageblock-name">6. Testimonials</div>
+    <div class="pageblock-block">Testimonial Carousel</div>
+    <div class="pageblock-note">Three rotating quotes. Pull from your real Google reviews.</div>
+  </div>
+  <div class="pageblock">
+    <div class="pageblock-name">7. FAQ</div>
+    <div class="pageblock-block">Accordion · ×6</div>
+    <div class="pageblock-note">Six common questions: pricing, service area, free estimate, scheduling, snow on-call, insurance.</div>
+  </div>
+  <div class="pageblock">
+    <div class="pageblock-name">8. Final CTA</div>
+    <div class="pageblock-block">Row · dark green</div>
+    <div class="pageblock-note">"Ready to transform your yard?" + the estimate form embedded inline.</div>
+  </div>
+
+  <div class="callout callout-tip" style="margin-top:14px;">
+    <div class="callout-icon">✓</div>
+    <div><strong>Build top-to-bottom; save constantly</strong>The temptation is to build all eight sections then publish. Don't. Save after each row by clicking "Update" in the top right, then preview in another tab. Catching one misaligned column right after you build it is ten times faster than fixing it at the end.</div>
+  </div>
+
+  <h3 style="margin-top:14px;">The hero block — your most important 600 pixels</h3>
+  <div class="step">
+    <div class="step-num">A</div>
+    <div class="step-body">
+      <p>Add a Row Layout block. Set its background to your forest-green color, then upload <code>proj-sunset-front-yard.jpg</code> as background image. Under "Background Overlay," pick the same green at 70% opacity. Set min-height to 600px, vertical alignment center.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">B</div>
+    <div class="step-body">
+      <p>Inside the row, add an <strong>Advanced Heading</strong>. Type "Landscaping that grows on you." Set color white, weight 800, size 58px, line-height 1.08. Make the word "grows" leaf-green for emphasis.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">C</div>
+    <div class="step-body">
+      <p>Below it, a paragraph at 18px, white-80% opacity. Then an <strong>Advanced Buttons</strong> block with two buttons: a primary green "Get Free Estimate" and a ghost-style "See Our Work."</p>
+    </div>
+  </div>
+
+  <div class="page-footer"><span>Phase 05 · Pages</span><span class="pgnum">09</span></div>
+</section>
+
+<!-- ============ PHASE 5b — ABOUT + SERVICES ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Phase five (cont'd)</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <span class="overline">5b — Build the rest of the pages</span>
+  <h2>About, Services,<br>service detail pages.</h2>
+  <p style="margin-top:8px; max-width:90%;">The same pattern — create page, set Full-Width template, drop in Kadence rows. Each page below shares the same inner-page hero block, so save that as a Reusable Block on your first one.</p>
+
+  <h3 style="margin-top:14px;">About page</h3>
+  <div class="pageblock"><div class="pageblock-name">Inner hero</div><div class="pageblock-block">Reusable block</div><div class="pageblock-note">Forest green, breadcrumb, H1 "About GreenLife"</div></div>
+  <div class="pageblock"><div class="pageblock-name">Story section</div><div class="pageblock-block">Row · 2 cols</div><div class="pageblock-note">Photo + paragraph, "Family-owned since…"</div></div>
+  <div class="pageblock"><div class="pageblock-name">Values triad</div><div class="pageblock-block">Info Box · ×3</div><div class="pageblock-note">Quality / Reliability / Local-First — three icon cards</div></div>
+  <div class="pageblock"><div class="pageblock-name">Meet your estimators</div><div class="pageblock-block">Row · 2 cols</div><div class="pageblock-note">Side-by-side cards for Sergio &amp; Ederson with portrait, name, phone, email, "Schedule a visit" button</div></div>
+  <div class="pageblock"><div class="pageblock-name">Service area</div><div class="pageblock-block">Image + list</div><div class="pageblock-note">Map of Montgomery County + list of zip codes you cover</div></div>
+
+  <h3 style="margin-top:14px;">Services hub page</h3>
+  <div class="pageblock"><div class="pageblock-name">Inner hero</div><div class="pageblock-block">Reusable block</div><div class="pageblock-note">"Five services. One trusted crew."</div></div>
+  <div class="pageblock"><div class="pageblock-name">Service cards</div><div class="pageblock-block">Info Box · ×5</div><div class="pageblock-note">Larger version of homepage grid; each card links to its detail page</div></div>
+  <div class="pageblock"><div class="pageblock-name">Process strip</div><div class="pageblock-block">Icon Row · ×4</div><div class="pageblock-note">Estimate → Proposal → Schedule → Done</div></div>
+
+  <h3 style="margin-top:14px;">Service detail pages (×5)</h3>
+  <p style="font-size:9.5pt; color:var(--n600);">Build one (Landscape Design), then duplicate it four times via <strong>Pages → All Pages →</strong> hover the row → Duplicate. Edit each copy's title, hero photo, copy and gallery rows.</p>
+  <div class="pageblock"><div class="pageblock-name">Inner hero</div><div class="pageblock-block">Reusable block</div><div class="pageblock-note">Service-specific photo + H1</div></div>
+  <div class="pageblock"><div class="pageblock-name">Overview</div><div class="pageblock-block">Row · 2 cols</div><div class="pageblock-note">"What we do" paragraph + bullet list of inclusions</div></div>
+  <div class="pageblock"><div class="pageblock-name">Recent projects</div><div class="pageblock-block">FooGallery</div><div class="pageblock-note">Filtered to this service category</div></div>
+  <div class="pageblock"><div class="pageblock-name">Pricing strip</div><div class="pageblock-block">Row · 3 cols</div><div class="pageblock-note">"Starts at $X / project." Honest, simple ranges.</div></div>
+  <div class="pageblock"><div class="pageblock-name">Inline estimate form</div><div class="pageblock-block">Fluent Forms shortcode</div><div class="pageblock-note">Same form as Contact, scoped to this service</div></div>
+
+  <div class="callout callout-info" style="margin-top:14px;">
+    <div class="callout-icon">!</div>
+    <div><strong>Snow Removal gets the haint-blue treatment</strong>For the snow page only, override the colors. In the Kadence Block sidebar, switch the page accent from leaf-green to <code>#4a7c82</code>. The hero overlay, button, info-box icons all change. This is what makes Snow visually distinct in the prototype — it should be in WordPress too.</div>
+  </div>
+
+  <div class="page-footer"><span>Phase 05 · Pages</span><span class="pgnum">10</span></div>
+</section>
+
+<!-- ============ PHASE 5c — Gallery & Contact ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Phase five (cont'd)</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <span class="overline">5c — Gallery &amp; Contact</span>
+  <h2>The two pages with<br>real plumbing.</h2>
+  <p style="margin-top:8px; max-width:90%;">Most pages are layout. These two have working machinery — a category-filtered gallery and a contact form that emails Sergio &amp; Ederson when someone hits Submit.</p>
+
+  <h3 style="margin-top:14px;">Gallery page — with FooGallery</h3>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Upload your photos with categories</h4>
+      <p><strong>Media → Add New</strong>. Upload all 12 — 18 project photos at once. After upload, click each one and add a <strong>Category</strong> in the Description-area metadata: <code>landscaping</code>, <code>hardscaping</code>, <code>lawn</code>, <code>tree</code>, <code>team</code>. Yes, this is tedious. Do it once.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Create the gallery</h4>
+      <p><strong>FooGallery → Add New</strong>. Pick the "Masonry" template. Drag your photos in. In the right sidebar, enable <strong>Filtering → By Category</strong>. Add the five filter labels in order: All, Landscaping, Hardscaping, Lawn, Tree, Team. Save. Copy the shortcode shown at the top — it looks like <code>[foogallery id="12"]</code>.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Drop the gallery onto the page</h4>
+      <p>Create a Page called "Gallery." Add a Shortcode block (search "shortcode" in the block picker). Paste your shortcode. Save and preview — your masonry gallery + filter pills should render exactly like the prototype.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:18px;">Contact page — with Fluent Forms</h3>
+
+  <div class="twocol">
+    <div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Build the form</h4>
+          <p><strong>Fluent Forms → New Form → Blank</strong>. Drop in these fields, in order: Name, Phone, Email, Service (dropdown — five options), Property Address, Project Description (textarea), Preferred Contact (radio: phone/email/text), then the Submit button.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Configure email routing</h4>
+          <p>Click <strong>Settings &amp; Integrations → Email Notifications</strong>. Set "Send To" = Sergio &amp; Ederson's email addresses, comma-separated. Subject = "New estimate request from {name}." Body should include all field values. Save.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Drop it on the Contact page</h4>
+          <p>Build the Contact page with two columns. Left = the form's shortcode. Right = the Sergio &amp; Ederson estimator card duplicated from the About page.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="form-mock">
+        <div style="font-family:'Montserrat'; font-weight:800; font-size:13pt; color: var(--g900); margin-bottom: 4px;">Request a Free Estimate</div>
+        <div style="font-size:9pt; color:var(--n600); margin-bottom: 12px;">We'll get back to you within one business day.</div>
+        <div class="field"><span class="field-label">Your name</span><div class="field-input"></div></div>
+        <div class="field-row">
+          <div class="field"><span class="field-label">Phone</span><div class="field-input"></div></div>
+          <div class="field"><span class="field-label">Email</span><div class="field-input"></div></div>
+        </div>
+        <div class="field"><span class="field-label">Service</span><div class="field-input"></div></div>
+        <div class="field"><span class="field-label">Project description</span><div class="field-tarea"></div></div>
+        <div class="field-btn">Send Request →</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-warn" style="margin-top:14px;">
+    <div class="callout-icon">!</div>
+    <div><strong>Test the form before launch</strong>Submit a test request to yourself. Wait three minutes. Check your inbox AND your spam folder. If it's in spam, FluentSMTP isn't configured correctly — go back to Plugin 4 and connect it to Gmail. A form that doesn't deliver is worse than no form at all.</div>
+  </div>
+
+  <div class="page-footer"><span>Phase 05 · Gallery &amp; Contact</span><span class="pgnum">11</span></div>
+</section>
+
+<!-- ============ PHASE 6 — SEO ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Phase six</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <div class="phase-head">
+    <div class="phase-num">06</div>
+    <div class="phase-meta">
+      <span class="overline">SEO &amp; local search</span>
+      <h2>Get found by<br>your neighbors.</h2>
+      <span class="phase-time">⏱ ~ 1 hour</span>
+    </div>
+  </div>
+
+  <p>You're a local landscaper. Your job isn't to rank for "landscaping" — it's to rank for <em>"landscaping in Burtonsville,"</em> <em>"hardscape contractor Montgomery County MD,"</em> <em>"snow removal near Silver Spring."</em> That's local SEO and Rank Math handles 90% of it for free.</p>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Run the Rank Math setup wizard</h4>
+      <p>The first time you open Rank Math it walks you through: site name, business type (pick "Local Business → Landscaper"), business address, hours, phone, social profiles. This data becomes the structured "schema" Google reads to show your business in the local 3-pack.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Connect Google Search Console</h4>
+      <p>Rank Math → Dashboard → "Connect to Google." Sign in. This lets Google know your site exists and tells you what people are searching when they find you. <strong>Submit your sitemap:</strong> the URL Rank Math gives you (something like <code>greenlifelandscaping.com/sitemap_index.xml</code>) goes into Search Console under "Sitemaps."</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Write a meta title &amp; description for every page</h4>
+      <p>At the bottom of each page editor you'll now see a Rank Math panel. Fill in two things per page:</p>
+      <ul>
+        <li><strong>Meta title</strong> (~55 chars). Pattern: <code>Page topic | GreenLife Landscaping Burtonsville MD</code></li>
+        <li><strong>Meta description</strong> (~155 chars). One honest sentence about what's on the page + your phone number.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h4>Claim your Google Business Profile</h4>
+      <p>Outside WordPress: go to google.com/business and verify ownership of GreenLife Landscaping. Fill in the same hours, phone, photos. Get your first 5 reviews from past customers — that's the single biggest local-search lever.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h4>Sprinkle your service area in the copy</h4>
+      <p>On each service page, mention Burtonsville and 2 — 3 nearby towns naturally — "we serve Burtonsville, Silver Spring, Olney and the rest of Montgomery County." Don't stuff it; once per page is plenty. Google's reading it; humans are skimming for trust.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">✓</div>
+    <div><strong>The 80/20 of local SEO</strong>Most of your traffic will come from Google Maps, not the search results. Spend more time getting reviews on your Google Business Profile than tweaking meta tags. Five real reviews beat fifty pages of content for a local contractor.</div>
+  </div>
+
+  <div class="page-footer"><span>Phase 06 · SEO</span><span class="pgnum">12</span></div>
+</section>
+
+<!-- ============ PHASE 7 — Launch ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Phase seven</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <div class="phase-head">
+    <div class="phase-num">07</div>
+    <div class="phase-meta">
+      <span class="overline">Performance, security &amp; launch</span>
+      <h2>Make it fast.<br>Make it safe.<br>Go live.</h2>
+      <span class="phase-time">⏱ ~ 1 hour</span>
+    </div>
+  </div>
+
+  <h3 style="margin-top:8px;">Performance</h3>
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h4>Turn on caching</h4>
+      <p>Go to <strong>LiteSpeed Cache → General</strong>. Click "Enable LiteSpeed Cache: ON." That's it for caching — your pages now load from a stored copy instead of being rebuilt on every visit.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h4>Compress your images</h4>
+      <p>ShortPixel → Bulk → "Optimize all." It'll chew through your media library, converting JPGs to WebP and trimming file sizes. Your gallery page will load 3× faster after this.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h4>Run a speed check</h4>
+      <p>Open <code>pagespeed.web.dev</code> and paste your homepage URL. Aim for green (90+) on mobile. If you're below 70, the most likely culprit is unoptimized hero images — re-export them at 1920px wide, 80% JPEG quality.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:14px;">Security &amp; backups</h3>
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h4>Configure Wordfence</h4>
+      <p>Wordfence → Login Security → Set 2-factor auth on your admin account. Wordfence → Firewall → "Optimize the Wordfence Firewall." Done — you're now blocking 99% of automated attacks.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h4>Schedule weekly backups</h4>
+      <p>UpdraftPlus → Settings → Files = weekly, Database = daily. Storage = Google Drive (it'll walk you through linking it). Click "Backup Now" once for an initial snapshot. Sleep better.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:14px;">Launch day</h3>
+  <div class="step">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <h4>Final walkthrough</h4>
+      <p>Open every page on your phone. Tap every button. Submit the contact form. Click every gallery filter. Open the mega menu. Anything broken? Fix it now, before the URL is public.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">7</div>
+    <div class="step-body">
+      <h4>Make the site public</h4>
+      <p><strong>Settings → Reading →</strong> uncheck "Discourage search engines from indexing this site." This was on by default while you built — turn it off only at launch.</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-num">8</div>
+    <div class="step-body">
+      <h4>Tell the world</h4>
+      <p>Update Google Business Profile with your new URL. Add the URL to your truck signs, business cards, email signature, Facebook page. The website is the hub; everywhere you already exist points to it.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-tip">
+    <div class="callout-icon">★</div>
+    <div><strong>You did it</strong>Take a screenshot of your live homepage. Frame it. This is the day GreenLife Landscaping went from word-of-mouth-only to a real digital business that can be found at 2am by a neighbor whose tree just came down.</div>
+  </div>
+
+  <div class="page-footer"><span>Phase 07 · Launch</span><span class="pgnum">13</span></div>
+</section>
+
+<!-- ============ FINAL CHECKLIST ============ -->
+<section class="page">
+  <div class="page-header">
+    <div class="page-header-left"><div class="leaf"></div><span>Final checklist</span></div>
+    <span>WordPress Setup Guide</span>
+  </div>
+
+  <span class="overline">Pre-launch QA</span>
+  <h2>Before you flip the<br>switch — check this.</h2>
+  <p style="margin-top:8px; max-width:90%;">A printable list. Tick each box on paper or in your head. If anything is unchecked at launch, it'll come back to bite you.</p>
+
+  <div class="twocol" style="margin-top:18px;">
+    <div>
+      <h3 style="margin-bottom:6px;">Content</h3>
+      <div class="check"><div class="check-box"></div><div>Every page has its own meta title &amp; description</div></div>
+      <div class="check"><div class="check-box"></div><div>No "Lorem ipsum" or placeholder copy left</div></div>
+      <div class="check"><div class="check-box"></div><div>Phone numbers correct on every page (header, footer, contact, floating CTA)</div></div>
+      <div class="check"><div class="check-box"></div><div>Sergio &amp; Ederson's portraits are sharp, not pixelated</div></div>
+      <div class="check"><div class="check-box"></div><div>All gallery photos are categorized correctly</div></div>
+      <div class="check"><div class="check-box"></div><div>Service area zip codes listed accurately</div></div>
+      <div class="check"><div class="check-box"></div><div>Hours match what's on Google Business Profile</div></div>
+
+      <h3 style="margin-top:14px; margin-bottom:6px;">Functionality</h3>
+      <div class="check"><div class="check-box"></div><div>Contact form actually delivers email (test from phone)</div></div>
+      <div class="check"><div class="check-box"></div><div>Mega menu works on mobile</div></div>
+      <div class="check"><div class="check-box"></div><div>Gallery filters work on mobile</div></div>
+      <div class="check"><div class="check-box"></div><div>Phone number tap-to-call works on mobile</div></div>
+      <div class="check"><div class="check-box"></div><div>No broken images (the photo icon with a tear)</div></div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:6px;">Technical</h3>
+      <div class="check"><div class="check-box"></div><div>SSL certificate active (URL starts with https://)</div></div>
+      <div class="check"><div class="check-box"></div><div>"Discourage search engines" is OFF</div></div>
+      <div class="check"><div class="check-box"></div><div>Sitemap submitted to Google Search Console</div></div>
+      <div class="check"><div class="check-box"></div><div>UpdraftPlus first backup ran successfully</div></div>
+      <div class="check"><div class="check-box"></div><div>Wordfence 2FA active on admin login</div></div>
+      <div class="check"><div class="check-box"></div><div>PageSpeed score ≥ 80 on mobile</div></div>
+      <div class="check"><div class="check-box"></div><div>WordPress, theme, all plugins fully updated</div></div>
+
+      <h3 style="margin-top:14px; margin-bottom:6px;">Off-site</h3>
+      <div class="check"><div class="check-box"></div><div>Google Business Profile claimed &amp; verified</div></div>
+      <div class="check"><div class="check-box"></div><div>Website URL added to Google Business Profile</div></div>
+      <div class="check"><div class="check-box"></div><div>At least 3 — 5 reviews live on Google</div></div>
+      <div class="check"><div class="check-box"></div><div>Domain email address tested (sends &amp; receives)</div></div>
+      <div class="check"><div class="check-box"></div><div>Facebook / Instagram bio updated with new URL</div></div>
+    </div>
+  </div>
+
+  <div class="end-card">
+    <h3>Need a hand from here?</h3>
+    <p>If a phase gets stuck — the mega menu won't render, the form drops into spam, the gallery filter breaks — that's normal. WordPress is forgiving but it has its quirks. The fastest unstuck is usually: search "<em>plugin name + your error message</em>" on Google. The second fastest: ask the plugin's support forum at WordPress.org. The third: hire a WordPress freelancer for a single hour at $50 — 80 to break the logjam.</p>
+    <p class="end-card-sig">— Built with care for Sergio, Ederson and the GreenLife crew.</p>
+  </div>
+
+  <div class="page-footer"><span>Final checklist</span><span class="pgnum">14</span></div>
+</section>
+
+<script>
+(async () => {
+  if (document.fonts && document.fonts.ready) { try { await document.fonts.ready; } catch (e) {} }
+  await new Promise(r => setTimeout(r, 500));
+  window.print();
+})();
+</script>
+</body>
+</html>

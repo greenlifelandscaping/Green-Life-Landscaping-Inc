@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "green-life-app (Next.js dev)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "green-life-app", "run", "dev"],
+      "port": 3000
+    }
+  ]
+}

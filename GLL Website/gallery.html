@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Gallery | Green Life Landscaping Inc — Burtonsville, MD</title>
+<meta name="description" content="See Green Life Landscaping's work in action. Photos of lawn care, landscaping, tree services, hardscaping, and snow removal projects across Burtonsville and Montgomery County, MD.">
+<link rel="stylesheet" href="css/site.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  /* Gallery-specific styles */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 180px;
+    gap: 14px;
+  }
+  .gallery-item {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--neutral-900);
+    box-shadow: var(--shadow-sm);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+  }
+  .gallery-item:hover img {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  .gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(27,77,30,0.88) 0%, rgba(27,77,30,0.15) 45%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 18px 20px;
+  }
+  .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+  .gallery-item-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px; font-weight: 700;
+    color: #fff; letter-spacing: .04em;
+    display: flex; align-items: center; gap: 6px;
+    text-transform: uppercase;
+  }
+
+  /* Span helpers driven by data-attrs in markup */
+  .g-col-3 { grid-column: span 3; }
+  .g-col-4 { grid-column: span 4; }
+  .g-col-5 { grid-column: span 5; }
+  .g-col-6 { grid-column: span 6; }
+  .g-col-7 { grid-column: span 7; }
+  .g-col-8 { grid-column: span 8; }
+  .g-row-1 { grid-row: span 1; }
+  .g-row-2 { grid-row: span 2; }
+  .g-row-3 { grid-row: span 3; }
+
+  /* Filter tabs */
+  .gallery-filters {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .gallery-filter {
+    font-family: 'Montserrat', sans-serif; font-size: 13px;
+    font-weight: 600; padding: 9px 20px;
+    border-radius: var(--radius-pill); border: 2px solid var(--neutral-200);
+    background: #fff; color: var(--neutral-600);
+    cursor: pointer; transition: all 200ms;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .gallery-filter:hover { border-color: var(--green-400); color: var(--green-700); }
+  .gallery-filter.active { background: var(--green-700); border-color: var(--green-700); color: #fff; }
+  .gallery-filter .count {
+    font-size: 11px; font-weight: 700;
+    background: var(--neutral-100); color: var(--neutral-500);
+    padding: 2px 8px; border-radius: 999px; margin-left: 4px;
+  }
+  .gallery-filter.active .count { background: rgba(255,255,255,0.2); color: #fff; }
+
+  /* Stats banner above gallery */
+  .gallery-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    padding: 32px 40px;
+    background: #fff;
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--radius-lg);
+    margin-bottom: 48px;
+  }
+  .gallery-stat-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 38px; font-weight: 800;
+    color: var(--green-700);
+    line-height: 1; margin-bottom: 6px;
+  }
+  .gallery-stat-label {
+    font-size: 13px; color: var(--neutral-600);
+    font-weight: 500;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.94);
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-img {
+    max-width: min(1100px, 92vw);
+    max-height: 85vh;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    object-fit: contain;
+    display: block;
+  }
+  .lightbox-close {
+    position: fixed; top: 24px; right: 28px;
+    background: rgba(255,255,255,0.12); border: none;
+    border-radius: 50%; width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: #fff; transition: background 200ms;
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.22); }
+  .lightbox-nav {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.10); border: none;
+    border-radius: 50%; width: 52px; height: 52px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: #fff; transition: background 200ms;
+  }
+  .lightbox-nav:hover { background: rgba(255,255,255,0.22); }
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
+  .lightbox-caption {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.85); letter-spacing: .04em;
+    background: rgba(0,0,0,0.55); padding: 10px 22px;
+    border-radius: var(--radius-pill); white-space: nowrap;
+    max-width: 90vw; overflow: hidden; text-overflow: ellipsis;
+  }
+  .lightbox-counter {
+    position: fixed; top: 28px; left: 50%; transform: translateX(-50%);
+    font-family: 'Montserrat', sans-serif; font-size: 12px;
+    font-weight: 700; color: rgba(255,255,255,0.55);
+    letter-spacing: .08em;
+  }
+
+  @media (max-width: 1024px) {
+    .gallery-grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 160px; }
+    .g-col-3, .g-col-4 { grid-column: span 3; }
+    .g-col-5, .g-col-6 { grid-column: span 6; }
+    .g-col-7, .g-col-8 { grid-column: span 6; }
+  }
+  @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; gap: 10px; }
+    .g-col-3, .g-col-4, .g-col-5, .g-col-6, .g-col-7, .g-col-8 { grid-column: span 1; }
+    .g-row-2, .g-row-3 { grid-row: span 1; }
+    .gallery-stats { grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 24px; }
+    .lightbox-nav { display: none; }
+  }
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+<div id="floating-cta-placeholder"></div>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('assets/proj-stone-wall-evergreens.jpg');"></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i data-lucide="chevron-right" width="12" height="12"></i>
+      <span>Gallery</span>
+    </div>
+    <h1>Our Work in Burtonsville, MD</h1>
+    <p>Real projects, real results — photos from landscaping, hardscaping, tree services, and lawn care jobs completed across Montgomery County and the surrounding areas.</p>
+    <div class="hero-trust-row">
+      <span class="hero-trust-badge"><i data-lucide="map-pin" width="14" height="14"></i> Burtonsville &amp; Montgomery County, MD</span>
+      <span class="hero-trust-badge"><i data-lucide="calendar-check" width="14" height="14"></i> Serving Since 2005</span>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="section-pad" style="background:var(--off-white);">
+  <div class="container">
+
+    <!-- Stats banner -->
+    <div class="gallery-stats fade-in">
+      <div>
+        <div class="gallery-stat-num">500+</div>
+        <div class="gallery-stat-label">Projects completed across Maryland</div>
+      </div>
+      <div>
+        <div class="gallery-stat-num">20+</div>
+        <div class="gallery-stat-label">Years serving Montgomery County</div>
+      </div>
+      <div>
+        <div class="gallery-stat-num">100%</div>
+        <div class="gallery-stat-label">Licensed &amp; insured on every job</div>
+      </div>
+      <div>
+        <div class="gallery-stat-num">5.0 ★</div>
+        <div class="gallery-stat-label">Average customer review</div>
+      </div>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="gallery-filters fade-in">
+      <button class="gallery-filter active" data-filter="all"><i data-lucide="grid-3x3" width="14" height="14"></i> All Work <span class="count" data-count-all></span></button>
+      <button class="gallery-filter" data-filter="landscaping"><i data-lucide="flower-2" width="14" height="14"></i> Landscaping <span class="count" data-count-landscaping></span></button>
+      <button class="gallery-filter" data-filter="hardscaping"><i data-lucide="layers" width="14" height="14"></i> Hardscaping <span class="count" data-count-hardscaping></span></button>
+      <button class="gallery-filter" data-filter="lawn"><i data-lucide="scissors" width="14" height="14"></i> Lawn Care <span class="count" data-count-lawn></span></button>
+      <button class="gallery-filter" data-filter="tree"><i data-lucide="tree-pine" width="14" height="14"></i> Tree Services <span class="count" data-count-tree></span></button>
+      <button class="gallery-filter" data-filter="team"><i data-lucide="users" width="14" height="14"></i> Our Team <span class="count" data-count-team></span></button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid" id="gallery-grid">
+
+      <!-- ROW BLOCK 1: Hero showcase + portrait -->
+      <div class="gallery-item g-col-8 g-row-2 fade-in" data-category="hardscaping" data-caption="Hardscaping — Curved Bluestone Wall &amp; Mulch Bed with Japanese Maple">
+        <img src="assets/proj-curved-stone-wall.jpg" alt="Curved bluestone retaining wall with black mulch bed and Japanese maple by Green Life Landscaping in Burtonsville MD">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="layers" width="14" height="14"></i> Hardscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="team" data-caption="Our Team — Sergio, Estimator">
+        <img src="assets/team-estimator-portrait.jpg" alt="Sergio, Green Life Landscaping estimator, Burtonsville MD" style="object-position:center 20%;">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="users" width="14" height="14"></i> Our Team</span>
+        </div>
+      </div>
+
+      <!-- ROW BLOCK 2: Three medium -->
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="landscaping" data-caption="Landscaping — Topiary Spiral &amp; Mulch Bed Refresh">
+        <img src="assets/proj-side-yard-spiral.jpg" alt="Side-yard mulch bed with spiral topiary and lavender by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="flower-2" width="14" height="14"></i> Landscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="hardscaping" data-caption="Hardscaping — Dry Stream Bed with River Rock &amp; Flagstone Patio">
+        <img src="assets/proj-stone-stream-bed.jpg" alt="Dry stream bed with river rock and flagstone patio installation by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="layers" width="14" height="14"></i> Hardscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="landscaping" data-caption="Landscaping — Boxwood Border &amp; Driveway Bed">
+        <img src="assets/proj-boxwood-driveway.jpg" alt="Boxwood shrub row along driveway with black mulch and seasonal flowers by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="flower-2" width="14" height="14"></i> Landscaping</span>
+        </div>
+      </div>
+
+      <!-- ROW BLOCK 3: Wide hero + smaller -->
+      <div class="gallery-item g-col-7 g-row-2 fade-in" data-category="hardscaping" data-caption="Property Showcase — Brick Estate with Curved Paver Driveway">
+        <img src="assets/proj-brick-estate.jpg" alt="Brick estate home with curved paver driveway and manicured landscaping by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="layers" width="14" height="14"></i> Hardscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-5 g-row-2 fade-in" data-category="lawn" data-caption="Lawn Care — Backyard Sod &amp; Edging Refresh">
+        <img src="assets/proj-backyard-pathway.jpg" alt="Lush backyard lawn with curved mulch beds and aerial gates by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="scissors" width="14" height="14"></i> Lawn Care</span>
+        </div>
+      </div>
+
+      <!-- ROW BLOCK 4: Three equal -->
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="landscaping" data-caption="Landscaping — Front Entry Refresh with Topiary &amp; Mulch">
+        <img src="assets/proj-front-yard-mulch.jpg" alt="Front entrance landscaping with topiary spiral and fresh black mulch by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="flower-2" width="14" height="14"></i> Landscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="landscaping" data-caption="Landscaping — Manicured Boxwood Hedge with Mulch Edging">
+        <img src="assets/proj-boxwood-hedge-row.jpg" alt="Manicured boxwood hedge row with mulch edging by Green Life Landscaping in Maryland">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="flower-2" width="14" height="14"></i> Landscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="landscaping" data-caption="Landscaping — Mulch Refresh &amp; Privacy Plantings Along Wood Fence">
+        <img src="assets/proj-mulch-fenceline.jpg" alt="Black mulch refresh and privacy plantings along wood fence line by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="flower-2" width="14" height="14"></i> Landscaping</span>
+        </div>
+      </div>
+
+      <!-- ROW BLOCK 5: Hardscaping focus -->
+      <div class="gallery-item g-col-5 g-row-2 fade-in" data-category="hardscaping" data-caption="Hardscaping — Dry-Stack Stone Wall with Evergreen Plantings">
+        <img src="assets/proj-stone-wall-evergreens.jpg" alt="Dry-stack natural stone retaining wall with evergreen plantings by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="layers" width="14" height="14"></i> Hardscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-7 g-row-2 fade-in" data-category="hardscaping" data-caption="Hardscaping — Pea Gravel Fire Pit Patio with Adirondack Seating">
+        <img src="assets/proj-firepit-adirondack.jpg" alt="Pea gravel fire pit patio with Adirondack chair seating by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="layers" width="14" height="14"></i> Hardscaping</span>
+        </div>
+      </div>
+
+      <!-- ROW BLOCK 6: Three medium -->
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="landscaping" data-caption="Landscaping — Sunset Mulch Bed Refresh &amp; Shrub Pruning">
+        <img src="assets/proj-sunset-front-yard.jpg" alt="Front yard with fresh black mulch and pruned shrubs at sunset by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="flower-2" width="14" height="14"></i> Landscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="landscaping" data-caption="Landscaping — Foundation Bed Mulch &amp; Shrub Refresh">
+        <img src="assets/proj-foundation-bed.jpg" alt="Foundation shrub bed with fresh black mulch and clean edging by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="flower-2" width="14" height="14"></i> Landscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="landscaping" data-caption="Landscaping — Cottage Rock Garden with Stone Border">
+        <img src="assets/proj-cottage-rock-garden.jpg" alt="Cottage-style rock garden with red mulch and stacked stone border by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="flower-2" width="14" height="14"></i> Landscaping</span>
+        </div>
+      </div>
+
+      <!-- ROW BLOCK 7: Front entry showcase + smaller -->
+      <div class="gallery-item g-col-6 g-row-2 fade-in" data-category="landscaping" data-caption="Landscaping — Front Entry Topiary &amp; Stone Border with Red Mulch">
+        <img src="assets/proj-front-entry-stairs.jpg" alt="Front entry with topiary, red lava mulch and concrete steps by Green Life Landscaping">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="flower-2" width="14" height="14"></i> Landscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-6 g-row-2 fade-in" data-category="hardscaping" data-caption="Hardscaping — Concrete Steps &amp; Walkway Installation">
+        <img src="assets/6E8B3F19-DEF5-4109-83D5-AE1EBB245D9D.jpeg" alt="Concrete steps and walkway installation by Green Life Landscaping in Burtonsville MD" style="object-position:center 60%;">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="layers" width="14" height="14"></i> Hardscaping</span>
+        </div>
+      </div>
+
+      <!-- ROW BLOCK 8: Original team + tree + hardscape -->
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="team" data-caption="Our Team — Owner &amp; Estimator On-Site">
+        <img src="assets/7DFC94E3-BF06-46D1-A676-79049D7845F9.jpeg" alt="Green Life Landscaping owner and estimator consulting on a project in Burtonsville MD" style="object-position:center top;">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="users" width="14" height="14"></i> Our Team</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="tree" data-caption="Tree Services — Professional Removal in Montgomery County">
+        <img src="assets/photo-tree-service.jpeg" alt="Green Life Landscaping crew performing tree removal in Montgomery County Maryland">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="tree-pine" width="14" height="14"></i> Tree Services</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="hardscaping" data-caption="Hardscaping — Deck Structure Build">
+        <img src="assets/2964D319-17AF-40B5-82CB-662F4E065982.jpeg" alt="Green Life crew member building a deck structure in Maryland" style="object-position:center top;">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="layers" width="14" height="14"></i> Hardscaping</span>
+        </div>
+      </div>
+
+      <!-- ROW BLOCK 9: Walkway + crew member + estimator portrait -->
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="hardscaping" data-caption="Hardscaping — Walkway &amp; Deck Stair Installation">
+        <img src="assets/EB674BB6-98C5-442B-85BE-3830FEC7730B.jpeg" alt="Concrete walkway and deck stairs installed by Green Life Landscaping in Montgomery County MD">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="layers" width="14" height="14"></i> Hardscaping</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="team" data-caption="Our Team — Crew Member with Equipment">
+        <img src="assets/A548D904-ADA3-48E2-9591-6E8FA5E7AA41.jpeg" alt="Green Life Landscaping crew member at work in Burtonsville MD" style="object-position:center 25%;">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="users" width="14" height="14"></i> Our Team</span>
+        </div>
+      </div>
+
+      <div class="gallery-item g-col-4 g-row-2 fade-in" data-category="team" data-caption="Our Team — Ederson, Estimator">
+        <img src="assets/photo-team-owner.jpeg" alt="Ederson, Green Life Landscaping estimator, Burtonsville MD" style="object-position:center 15%;">
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-label"><i data-lucide="users" width="14" height="14"></i> Our Team</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-banner-inner">
+      <div class="fade-in">
+        <div class="cta-banner-title">Want results like these<br><em>at your property?</em></div>
+        <div class="cta-banner-sub">Free estimates. No pressure. Serving Burtonsville and all of Montgomery County.</div>
+      </div>
+      <div class="cta-banner-actions fade-in">
+        <a href="contact.html" class="btn btn-white btn-lg"><i data-lucide="calendar" width="18" height="18"></i> Get a Free Estimate</a>
+        <a href="tel:4109052697" class="btn btn-ghost btn-lg"><i data-lucide="phone" width="18" height="18"></i> (410) 905-2697</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close"><i data-lucide="x" width="20" height="20"></i></button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev"><i data-lucide="chevron-left" width="24" height="24"></i></button>
+  <img class="lightbox-img" id="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+  <button class="lightbox-nav lightbox-next" id="lightbox-next"><i data-lucide="chevron-right" width="24" height="24"></i></button>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="js/site.js"></script>
+<script>initSite('gallery');</script>
+<script>
+(function() {
+  // Filter logic
+  var filters = document.querySelectorAll('.gallery-filter');
+  var items = document.querySelectorAll('.gallery-item[data-category]');
+
+  // Update counts
+  var counts = { all: items.length, landscaping: 0, hardscaping: 0, lawn: 0, tree: 0, team: 0 };
+  items.forEach(function(it) {
+    var c = it.dataset.category;
+    if (counts[c] !== undefined) counts[c]++;
+  });
+  Object.keys(counts).forEach(function(k) {
+    var el = document.querySelector('[data-count-' + k + ']');
+    if (el) el.textContent = counts[k];
+  });
+
+  filters.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filters.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      items.forEach(function(item) {
+        if (f === 'all' || item.dataset.category === f) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Lightbox logic
+  var lightbox    = document.getElementById('lightbox');
+  var lbImg       = document.getElementById('lightbox-img');
+  var lbCaption   = document.getElementById('lightbox-caption');
+  var lbCounter   = document.getElementById('lightbox-counter');
+  var lbClose     = document.getElementById('lightbox-close');
+  var lbPrev      = document.getElementById('lightbox-prev');
+  var lbNext      = document.getElementById('lightbox-next');
+  var currentIdx  = 0;
+  var visibleItems = [];
+
+  function openLightbox(item) {
+    visibleItems = Array.from(items).filter(function(i) { return i.style.display !== 'none'; });
+    currentIdx = visibleItems.indexOf(item);
+    if (currentIdx < 0) currentIdx = 0;
+    showLightboxItem();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showLightboxItem() {
+    var item = visibleItems[currentIdx];
+    var img = item.querySelector('img');
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCaption.textContent = item.dataset.caption || '';
+    lbCounter.textContent = (currentIdx + 1) + ' / ' + visibleItems.length;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  items.forEach(function(item) {
+    item.addEventListener('click', function() { openLightbox(item); });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  lbPrev.addEventListener('click', function(e) {
+    e.stopPropagation();
+    currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length;
+    showLightboxItem();
+  });
+
+  lbNext.addEventListener('click', function(e) {
+    e.stopPropagation();
+    currentIdx = (currentIdx + 1) % visibleItems.length;
+    showLightboxItem();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') { currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length; showLightboxItem(); }
+    if (e.key === 'ArrowRight') { currentIdx = (currentIdx + 1) % visibleItems.length; showLightboxItem(); }
+  });
+})();
+</script>
+</body>
+</html>

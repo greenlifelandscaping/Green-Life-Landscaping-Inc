@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Open Sans', sans-serif; background: #f8f8f6; padding: 20px 24px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+.section-label { font-family: 'Montserrat',sans-serif; font-size: 9px; color: #bdbdbd; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; width: 100%; }
+/* Badges */
+.badge { display: inline-flex; align-items: center; gap: 5px; font-family: 'Montserrat',sans-serif; font-weight: 600; font-size: 11px; letter-spacing: .04em; border-radius: 9999px; padding: 4px 10px; }
+.badge-green { background: #c8e6c9; color: #1b4d1e; }
+.badge-earth { background: #d7ccc8; color: #3e2723; }
+.badge-gray { background: #f0f0f0; color: #5a5a5a; }
+.badge-dark { background: #1b4d1e; color: #fff; }
+/* Trust strip */
+.trust-item { display: flex; align-items: center; gap: 8px; background: #fff; border-radius: 10px; padding: 10px 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.07); }
+.trust-item svg { color: #2e7031; flex-shrink: 0; }
+.trust-text { font-size: 12px; }
+.trust-text strong { font-family: 'Montserrat',sans-serif; font-size: 15px; font-weight: 700; color: #1a1a1a; display: block; }
+.trust-text span { color: #757575; font-size: 11px; }
+/* Stars */
+.stars { display: flex; gap: 2px; }
+.stars svg { color: #f57c00; }
+.review { background: #fff; border-radius: 12px; padding: 14px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.07); max-width: 300px; }
+.review-text { font-size: 12px; color: #3d3d3d; line-height: 1.55; margin-bottom: 8px; font-style: italic; }
+.review-author { font-family: 'Montserrat',sans-serif; font-size: 11px; font-weight: 700; color: #1a1a1a; }
+</style>
+</head>
+<body>
+<div class="row">
+  <span class="section-label">Badges</span>
+  <span class="badge badge-green"><i data-lucide="leaf" width="11" height="11"></i>Eco-Friendly</span>
+  <span class="badge badge-dark"><i data-lucide="shield-check" width="11" height="11"></i>Licensed & Insured</span>
+  <span class="badge badge-earth">Maryland</span>
+  <span class="badge badge-gray">Residential</span>
+  <span class="badge badge-gray">Commercial</span>
+</div>
+<div class="row">
+  <span class="section-label">Trust Indicators</span>
+  <div class="trust-item"><i data-lucide="calendar" width="20" height="20"></i><div class="trust-text"><strong>15+</strong><span>Years of Experience</span></div></div>
+  <div class="trust-item"><i data-lucide="check-circle-2" width="20" height="20"></i><div class="trust-text"><strong>500+</strong><span>Projects Completed</span></div></div>
+  <div class="trust-item"><i data-lucide="star" width="20" height="20"></i><div class="trust-text"><strong>5.0</strong><span>Average Rating</span></div></div>
+</div>
+<div class="row">
+  <span class="section-label">Review Card</span>
+  <div class="review">
+    <div class="stars"><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i><i data-lucide="star" width="13" height="13"></i></div>
+    <p class="review-text" style="margin-top:8px;">"Green Life showed up on time, did exactly what they said, and the yard looks incredible. I'll never use anyone else."</p>
+    <span class="review-author">— Sarah M., Ellicott City, MD</span>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>

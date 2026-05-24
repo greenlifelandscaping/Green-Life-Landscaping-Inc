@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Gallery | Green Life Landscaping Inc</title>
+<meta name="description" content="Featured landscaping projects across Montgomery County, MD — hardscaping, mulch &amp; planting, drainage, and full property transformations.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="../css/v2.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>window.__v2_prefix = '../';</script>
+
+<style>
+.filter-row {
+  display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+  margin-bottom:48px;
+}
+.filter-chip {
+  font-family:var(--display); font-size:13px; font-weight:600;
+  color:var(--ink-2);
+  background:#fff; border:1.5px solid var(--line);
+  padding:10px 20px; border-radius:99px;
+  cursor:pointer; transition:all 200ms;
+}
+.filter-chip:hover { border-color:var(--green-400); color:var(--green-700); }
+.filter-chip.active { background:var(--green-700); color:#fff; border-color:var(--green-700); }
+.gallery-page-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.gallery-page-grid .gallery-item {
+  aspect-ratio:1.1;
+}
+.gallery-page-grid .gallery-item.tall { aspect-ratio:.78; grid-row:span 2; }
+@media (max-width: 1100px) {
+  .gallery-page-grid { grid-template-columns:repeat(2,1fr); }
+  .gallery-page-grid .gallery-item.tall { aspect-ratio:1.1; grid-row:auto; }
+}
+@media (max-width: 600px) {
+  .gallery-page-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ────────────────────────────────────────────── -->
+<section class="page-hero" data-screen-label="Gallery Hero">
+  <div class="page-hero-media">
+    <img src="../assets/proj-stone-wall-evergreens.jpg" alt="Stone wall with evergreen plantings">
+  </div>
+  <div class="wrap">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="../Homepage v2.html">Home</a>
+        <i data-lucide="chevron-right"></i>
+        <span class="current">Gallery</span>
+      </div>
+      <h1>Recent Work Across<br><em>Montgomery County, MD.</em></h1>
+      <p>A few hundred projects worth of experience — from weekly maintenance accounts to full backyard transformations. Here are some recent favorites.</p>
+      <div class="page-hero-actions">
+        <a href="contact.html" class="btn btn-primary">Start Your Project <i data-lucide="arrow-right" width="16" height="16"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ─────────────────────────────────────────── -->
+<section class="section" style="background:var(--bg);">
+  <div class="wrap">
+    <div class="s-head">
+      <span class="overline">Featured Projects</span>
+      <h2 class="h2">15 Projects.<br>Same Standard Every Time.</h2>
+      <p class="lead">Click any project to enlarge. Mix of residential refreshes, hardscape installs, and full property work.</p>
+    </div>
+
+    <div class="filter-row">
+      <button class="filter-chip active" data-filter="all">All Work</button>
+      <button class="filter-chip" data-filter="hardscape">Hardscaping</button>
+      <button class="filter-chip" data-filter="mulch">Mulch &amp; Planting</button>
+      <button class="filter-chip" data-filter="lawn">Lawn Care</button>
+      <button class="filter-chip" data-filter="drainage">Drainage</button>
+      <button class="filter-chip" data-filter="tree">Tree Services</button>
+    </div>
+
+    <div class="gallery-page-grid" id="galGrid">
+      <div class="gallery-item tall" data-cat="hardscape"><img src="../assets/proj-curved-stone-wall.jpg" alt="Curved stone wall"><span class="tag">Curved Stone Wall · Burtonsville, MD</span></div>
+      <div class="gallery-item" data-cat="mulch"><img src="../assets/proj-boxwood-driveway.jpg" alt="Boxwood driveway"><span class="tag">Boxwood Driveway Border</span></div>
+      <div class="gallery-item" data-cat="drainage"><img src="../assets/proj-stone-stream-bed.jpg" alt="Dry creek bed"><span class="tag">Dry Creek Drainage · Silver Spring</span></div>
+      <div class="gallery-item" data-cat="hardscape"><img src="../assets/proj-firepit-adirondack.jpg" alt="Fire pit patio"><span class="tag">Pea-Gravel Fire Pit Patio</span></div>
+      <div class="gallery-item" data-cat="hardscape"><img src="../assets/proj-stone-wall-evergreens.jpg" alt="Dry stack wall"><span class="tag">Dry-Stack Stone Wall · Rockville</span></div>
+      <div class="gallery-item" data-cat="mulch"><img src="../assets/proj-mulch-fenceline.jpg" alt="Mulch refresh"><span class="tag">Mulch Refresh · Fenceline</span></div>
+      <div class="gallery-item" data-cat="mulch"><img src="../assets/proj-front-yard-mulch.jpg" alt="Front yard mulch"><span class="tag">Front Yard Mulch Bed Install</span></div>
+      <div class="gallery-item" data-cat="mulch"><img src="../assets/proj-boxwood-hedge-row.jpg" alt="Boxwood hedge"><span class="tag">Boxwood Hedge Row</span></div>
+      <div class="gallery-item" data-cat="lawn"><img src="../assets/proj-sunset-front-yard.jpg" alt="Sunset front yard"><span class="tag">Front Yard Reset · Olney</span></div>
+      <div class="gallery-item" data-cat="lawn"><img src="../assets/proj-backyard-pathway.jpg" alt="Backyard lawn"><span class="tag">Backyard Lawn Restoration</span></div>
+      <div class="gallery-item" data-cat="mulch"><img src="../assets/proj-cottage-rock-garden.jpg" alt="Cottage rock garden"><span class="tag">Cottage Rock Garden</span></div>
+      <div class="gallery-item" data-cat="mulch"><img src="../assets/proj-foundation-bed.jpg" alt="Foundation bed"><span class="tag">Foundation Bed Refresh</span></div>
+      <div class="gallery-item" data-cat="hardscape"><img src="../assets/proj-front-entry-stairs.jpg" alt="Front entry"><span class="tag">Front Entry Stairs &amp; Plantings</span></div>
+      <div class="gallery-item" data-cat="mulch"><img src="../assets/proj-side-yard-spiral.jpg" alt="Topiary"><span class="tag">Topiary &amp; Side Yard Refresh</span></div>
+      <div class="gallery-item" data-cat="tree"><img src="../assets/photo-tree-service.jpeg" alt="Tree service"><span class="tag">Storm Damage Tree Removal</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────────── -->
+<section class="cta-banner">
+  <div class="wrap">
+    <div class="cta-banner-inner">
+      <div>
+        <div class="cta-banner-title">Your project belongs<br><em>in our next gallery.</em></div>
+        <div class="cta-banner-sub">Free estimates on every project — large or small. We'll be in touch within one business day.</div>
+      </div>
+      <div class="cta-banner-actions">
+        <a href="contact.html" class="btn btn-white btn-lg">Start Your Project <i data-lucide="arrow-right" width="16" height="16"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      const filter = chip.dataset.filter;
+      document.querySelectorAll('#galGrid .gallery-item').forEach(item => {
+        item.style.display = (filter === 'all' || item.dataset.cat === filter) ? '' : 'none';
+      });
+    });
+  });
+</script>
+<script src="../js/v2.js"></script>
+<script>initV2('gallery');</script>
+</body>
+</html>
