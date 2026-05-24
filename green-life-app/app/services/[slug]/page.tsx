@@ -77,7 +77,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       >
         <div className="flex flex-wrap gap-2">
           {service.startingPrice && (
-            <span className="inline-flex items-center gap-1.5 bg-brand-accent text-brand-dark font-display font-extrabold text-[11px] tracking-[0.06em] uppercase px-3 py-1.5 rounded-pill">
+            <span className="inline-flex items-center gap-1.5 bg-white text-brand-primary font-display font-extrabold text-[11px] tracking-[0.06em] uppercase px-3 py-1.5 rounded-pill shadow-card">
               {service.startingPrice}
             </span>
           )}
@@ -260,7 +260,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 </p>
                 <Link
                   href={`/estimate?service=${service.slug}`}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-brand-accent text-brand-dark font-display font-bold text-[14px] tracking-[0.03em] px-5 py-3 rounded-md hover:bg-green-300 transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-white text-brand-primary font-display font-bold text-[14px] tracking-[0.03em] px-5 py-3 rounded-md hover:bg-surface-alt transition-colors"
                 >
                   <Calendar size={15} strokeWidth={2.25} />
                   Free Estimate
