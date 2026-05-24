@@ -313,8 +313,15 @@ const GALLERY_CATEGORIES = [
   'Landscaping',
 ] as const;
 
-export const GALLERY: GalleryItem[] = Array.from({ length: 49 }, (_, i) => {
-  const n = i + 1;
+// IDs of project photos that survive deduplication (the 6 byte-identical
+// duplicates were removed: project-03, 07, 14, 17, 18, 46).
+const GALLERY_PROJECT_IDS = [
+  1, 2, 4, 5, 6, 8, 9, 10, 11, 12, 13, 15, 16, 19, 20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45,
+  47, 48, 49,
+] as const;
+
+export const GALLERY: GalleryItem[] = GALLERY_PROJECT_IDS.map((n, i) => {
   const category = GALLERY_CATEGORIES[i % GALLERY_CATEGORIES.length];
   return {
     id: `g${n}`,
@@ -328,8 +335,8 @@ export const GALLERY: GalleryItem[] = Array.from({ length: 49 }, (_, i) => {
 // Curated heroes per page — sample from the project photos.
 export const PAGE_HEROES = {
   home: '/gallery/project-01.jpeg',
-  about: '/gallery/project-07.jpeg',
-  services: '/gallery/project-14.jpeg',
+  about: '/gallery/project-04.jpeg',
+  services: '/gallery/project-13.jpeg',
   contact: '/gallery/project-21.jpeg',
   gallery: '/gallery/project-28.jpeg',
   estimate: '/gallery/project-35.jpeg',

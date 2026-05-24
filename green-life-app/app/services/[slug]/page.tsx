@@ -25,9 +25,9 @@ const SERVICE_HERO_MAP: Record<string, string> = {
 };
 
 const INLINE_PHOTOS: Record<string, string[]> = {
-  'lawn-care': ['/gallery/project-03.jpeg', '/gallery/project-19.jpeg'],
+  'lawn-care': ['/gallery/project-02.jpeg', '/gallery/project-19.jpeg'],
   landscaping: ['/gallery/project-12.jpeg', '/gallery/project-26.jpeg'],
-  'tree-services': ['/gallery/project-18.jpeg', '/gallery/project-33.jpeg'],
+  'tree-services': ['/gallery/hardscaping-feature.jpeg', '/gallery/project-33.jpeg'],
   hardscaping: ['/gallery/hardscaping-feature.jpeg', '/gallery/project-29.jpeg'],
   'snow-removal': ['/gallery/project-40.jpeg', '/gallery/project-44.jpeg'],
 };
