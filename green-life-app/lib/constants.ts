@@ -20,7 +20,7 @@ export const SITE = {
   tagline: 'Maryland’s trusted full-service landscaping company',
   description:
     'Professional lawn care, landscaping, tree services, hardscaping, and snow removal in Burtonsville, MD. Serving Montgomery County since 2005. Licensed, insured, and 5-star rated.',
-  url: 'https://greenlifelandscapingmd.com',
+  url: 'https://www.greenlifelandscaping.us',
   phone: '(410) 905-2697',
   phoneHref: 'tel:4109052697',
   email: 'greenlife.contacts@gmail.com',
