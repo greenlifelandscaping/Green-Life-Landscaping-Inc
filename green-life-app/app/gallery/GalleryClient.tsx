@@ -1,8 +1,10 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GALLERY, SITE } from '@/lib/constants';
+import type { GalleryItem } from '@/lib/types';
 
 const CATEGORIES = ['All', 'Hardscaping', 'Landscaping', 'Lawn Care', 'Tree Services'] as const;
 type Category = (typeof CATEGORIES)[number];
@@ -21,6 +23,7 @@ const SPAN_PATTERN = [
 
 export function GalleryClient() {
   const [active, setActive] = useState<Category>('All');
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   const items = useMemo(
     () => (active === 'All' ? GALLERY : GALLERY.filter((g) => g.category === active)),
@@ -32,6 +35,40 @@ export function GalleryClient() {
     for (const g of GALLERY) c[g.category] = (c[g.category] ?? 0) + 1;
     return c;
   }, []);
+
+  const open = openIdx !== null ? items[openIdx] : null;
+
+  const close = useCallback(() => setOpenIdx(null), []);
+  const next = useCallback(
+    () => setOpenIdx((i) => (i === null ? null : (i + 1) % items.length)),
+    [items.length]
+  );
+  const prev = useCallback(
+    () => setOpenIdx((i) => (i === null ? null : (i - 1 + items.length) % items.length)),
+    [items.length]
+  );
+
+  // Reset when filter changes
+  useEffect(() => {
+    setOpenIdx(null);
+  }, [active]);
+
+  // Keyboard nav + body scroll lock
+  useEffect(() => {
+    if (openIdx === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') next();
+      else if (e.key === 'ArrowLeft') prev();
+    };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [openIdx, close, next, prev]);
 
   return (
     <>
@@ -73,9 +110,12 @@ export function GalleryClient() {
         <div className="container-page">
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3.5 auto-rows-[180px]">
             {items.map((item, idx) => (
-              <article
+              <button
                 key={item.id}
-                className={`group relative rounded-lg overflow-hidden bg-neutral-900 shadow-card hover:shadow-card-hover transition-shadow ${
+                type="button"
+                onClick={() => setOpenIdx(idx)}
+                aria-label={`Open ${item.alt} in fullscreen`}
+                className={`group relative rounded-lg overflow-hidden bg-neutral-900 shadow-card hover:shadow-card-hover transition-shadow focus-visible:ring-4 focus-visible:ring-brand-accent/50 ${
                   SPAN_PATTERN[idx % SPAN_PATTERN.length]
                 }`}
               >
@@ -86,7 +126,7 @@ export function GalleryClient() {
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105 group-hover:opacity-90"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/85 via-brand-dark/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/85 via-brand-dark/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 text-left">
                   <div>
                     <span className="inline-block font-display font-bold text-[10px] tracking-[0.08em] uppercase text-brand-accent mb-1">
                       {item.category}
@@ -96,7 +136,7 @@ export function GalleryClient() {
                     </p>
                   </div>
                 </div>
-              </article>
+              </button>
             ))}
           </div>
 
@@ -107,7 +147,108 @@ export function GalleryClient() {
           )}
         </div>
       </section>
+
+      {open && (
+        <Lightbox
+          item={open}
+          index={openIdx!}
+          total={items.length}
+          onClose={close}
+          onPrev={prev}
+          onNext={next}
+        />
+      )}
     </>
+  );
+}
+
+function Lightbox({
+  item,
+  index,
+  total,
+  onClose,
+  onPrev,
+  onNext,
+}: {
+  item: GalleryItem;
+  index: number;
+  total: number;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+}) {
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Photo ${index + 1} of ${total}: ${item.alt}`}
+      onClick={onClose}
+      className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 animate-fade-in"
+    >
+      {/* Close */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        aria-label="Close fullscreen view"
+        className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 h-11 w-11 rounded-full bg-white/10 hover:bg-white/20 text-white inline-flex items-center justify-center backdrop-blur-md border border-white/15 transition-colors"
+      >
+        <X size={22} strokeWidth={2.25} />
+      </button>
+
+      {/* Prev */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onPrev();
+        }}
+        aria-label="Previous photo"
+        className="absolute left-2 sm:left-6 z-10 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white inline-flex items-center justify-center backdrop-blur-md border border-white/15 transition-colors"
+      >
+        <ChevronLeft size={26} strokeWidth={2.25} />
+      </button>
+
+      {/* Next */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onNext();
+        }}
+        aria-label="Next photo"
+        className="absolute right-2 sm:right-6 z-10 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white inline-flex items-center justify-center backdrop-blur-md border border-white/15 transition-colors"
+      >
+        <ChevronRight size={26} strokeWidth={2.25} />
+      </button>
+
+      {/* Image */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full h-full max-w-[1400px] max-h-[88vh] flex items-center justify-center"
+      >
+        <Image
+          src={item.src}
+          alt={item.alt}
+          fill
+          sizes="100vw"
+          priority
+          className="object-contain"
+        />
+      </div>
+
+      {/* Caption */}
+      <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 max-w-[90vw] bg-black/50 backdrop-blur-md border border-white/10 rounded-pill px-4 py-2 text-center">
+        <span className="font-display font-bold text-[11px] tracking-[0.08em] uppercase text-brand-accent mr-2">
+          {item.category}
+        </span>
+        <span className="font-body text-[12px] text-white/85">
+          {index + 1} of {total}
+        </span>
+      </div>
+    </div>
   );
 }
 

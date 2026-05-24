@@ -141,7 +141,7 @@ export default function ServicesPage() {
                       <ArrowRight size={14} strokeWidth={2.5} />
                     </Link>
                     <Link
-                      href={`/estimate?service=${service.slug}`}
+                      href={`/estimate?service=${service.slug}#estimate-form`}
                       className={`inline-flex items-center gap-2 font-display font-bold text-[14px] tracking-[0.03em] px-5 py-3 rounded-md shadow-cta transition-all ${
                         isSnow
                           ? 'bg-haint-700 text-white hover:bg-haint-900'

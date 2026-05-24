@@ -145,7 +145,7 @@ export function Navbar() {
           </ul>
 
           <Link
-            href="/estimate"
+            href="/estimate#estimate-form"
             className="hidden lg:inline-flex items-center gap-1.5 bg-brand-primary text-white font-display font-bold text-[13px] tracking-[0.03em] px-5 py-2.5 rounded-md shadow-cta hover:bg-green-800 transition-all"
           >
             <Calendar size={14} strokeWidth={2.25} />
@@ -228,7 +228,7 @@ export function Navbar() {
         </div>
 
         <Link
-          href="/estimate"
+          href="/estimate#estimate-form"
           className="mt-4 inline-flex items-center justify-center gap-2 bg-brand-primary text-white font-display font-bold text-[15px] px-5 py-4 rounded-md shadow-cta min-h-[52px]"
         >
           <Calendar size={16} strokeWidth={2.25} />

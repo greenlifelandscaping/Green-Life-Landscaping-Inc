@@ -81,7 +81,7 @@ export function Footer() {
               <li><Link href="/services" className="hover:text-brand-accent transition-colors">All Services</Link></li>
               <li><Link href="/gallery" className="hover:text-brand-accent transition-colors">Gallery</Link></li>
               <li><Link href="/contact" className="hover:text-brand-accent transition-colors">Contact</Link></li>
-              <li><Link href="/estimate" className="hover:text-brand-accent transition-colors">Get a Free Estimate</Link></li>
+              <li><Link href="/estimate#estimate-form" className="hover:text-brand-accent transition-colors">Get a Free Estimate</Link></li>
             </ul>
           </div>
 

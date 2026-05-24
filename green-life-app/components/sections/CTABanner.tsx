@@ -29,7 +29,7 @@ export function CTABanner({
           </div>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-3.5 lg:flex-shrink-0 lg:items-center justify-center">
             <Link
-              href="/estimate"
+              href="/estimate#estimate-form"
               className="inline-flex items-center justify-center gap-2 bg-white text-brand-primary font-display font-bold text-fluid-cta tracking-[0.03em] px-6 sm:px-8 py-3.5 sm:py-4 rounded-md shadow-card hover:bg-surface-alt hover:-translate-y-0.5 transition-all"
             >
               <Calendar size={18} strokeWidth={2.25} />

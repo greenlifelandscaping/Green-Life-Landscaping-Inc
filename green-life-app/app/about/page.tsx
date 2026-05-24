@@ -168,7 +168,7 @@ export default function AboutPage() {
 
           <div className="flex gap-3 justify-center flex-wrap mt-10">
             <a
-              href="/estimate"
+              href="/estimate#estimate-form"
               className="inline-flex items-center gap-2 bg-brand-primary text-white font-display font-bold text-[15px] px-6 py-3 rounded-md shadow-cta hover:bg-green-800 transition-colors"
             >
               <Calendar size={16} strokeWidth={2.25} />

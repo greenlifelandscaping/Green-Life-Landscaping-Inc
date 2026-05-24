@@ -75,7 +75,8 @@ export function ContactForm({
 
   return (
     <section
-      className={compact ? 'bg-white' : 'bg-white section-pad'}
+      id="estimate-form"
+      className={`${compact ? 'bg-white' : 'bg-white section-pad'} scroll-mt-24 lg:scroll-mt-[120px]`}
       aria-labelledby="contact-heading"
     >
       <div className="container-page">

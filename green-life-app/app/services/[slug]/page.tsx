@@ -207,7 +207,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   All services
                 </Link>
                 <Link
-                  href={`/estimate?service=${service.slug}`}
+                  href={`/estimate?service=${service.slug}#estimate-form`}
                   className={`inline-flex items-center justify-center gap-2 font-display font-bold text-fluid-cta tracking-[0.03em] px-6 py-3.5 rounded-md shadow-cta transition-all ${
                     isSnow
                       ? 'bg-haint-700 text-white hover:bg-haint-900'
@@ -259,7 +259,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   Free, no-obligation estimates within one business day.
                 </p>
                 <Link
-                  href={`/estimate?service=${service.slug}`}
+                  href={`/estimate?service=${service.slug}#estimate-form`}
                   className="w-full inline-flex items-center justify-center gap-2 bg-white text-brand-primary font-display font-bold text-[14px] tracking-[0.03em] px-5 py-3 rounded-md hover:bg-surface-alt transition-colors"
                 >
                   <Calendar size={15} strokeWidth={2.25} />
