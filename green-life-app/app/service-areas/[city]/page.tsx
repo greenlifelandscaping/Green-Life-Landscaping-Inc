@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, MapPin, ShieldCheck, CalendarCheck, Phone, Calendar, Check } from 'lucide-react';
 import { SubHero } from '@/components/sections/SubHero';
 import { CTABanner } from '@/components/sections/CTABanner';
+import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
 import { SITE, CITIES, SERVICES, PAGE_HEROES } from '@/lib/constants';
 
 type Props = { params: { city: string } };
@@ -79,6 +80,13 @@ export default function CityPage({ params }: Props) {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Service Areas', path: '/service-areas' },
+          { name: city.fullName, path: `/service-areas/${city.slug}` },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(cityBusinessSchema) }}
@@ -153,7 +161,7 @@ export default function CityPage({ params }: Props) {
                       </div>
                       <div>
                         <div className="font-display font-bold text-[14px] text-neutral-900 mb-1 flex items-center gap-1 group-hover:gap-2 transition-all">
-                          {s.title.replace(' Services', '')}
+                          {s.title}
                           <ArrowRight size={12} strokeWidth={2.5} className="opacity-60" />
                         </div>
                         <p className="font-body text-[12.5px] text-neutral-600 leading-[1.55]">

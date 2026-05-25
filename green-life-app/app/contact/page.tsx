@@ -4,6 +4,7 @@ import { Tag, Clock, ShieldCheck, Phone, MapPin, Navigation, Map, Users } from '
 import type { LucideIcon } from 'lucide-react';
 import { SubHero } from '@/components/sections/SubHero';
 import { ContactForm } from '@/components/sections/ContactForm';
+import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
 import { SITE, TEAM, PAGE_HEROES } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -15,6 +16,12 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Contact', path: '/contact' },
+        ]}
+      />
       <SubHero
         breadcrumbLabel="Contact"
         title="Get a Free Estimate for Your Property"

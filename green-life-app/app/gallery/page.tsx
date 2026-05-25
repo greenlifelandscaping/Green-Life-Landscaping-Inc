@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { SubHero } from '@/components/sections/SubHero';
 import { CTABanner } from '@/components/sections/CTABanner';
+import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
 import { PAGE_HEROES } from '@/lib/constants';
 import { GalleryClient } from './GalleryClient';
 
@@ -14,6 +15,12 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Gallery', path: '/gallery' },
+        ]}
+      />
       <SubHero
         breadcrumbLabel="Gallery"
         title="Recent Work From Across Montgomery County"

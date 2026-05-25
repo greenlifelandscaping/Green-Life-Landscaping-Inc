@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { SubHero } from '@/components/sections/SubHero';
 import { CTABanner } from '@/components/sections/CTABanner';
+import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
 import { SERVICES, SITE, PAGE_HEROES } from '@/lib/constants';
 
 const SERVICE_HERO_MAP: Record<string, string> = {
@@ -43,13 +44,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const service = SERVICES.find((s) => s.slug === params.slug);
   if (!service) return {};
-  const cleanTitle = service.title.replace(' Services', '');
   return {
-    title: `${cleanTitle} in Burtonsville, MD`,
+    title: `${service.title} in Burtonsville, MD`,
     description: service.longDescription,
     alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
-      title: `${cleanTitle} | ${SITE.name}`,
+      title: `${service.title} | ${SITE.name}`,
       description: service.shortDescription,
       url: `${SITE.url}/services/${service.slug}`,
     },
@@ -69,8 +69,15 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Services', path: '/services' },
+          { name: service.title, path: `/services/${service.slug}` },
+        ]}
+      />
       <SubHero
-        breadcrumbLabel={service.title.replace(' Services', '')}
+        breadcrumbLabel={service.title}
         title={detail?.headline ?? service.title}
         description={service.longDescription}
         backgroundImage={hero}
@@ -173,7 +180,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               {detail?.benefits && (
                 <div className="mt-10">
                   <h3 className="font-display font-bold text-fluid-h3 text-neutral-900 mb-5">
-                    Why homeowners pick us for {service.title.replace(' Services', '').toLowerCase()}
+                    Why homeowners pick us for {service.title.toLowerCase()}
                   </h3>
                   <div className="grid sm:grid-cols-2 gap-4">
                     {detail.benefits.map((b) => (
@@ -219,7 +226,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                       : 'bg-brand-primary text-white hover:bg-green-800'
                   }`}
                 >
-                  Get a free {service.title.replace(' Services', '').toLowerCase()} quote
+                  Get a free {service.title.toLowerCase()} quote
                   <ArrowRight size={15} strokeWidth={2.5} />
                 </Link>
               </div>
@@ -249,7 +256,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                             size={16}
                             className={isSnowy ? 'text-haint-700' : 'text-brand-primary'}
                           />
-                          <span className="flex-1">{s.title.replace(' Services', '')}</span>
+                          <span className="flex-1">{s.title}</span>
                           <ArrowRight size={12} className="opacity-50" />
                         </Link>
                       </li>
@@ -298,7 +305,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             Ready to schedule
             <br />
             <em className={`not-italic ${isSnow ? 'text-haint-300' : 'text-brand-accent'}`}>
-              your {service.title.replace(' Services', '').toLowerCase()}?
+              your {service.title.toLowerCase()}?
             </em>
           </>
         }

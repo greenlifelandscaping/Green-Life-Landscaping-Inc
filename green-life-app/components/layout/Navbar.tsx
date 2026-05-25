@@ -101,7 +101,7 @@ export function Navbar() {
                       </span>
                       <span className="flex flex-col gap-0.5 min-w-0">
                         <span className="font-display font-bold text-[13.5px] text-neutral-900 inline-flex items-center gap-2">
-                          {s.title.replace(' Services', '')}
+                          {s.title}
                           {s.seasonal && (
                             <span className="font-display font-extrabold text-[9.5px] tracking-[0.08em] uppercase bg-haint-50 text-haint-900 border border-haint-300 px-1.5 py-0.5 rounded-pill">
                               Seasonal
@@ -217,7 +217,7 @@ export function Navbar() {
                   : 'text-neutral-600 hover:text-brand-primary hover:bg-surface-alt'
               }`}
             >
-              {s.title.replace(' Services', '')}
+              {s.title}
               {s.seasonal && (
                 <span className="font-display font-extrabold text-[9.5px] tracking-[0.08em] uppercase bg-haint-50 text-haint-900 border border-haint-300 px-1.5 py-0.5 rounded-pill">
                   Seasonal

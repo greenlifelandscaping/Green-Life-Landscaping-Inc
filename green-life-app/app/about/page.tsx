@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ShieldCheck, CalendarCheck, MapPin, CheckCircle2, Handshake, Repeat, Check, Calendar, Phone } from 'lucide-react';
 import { SubHero } from '@/components/sections/SubHero';
 import { CTABanner } from '@/components/sections/CTABanner';
+import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
 import { SITE, TEAM, PAGE_HEROES } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -51,6 +52,12 @@ const DIFFERENTIATORS = [
 export default function AboutPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+        ]}
+      />
       <SubHero
         breadcrumbLabel="About Us"
         title="A Maryland Landscaping Company Built on Honest Work"

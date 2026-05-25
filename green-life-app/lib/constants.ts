@@ -78,7 +78,7 @@ export const NAV_ITEMS: NavItem[] = [
 export const SERVICES: Service[] = [
   {
     slug: 'lawn-care',
-    title: 'Lawn Care Services',
+    title: 'Lawn Care',
     icon: Scissors,
     shortDescription:
       'Regular mowing, aeration, dethatching, and overseeding. Consistent care that keeps your lawn healthy season after season.',
@@ -109,7 +109,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: 'landscaping',
-    title: 'Landscaping Services',
+    title: 'Landscaping',
     icon: Flower2,
     shortDescription:
       'Design, installation, and ongoing maintenance. We transform overgrown or bare outdoor spaces into structured, attractive landscapes.',

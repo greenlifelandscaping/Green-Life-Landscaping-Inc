@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, MapPin } from 'lucide-react';
 import { SubHero } from '@/components/sections/SubHero';
 import { CTABanner } from '@/components/sections/CTABanner';
+import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
 import { CITIES, SITE, PAGE_HEROES } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -31,6 +32,12 @@ export default function ServiceAreasPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Service Areas', path: '/service-areas' },
+        ]}
+      />
       <SubHero
         breadcrumbLabel="Service Areas"
         title="Maryland Communities We Serve"

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ArrowRight, Check } from 'lucide-react';
 import { SubHero } from '@/components/sections/SubHero';
 import { CTABanner } from '@/components/sections/CTABanner';
+import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
 import { SERVICES, PAGE_HEROES } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -24,6 +25,12 @@ const SERVICE_HERO_MAP: Record<string, string> = {
 export default function ServicesPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Services', path: '/services' },
+        ]}
+      />
       <SubHero
         breadcrumbLabel="Services"
         title="Outdoor Services Built for Maryland Properties"
@@ -148,7 +155,7 @@ export default function ServicesPage() {
                           : 'bg-brand-primary text-white hover:bg-green-800'
                       }`}
                     >
-                    Get a quote for {service.title.replace(' Services', '')}
+                    Get a quote for {service.title}
                     <ArrowRight size={15} strokeWidth={2.5} />
                   </Link>
                   </div>

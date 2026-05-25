@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Clock, Mail, Calendar, CheckCircle, ShieldCheck, Tag } from 'lucide-react';
 import { SubHero } from '@/components/sections/SubHero';
 import { ContactForm } from '@/components/sections/ContactForm';
+import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
 import { PAGE_HEROES } from '@/lib/constants';
 
 export const metadata: Metadata = {
@@ -32,6 +33,12 @@ const STEPS = [
 export default function EstimatePage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Free Estimate', path: '/estimate' },
+        ]}
+      />
       <SubHero
         breadcrumbLabel="Free Estimate"
         title="Tell us what your property needs"

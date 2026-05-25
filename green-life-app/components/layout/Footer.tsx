@@ -64,7 +64,7 @@ export function Footer() {
                     href={`/services/${s.slug}`}
                     className="hover:text-brand-accent transition-colors"
                   >
-                    {s.title.replace(' Services', '')}
+                    {s.title}
                   </Link>
                 </li>
               ))}
