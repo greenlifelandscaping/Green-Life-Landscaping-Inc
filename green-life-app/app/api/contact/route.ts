@@ -12,6 +12,7 @@ type ContactPayload = {
   name?: unknown;
   phone?: unknown;
   email?: unknown;
+  address?: unknown;
   service?: unknown;
   message?: unknown;
   website?: unknown;
@@ -56,6 +57,7 @@ export async function POST(req: Request) {
   const name = asString(body.name, 120);
   const phone = asString(body.phone, 40);
   const email = asString(body.email, 200);
+  const address = asString(body.address, 300);
   const service = asString(body.service, 60);
   const message = asString(body.message, 4000);
 
@@ -64,6 +66,7 @@ export async function POST(req: Request) {
   if (!phone) errors.phone = 'Phone is required.';
   if (!email) errors.email = 'Email is required.';
   else if (!isEmail(email)) errors.email = 'Please use a valid email address.';
+  if (!address) errors.address = 'Property address is required.';
   if (!service) errors.service = 'Please select a service.';
 
   if (Object.keys(errors).length > 0) {
@@ -94,6 +97,7 @@ export async function POST(req: Request) {
     `Name:    ${name}`,
     `Phone:   ${phone}`,
     `Email:   ${email}`,
+    `Address: ${address}`,
     `Service: ${serviceName}`,
     '',
     'Message:',
@@ -120,6 +124,7 @@ export async function POST(req: Request) {
             <tr><td style="padding:6px 0;color:#5a5a5a;width:90px;">Name</td><td style="padding:6px 0;font-weight:600;">${escapeHtml(name)}</td></tr>
             <tr><td style="padding:6px 0;color:#5a5a5a;">Phone</td><td style="padding:6px 0;"><a href="tel:${escapeHtml(phone.replace(/[^+\d]/g, ''))}" style="color:#2e7031;text-decoration:none;font-weight:600;">${escapeHtml(phone)}</a></td></tr>
             <tr><td style="padding:6px 0;color:#5a5a5a;">Email</td><td style="padding:6px 0;"><a href="mailto:${escapeHtml(email)}" style="color:#2e7031;text-decoration:none;font-weight:600;">${escapeHtml(email)}</a></td></tr>
+            <tr><td style="padding:6px 0;color:#5a5a5a;vertical-align:top;">Address</td><td style="padding:6px 0;"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}" style="color:#2e7031;text-decoration:none;font-weight:600;">${escapeHtml(address)}</a></td></tr>
             <tr><td style="padding:6px 0;color:#5a5a5a;">Service</td><td style="padding:6px 0;font-weight:600;">${escapeHtml(serviceName)}</td></tr>
           </table>
 

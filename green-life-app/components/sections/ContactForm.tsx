@@ -1,10 +1,54 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { User, Phone, Mail, Wrench, MessageSquare, ArrowRight, MapPin, Clock } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { SERVICES, SITE } from '@/lib/constants';
+
+declare global {
+  interface Window {
+    google?: {
+      maps?: {
+        importLibrary: (name: string) => Promise<PlacesLibrary>;
+      };
+    };
+  }
+}
+
+type PlacePrediction = {
+  placeId: string;
+  mainText?: { text: string };
+  secondaryText?: { text: string };
+  text?: { text: string };
+  toPlace: () => GooglePlace;
+};
+
+type GooglePlace = {
+  fetchFields: (opts: { fields: string[] }) => Promise<void>;
+  formattedAddress?: string;
+};
+
+type AutocompleteSuggestionResult = { placePrediction: PlacePrediction | null };
+
+type PlacesLibrary = {
+  AutocompleteSuggestion: {
+    fetchAutocompleteSuggestions: (req: {
+      input: string;
+      includedRegionCodes?: string[];
+      includedPrimaryTypes?: string[];
+      sessionToken?: unknown;
+    }) => Promise<{ suggestions: AutocompleteSuggestionResult[] }>;
+  };
+  AutocompleteSessionToken: new () => unknown;
+};
+
+type Suggestion = {
+  placeId: string;
+  primary: string;
+  secondary: string;
+  prediction: PlacePrediction;
+};
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -33,6 +77,7 @@ export function ContactForm({
       name: String(data.get('name') ?? ''),
       phone: String(data.get('phone') ?? ''),
       email: String(data.get('email') ?? ''),
+      address: String(data.get('address') ?? ''),
       service: String(data.get('service') ?? ''),
       message: String(data.get('message') ?? ''),
       website: String(data.get('website') ?? ''),
@@ -144,6 +189,8 @@ export function ContactForm({
                 placeholder="you@example.com"
                 error={fieldErrors.email}
               />
+
+              <AddressAutocomplete error={fieldErrors.address} />
 
               <div>
                 <label
@@ -379,6 +426,213 @@ function Field({
       </div>
       {error && (
         <p id={`${id}-error`} className="mt-1.5 font-body text-[12px] text-red-700">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+function AddressAutocomplete({ error }: { error?: string }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const placesLibRef = useRef<PlacesLibrary | null>(null);
+  const sessionTokenRef = useRef<unknown>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIdx, setHighlightedIdx] = useState(-1);
+
+  useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    if (!apiKey) return;
+    let cancelled = false;
+
+    const loadLib = async () => {
+      if (!window.google?.maps?.importLibrary) return;
+      try {
+        const lib = await window.google.maps.importLibrary('places');
+        if (!cancelled) {
+          placesLibRef.current = lib;
+          sessionTokenRef.current = new lib.AutocompleteSessionToken();
+        }
+      } catch (err) {
+        console.error('Places library load failed', err);
+      }
+    };
+
+    if (window.google?.maps?.importLibrary) {
+      loadLib();
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    const SCRIPT_ID = 'google-maps-script';
+    const existing = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
+    if (existing) {
+      if (existing.dataset.loaded === 'true') loadLib();
+      else existing.addEventListener('load', loadLib, { once: true });
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    const script = document.createElement('script');
+    script.id = SCRIPT_ID;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&loading=async&v=weekly`;
+    script.async = true;
+    script.defer = true;
+    script.addEventListener('load', () => {
+      script.dataset.loaded = 'true';
+      loadLib();
+    });
+    document.head.appendChild(script);
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  async function fetchSuggestions(query: string) {
+    const lib = placesLibRef.current;
+    if (!lib || query.trim().length < 3) {
+      setSuggestions([]);
+      setIsOpen(false);
+      return;
+    }
+    try {
+      const { suggestions: results } = await lib.AutocompleteSuggestion.fetchAutocompleteSuggestions({
+        input: query,
+        includedRegionCodes: ['us'],
+        includedPrimaryTypes: ['street_address', 'premise', 'subpremise'],
+        sessionToken: sessionTokenRef.current,
+      });
+      const mapped: Suggestion[] = (results ?? [])
+        .filter((r): r is { placePrediction: PlacePrediction } => Boolean(r.placePrediction))
+        .slice(0, 5)
+        .map((r) => ({
+          placeId: r.placePrediction.placeId,
+          primary: r.placePrediction.mainText?.text ?? r.placePrediction.text?.text ?? '',
+          secondary: r.placePrediction.secondaryText?.text ?? '',
+          prediction: r.placePrediction,
+        }));
+      setSuggestions(mapped);
+      setIsOpen(mapped.length > 0);
+      setHighlightedIdx(-1);
+    } catch (err) {
+      console.error('Autocomplete fetch failed', err);
+      setSuggestions([]);
+      setIsOpen(false);
+    }
+  }
+
+  function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => fetchSuggestions(value), 250);
+  }
+
+  async function selectSuggestion(s: Suggestion) {
+    try {
+      const place = s.prediction.toPlace();
+      await place.fetchFields({ fields: ['formattedAddress'] });
+      if (inputRef.current) {
+        inputRef.current.value = place.formattedAddress ?? `${s.primary} ${s.secondary}`.trim();
+      }
+    } catch (err) {
+      console.error('Place fetch failed', err);
+      if (inputRef.current) {
+        inputRef.current.value = `${s.primary} ${s.secondary}`.trim();
+      }
+    } finally {
+      setSuggestions([]);
+      setIsOpen(false);
+      const lib = placesLibRef.current;
+      if (lib) sessionTokenRef.current = new lib.AutocompleteSessionToken();
+    }
+  }
+
+  function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (!isOpen || suggestions.length === 0) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setHighlightedIdx((i) => Math.min(i + 1, suggestions.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setHighlightedIdx((i) => Math.max(i - 1, 0));
+    } else if (e.key === 'Enter' && highlightedIdx >= 0) {
+      e.preventDefault();
+      selectSuggestion(suggestions[highlightedIdx]);
+    } else if (e.key === 'Escape') {
+      setIsOpen(false);
+    }
+  }
+
+  const borderClass = error
+    ? 'border-red-300 focus:border-red-500 focus:ring-red-500/10'
+    : 'border-neutral-200 focus:border-brand-primary focus:ring-brand-primary/10';
+
+  return (
+    <div>
+      <label
+        htmlFor="address"
+        className="block font-display font-semibold text-[11px] tracking-[0.04em] uppercase text-neutral-700 mb-2"
+      >
+        Property address
+      </label>
+      <div className="relative">
+        <MapPin
+          size={14}
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 pointer-events-none z-10"
+        />
+        <input
+          ref={inputRef}
+          id="address"
+          name="address"
+          type="text"
+          placeholder="Start typing your address…"
+          required
+          autoComplete="off"
+          onChange={onInputChange}
+          onKeyDown={onKeyDown}
+          onBlur={() => setTimeout(() => setIsOpen(false), 150)}
+          onFocus={() => suggestions.length > 0 && setIsOpen(true)}
+          aria-invalid={Boolean(error)}
+          aria-autocomplete="list"
+          aria-expanded={isOpen}
+          aria-describedby={error ? 'address-error' : undefined}
+          className={`w-full font-body text-[14px] border-[1.5px] rounded-md pl-9 pr-3 py-2.5 bg-white text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-[3px] transition-all ${borderClass}`}
+        />
+        {isOpen && suggestions.length > 0 && (
+          <ul
+            role="listbox"
+            className="absolute z-20 left-0 right-0 mt-1 bg-white border border-neutral-200 rounded-md shadow-lg max-h-72 overflow-auto"
+          >
+            {suggestions.map((s, i) => (
+              <li
+                key={s.placeId || i}
+                role="option"
+                aria-selected={i === highlightedIdx}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  selectSuggestion(s);
+                }}
+                onMouseEnter={() => setHighlightedIdx(i)}
+                className={`px-3 py-2.5 cursor-pointer border-b border-neutral-100 last:border-b-0 ${
+                  i === highlightedIdx ? 'bg-surface-alt' : ''
+                }`}
+              >
+                <div className="font-display font-semibold text-[13.5px] text-neutral-900">{s.primary}</div>
+                {s.secondary && (
+                  <div className="font-body text-[12px] text-neutral-500 mt-0.5">{s.secondary}</div>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      {error && (
+        <p id="address-error" className="mt-1.5 font-body text-[12px] text-red-700">
           {error}
         </p>
       )}
