@@ -199,6 +199,23 @@ export default function CityPage({ params }: Props) {
                 ))}
               </ul>
 
+              {/* Map */}
+              <h3 className="font-display font-bold text-fluid-h3 text-neutral-900 mb-5">
+                {city.name} on the map
+              </h3>
+              <div className="rounded-xl overflow-hidden border border-neutral-200 shadow-card mb-12">
+                <iframe
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(
+                    `${city.fullName} ${city.zips[0]}`,
+                  )}&output=embed&z=12`}
+                  title={`Map of ${city.fullName} — Green Life Landscaping service area`}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="block w-full h-[280px] sm:h-[360px] lg:h-[420px]"
+                />
+              </div>
+
               {/* FAQ */}
               <h3 className="font-display font-bold text-fluid-h3 text-neutral-900 mb-5">
                 {city.name} FAQ
