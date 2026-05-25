@@ -313,34 +313,63 @@ export const WHY_US = [
   },
 ];
 
-// Generate gallery items: pull from project-01.jpeg .. project-49.jpeg + the feature shot.
-const GALLERY_CATEGORIES = [
-  'Hardscaping',
-  'Landscaping',
-  'Lawn Care',
-  'Tree Services',
-  'Hardscaping',
-  'Landscaping',
-] as const;
+// Project gallery — every photo explicitly categorized by what it actually
+// depicts. Hardscaping, Lawn Care, and Tree Services categories are strict:
+// only photos showing that service alone. Landscaping is the umbrella for
+// plant beds, mulch work, and multi-service shots.
+const PROJECT_GALLERY: GalleryItem[] = [
+  // Hardscaping (pure concrete & stone)
+  { id: 'g-hard-feature', title: 'Featured hardscape', category: 'Hardscaping', src: '/gallery/hardscaping-feature.jpeg', alt: 'Featured hardscape installation by Green Life Landscaping in Maryland' },
+  { id: 'g1', title: 'Retaining wall', category: 'Hardscaping', src: '/gallery/project-01.jpeg', alt: 'Retaining wall built by Green Life Landscaping in Maryland' },
+  { id: 'g11', title: 'Concrete patio & steps', category: 'Hardscaping', src: '/gallery/project-11.jpeg', alt: 'Concrete patio and steps with railings by Green Life Landscaping' },
+  { id: 'g12', title: 'Hardscape walkway', category: 'Hardscaping', src: '/gallery/project-12.jpeg', alt: 'Hardscape walkway installation on a Maryland property' },
+  { id: 'g13', title: 'Backyard concrete patio', category: 'Hardscaping', src: '/gallery/project-13.jpeg', alt: 'Backyard concrete patio with seating by Green Life Landscaping' },
+  { id: 'g15', title: 'Hardscape paver work', category: 'Hardscaping', src: '/gallery/project-15.jpeg', alt: 'Hardscape paver work by Green Life Landscaping in Maryland' },
+  { id: 'g16', title: 'Concrete walkway extension', category: 'Hardscaping', src: '/gallery/project-16.jpeg', alt: 'Concrete walkway extension by Green Life Landscaping' },
+  { id: 'g21', title: 'Hardscape installation', category: 'Hardscaping', src: '/gallery/project-21.jpeg', alt: 'Hardscape installation on a Maryland residential property' },
+  { id: 'g26', title: 'Patio install', category: 'Hardscaping', src: '/gallery/project-26.jpeg', alt: 'Patio installation by Green Life Landscaping in Burtonsville, MD' },
+  { id: 'g31', title: 'Stone & concrete', category: 'Hardscaping', src: '/gallery/project-31.jpeg', alt: 'Stone and concrete hardscape project by Green Life Landscaping' },
+  { id: 'g32', title: 'Hardscape detail', category: 'Hardscaping', src: '/gallery/project-32.jpeg', alt: 'Detail of hardscape construction by Green Life Landscaping' },
+  { id: 'g47', title: 'Hardscape feature', category: 'Hardscaping', src: '/gallery/project-47.jpeg', alt: 'Featured hardscape project by Green Life Landscaping in MD' },
 
-// IDs of project photos that survive deduplication (the 6 byte-identical
-// duplicates were removed: project-03, 07, 14, 17, 18, 46).
-const GALLERY_PROJECT_IDS = [
-  1, 2, 4, 5, 6, 8, 9, 10, 11, 12, 13, 15, 16, 19, 20, 21, 22, 23, 24, 25, 26,
-  27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45,
-  47, 48, 49,
-] as const;
+  // Lawn Care (pure)
+  { id: 'g4', title: 'Manicured lawn', category: 'Lawn Care', src: '/gallery/project-04.jpeg', alt: 'Healthy manicured lawn maintained by Green Life Landscaping' },
+  { id: 'g6', title: 'Lawn maintenance', category: 'Lawn Care', src: '/gallery/project-06.jpeg', alt: 'Lawn maintenance work by Green Life Landscaping in Maryland' },
+  { id: 'g9', title: 'Full-property lawn', category: 'Lawn Care', src: '/gallery/project-09.jpeg', alt: 'Lush front-yard lawn maintained by Green Life Landscaping in Maryland' },
+  { id: 'g10', title: 'Fresh sod install', category: 'Lawn Care', src: '/gallery/project-10.jpeg', alt: 'Green Life crew installing fresh sod during a lawn renovation' },
 
-const PROJECT_GALLERY: GalleryItem[] = GALLERY_PROJECT_IDS.map((n, i) => {
-  const category = GALLERY_CATEGORIES[i % GALLERY_CATEGORIES.length];
-  return {
-    id: `g${n}`,
-    title: `${category} project`,
-    category,
-    src: `/gallery/project-${String(n).padStart(2, '0')}.jpeg`,
-    alt: `${category} project by Green Life Landscaping in Maryland`,
-  };
-});
+  // Tree Services (pure)
+  { id: 'g19', title: 'Tree work', category: 'Tree Services', src: '/gallery/project-19.jpeg', alt: 'Tree service work by Green Life Landscaping crew in Maryland' },
+  { id: 'g20', title: 'Tree removal & pruning', category: 'Tree Services', src: '/gallery/project-20.jpeg', alt: 'Tree removal and pruning by Green Life Landscaping' },
+  { id: 'g30', title: 'Tree care', category: 'Tree Services', src: '/gallery/project-30.jpeg', alt: 'Tree care and maintenance by Green Life Landscaping in MD' },
+  { id: 'g48', title: 'Tree services', category: 'Tree Services', src: '/gallery/project-48.jpeg', alt: 'Tree services project by Green Life Landscaping in Maryland' },
+
+  // Landscaping (plant beds, mulch, mixed-service shots)
+  { id: 'g2', title: 'Mulched beds', category: 'Landscaping', src: '/gallery/project-02.jpeg', alt: 'Fresh mulch installation on landscape beds by Green Life Landscaping' },
+  { id: 'g5', title: 'Front-yard plantings', category: 'Landscaping', src: '/gallery/project-05.jpeg', alt: 'Front-yard landscape bed with mulch and perennials by Green Life' },
+  { id: 'g8', title: 'Mulch refresh', category: 'Landscaping', src: '/gallery/project-08.jpeg', alt: 'Mulch refresh on landscape beds by Green Life Landscaping' },
+  { id: 'g22', title: 'Landscape & hardscape', category: 'Landscaping', src: '/gallery/project-22.jpeg', alt: 'Combined landscape and hardscape project by Green Life Landscaping' },
+  { id: 'g23', title: 'Bed edging & planting', category: 'Landscaping', src: '/gallery/project-23.jpeg', alt: 'Crisp bed edging and planting by Green Life Landscaping' },
+  { id: 'g24', title: 'Landscape design', category: 'Landscaping', src: '/gallery/project-24.jpeg', alt: 'Landscape design installation by Green Life in Maryland' },
+  { id: 'g25', title: 'Landscape & lawn refresh', category: 'Landscaping', src: '/gallery/project-25.jpeg', alt: 'Combined landscape and lawn care refresh by Green Life' },
+  { id: 'g27', title: 'Landscape with hardscape', category: 'Landscaping', src: '/gallery/project-27.jpeg', alt: 'Landscape and hardscape installation by Green Life Landscaping' },
+  { id: 'g28', title: 'Landscape install', category: 'Landscaping', src: '/gallery/project-28.jpeg', alt: 'Landscape installation by Green Life Landscaping in Maryland' },
+  { id: 'g29', title: 'Landscaping', category: 'Landscaping', src: '/gallery/project-29.jpeg', alt: 'Residential landscaping project by Green Life Landscaping in Maryland' },
+  { id: 'g33', title: 'Mulched landscape', category: 'Landscaping', src: '/gallery/project-33.jpeg', alt: 'Mulched landscape beds by Green Life Landscaping' },
+  { id: 'g34', title: 'Mulch & plant install', category: 'Landscaping', src: '/gallery/project-34.jpeg', alt: 'Mulch and plant install by Green Life Landscaping' },
+  { id: 'g35', title: 'Full-property refresh', category: 'Landscaping', src: '/gallery/project-35.jpeg', alt: 'Full-property landscape, mulch, and lawn refresh by Green Life' },
+  { id: 'g36', title: 'Landscape design', category: 'Landscaping', src: '/gallery/project-36.jpeg', alt: 'Landscape design project by Green Life Landscaping in MD' },
+  { id: 'g37', title: 'Landscape install', category: 'Landscaping', src: '/gallery/project-37.jpeg', alt: 'Landscape installation by Green Life Landscaping in Maryland' },
+  { id: 'g38', title: 'Hardscape + landscape', category: 'Landscaping', src: '/gallery/project-38.jpeg', alt: 'Combined hardscape and landscape work by Green Life' },
+  { id: 'g39', title: 'Mulch & beds', category: 'Landscaping', src: '/gallery/project-39.jpeg', alt: 'Mulch and landscape bed work by Green Life Landscaping' },
+  { id: 'g40', title: 'Landscape & trim', category: 'Landscaping', src: '/gallery/project-40.jpeg', alt: 'Landscape and shrub trimming by Green Life Landscaping' },
+  { id: 'g41', title: 'Full-yard care', category: 'Landscaping', src: '/gallery/project-41.jpeg', alt: 'Full-yard tree, mulch, and lawn care by Green Life Landscaping' },
+  { id: 'g42', title: 'Bed edging & care', category: 'Landscaping', src: '/gallery/project-42.jpeg', alt: 'Bed edging, trimming, and mulch by Green Life Landscaping' },
+  { id: 'g43', title: 'Full property project', category: 'Landscaping', src: '/gallery/project-43.jpeg', alt: 'Full landscape, hardscape, and lawn care project by Green Life' },
+  { id: 'g44', title: 'Landscape, trees & mulch', category: 'Landscaping', src: '/gallery/project-44.jpeg', alt: 'Landscape, tree, and mulch work by Green Life Landscaping' },
+  { id: 'g45', title: 'Mulch & landscape', category: 'Landscaping', src: '/gallery/project-45.jpeg', alt: 'Mulch, landscape, and hardscape project by Green Life Landscaping' },
+  { id: 'g49', title: 'Landscape, hardscape & tree', category: 'Landscaping', src: '/gallery/project-49.jpeg', alt: 'Combined landscape, hardscape, and tree project by Green Life' },
+];
 
 // Real snow-removal crew photos from the 2025-26 winter season.
 const SNOW_GALLERY: GalleryItem[] = [
@@ -360,13 +389,13 @@ export const GALLERY: GalleryItem[] = [...PROJECT_GALLERY, ...SNOW_GALLERY];
 export const PAGE_HEROES = {
   home: '/gallery/project-01.jpeg',
   about: '/gallery/project-04.jpeg',
-  services: '/gallery/project-13.jpeg',
+  services: '/gallery/project-25.jpeg',
   contact: '/gallery/project-21.jpeg',
   gallery: '/gallery/project-28.jpeg',
   estimate: '/gallery/project-35.jpeg',
   lawnCare: '/gallery/project-04.jpeg',
-  landscaping: '/gallery/project-09.jpeg',
-  treeServices: '/gallery/project-13.jpeg',
+  landscaping: '/gallery/project-29.jpeg',
+  treeServices: '/gallery/project-19.jpeg',
   hardscaping: '/gallery/hardscaping-feature.jpeg',
   snowRemoval: '/gallery/snow-01.jpeg',
 };

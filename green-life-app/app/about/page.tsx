@@ -115,8 +115,8 @@ export default function AboutPage() {
             </div>
             <div className="relative rounded-xl overflow-hidden shadow-card-hover aspect-[4/3] lg:aspect-auto lg:h-[460px] w-full">
               <Image
-                src="/gallery/project-08.jpeg"
-                alt="Green Life Landscaping crew on site in Burtonsville MD"
+                src="/gallery/project-10.jpeg"
+                alt="Green Life crew installing fresh sod during a lawn renovation in Maryland"
                 fill
                 sizes="(max-width: 1024px) 100vw, 600px"
                 className="object-cover"
@@ -257,8 +257,8 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="relative rounded-xl overflow-hidden shadow-card-hover aspect-[4/3] lg:aspect-auto lg:h-[400px] w-full order-2 lg:order-1">
               <Image
-                src="/gallery/project-15.jpeg"
-                alt="Green Life crew member at work in Maryland"
+                src="/gallery/project-29.jpeg"
+                alt="Residential landscaping project completed by Green Life Landscaping in Maryland"
                 fill
                 sizes="(max-width: 1024px) 100vw, 600px"
                 className="object-cover"
