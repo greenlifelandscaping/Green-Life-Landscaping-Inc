@@ -321,7 +321,7 @@ const GALLERY_PROJECT_IDS = [
   47, 48, 49,
 ] as const;
 
-export const GALLERY: GalleryItem[] = GALLERY_PROJECT_IDS.map((n, i) => {
+const PROJECT_GALLERY: GalleryItem[] = GALLERY_PROJECT_IDS.map((n, i) => {
   const category = GALLERY_CATEGORIES[i % GALLERY_CATEGORIES.length];
   return {
     id: `g${n}`,
@@ -331,6 +331,20 @@ export const GALLERY: GalleryItem[] = GALLERY_PROJECT_IDS.map((n, i) => {
     alt: `${category} project by Green Life Landscaping in Maryland`,
   };
 });
+
+// Real snow-removal crew photos from the 2025-26 winter season.
+const SNOW_GALLERY: GalleryItem[] = [
+  { id: 'snow-1', title: 'Driveway plow & shovel', category: 'Snow Removal', src: '/gallery/snow-01.jpeg', alt: 'Green Life crew plowing and shoveling a residential driveway in Montgomery County, MD' },
+  { id: 'snow-2', title: 'Sidewalk clearing', category: 'Snow Removal', src: '/gallery/snow-02.jpeg', alt: 'Snow removal from a residential sidewalk by Green Life Landscaping' },
+  { id: 'snow-3', title: 'Plow truck on driveway', category: 'Snow Removal', src: '/gallery/snow-03.jpeg', alt: 'Green Life plow truck clearing a Maryland driveway during a storm event' },
+  { id: 'snow-4', title: 'Backpack blower crew', category: 'Snow Removal', src: '/gallery/snow-04.jpeg', alt: 'Crew clearing snow from paver walkways with backpack blowers' },
+  { id: 'snow-5', title: 'Salting & pre-treatment', category: 'Snow Removal', src: '/gallery/snow-05.jpeg', alt: 'Pre-treatment and salting of a residential walkway by Green Life Landscaping' },
+  { id: 'snow-6', title: 'Commercial lot service', category: 'Snow Removal', src: '/gallery/snow-06.jpeg', alt: 'Commercial parking lot snow plowing by Green Life Landscaping in Maryland' },
+  { id: 'snow-7', title: 'Winter property care', category: 'Snow Removal', src: '/gallery/snow-07.jpeg', alt: 'Winter property maintenance by Green Life Landscaping in Burtonsville MD' },
+  { id: 'snow-8', title: 'Storm-event response', category: 'Snow Removal', src: '/gallery/snow-08.jpeg', alt: 'Storm-event snow response by Green Life Landscaping' },
+];
+
+export const GALLERY: GalleryItem[] = [...PROJECT_GALLERY, ...SNOW_GALLERY];
 
 // Curated heroes per page — sample from the project photos.
 export const PAGE_HEROES = {
@@ -344,7 +358,7 @@ export const PAGE_HEROES = {
   landscaping: '/gallery/project-09.jpeg',
   treeServices: '/gallery/project-13.jpeg',
   hardscaping: '/gallery/hardscaping-feature.jpeg',
-  snowRemoval: '/gallery/project-25.jpeg',
+  snowRemoval: '/gallery/snow-01.jpeg',
 };
 
 export const TEAM = [

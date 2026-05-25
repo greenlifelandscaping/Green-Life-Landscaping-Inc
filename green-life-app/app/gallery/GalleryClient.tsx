@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GALLERY, SITE } from '@/lib/constants';
 
-const CATEGORIES = ['All', 'Hardscaping', 'Landscaping', 'Lawn Care', 'Tree Services'] as const;
+const CATEGORIES = ['All', 'Hardscaping', 'Landscaping', 'Lawn Care', 'Tree Services', 'Snow Removal'] as const;
 type Category = (typeof CATEGORIES)[number];
 
 const SPAN_PATTERN = [

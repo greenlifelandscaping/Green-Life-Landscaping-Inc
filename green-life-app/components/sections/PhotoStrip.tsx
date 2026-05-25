@@ -3,7 +3,7 @@ import Image from 'next/image';
 const PHOTOS = [
   { src: '/gallery/project-05.jpeg', alt: 'Recent landscaping project by Green Life Landscaping' },
   { src: '/gallery/project-11.jpeg', alt: 'Hardscape installation by Green Life Landscaping' },
-  { src: '/gallery/project-16.jpeg', alt: 'Maryland front yard transformation by Green Life Landscaping' },
+  { src: '/gallery/snow-01.jpeg', alt: 'Winter snow removal by Green Life Landscaping in Maryland' },
   { src: '/gallery/project-22.jpeg', alt: 'Mulched beds and shrub plantings by Green Life Landscaping' },
   { src: '/gallery/project-30.jpeg', alt: 'Paver patio and walkway by Green Life Landscaping' },
 ];

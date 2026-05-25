@@ -29,7 +29,7 @@ const INLINE_PHOTOS: Record<string, string[]> = {
   landscaping: ['/gallery/project-12.jpeg', '/gallery/project-26.jpeg'],
   'tree-services': ['/gallery/hardscaping-feature.jpeg', '/gallery/project-33.jpeg'],
   hardscaping: ['/gallery/hardscaping-feature.jpeg', '/gallery/project-29.jpeg'],
-  'snow-removal': ['/gallery/project-40.jpeg', '/gallery/project-44.jpeg'],
+  'snow-removal': ['/gallery/snow-04.jpeg', '/gallery/snow-06.jpeg'],
 };
 
 export function generateStaticParams() {
