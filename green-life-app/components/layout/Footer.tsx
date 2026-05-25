@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, MapPin, Facebook, Instagram } from 'lucide-react';
-import { SITE, SERVICES } from '@/lib/constants';
+import { SITE, SERVICES, CITIES } from '@/lib/constants';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -87,16 +87,27 @@ export function Footer() {
 
           <div className="md:col-span-3">
             <h4 className="font-display font-bold text-white text-[12px] tracking-[0.06em] uppercase mb-4">
-              Service Area
+              Top Service Areas
             </h4>
-            <ul className="space-y-1.5 text-[13px] text-white/55 leading-relaxed">
-              <li>Burtonsville, MD</li>
-              <li>Montgomery County</li>
-              <li>Howard County</li>
-              <li>Prince George’s County</li>
-              <li>Silver Spring, MD</li>
-              <li>Germantown, MD</li>
-              <li>Rockville, MD</li>
+            <ul className="space-y-2 text-[13px]">
+              {CITIES.filter((c) => c.tier <= 2).map((c) => (
+                <li key={c.slug}>
+                  <Link
+                    href={`/service-areas/${c.slug}`}
+                    className="text-white/60 hover:text-brand-accent transition-colors"
+                  >
+                    Landscaping in {c.name}, MD
+                  </Link>
+                </li>
+              ))}
+              <li className="pt-1">
+                <Link
+                  href="/service-areas"
+                  className="font-display font-bold text-[12px] tracking-[0.04em] uppercase text-brand-accent hover:text-white transition-colors"
+                >
+                  View all service areas →
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

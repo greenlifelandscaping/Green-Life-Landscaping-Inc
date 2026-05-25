@@ -12,7 +12,7 @@ import {
   CalendarCheck,
   MapPin,
 } from 'lucide-react';
-import type { Service, NavItem, Review, TrustStat, GalleryItem } from './types';
+import type { Service, NavItem, Review, TrustStat, GalleryItem, CityPage } from './types';
 
 export const SITE = {
   name: 'Green Life Landscaping Inc',
@@ -37,15 +37,24 @@ export const SITE = {
     country: 'US',
   },
   serviceArea: [
+    'Columbia',
+    'Ellicott City',
+    'Elkridge',
+    'Jessup',
+    'Glen Burnie',
+    'Severna Park',
+    'Pasadena',
+    'Annapolis',
+    'Bowie',
+    'Catonsville',
+    'Laurel',
+    'Beltsville',
+    'Sykesville',
+    'Eldersburg',
     'Burtonsville',
     'Silver Spring',
-    'Rockville',
     'Germantown',
-    'Gaithersburg',
-    'Olney',
-    'Laurel',
-    'Columbia',
-    'Clarksville',
+    'Rockville',
   ],
   hours: 'Mon–Fri 7am–5pm',
   license: 'Maryland Licensed & Insured',
@@ -61,6 +70,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
+  { label: 'Service Areas', href: '/service-areas' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -404,3 +414,567 @@ export const FAQ_ITEMS = [
     a: 'Yes. We work on everything from routine weekly maintenance to full landscape installations and tree removal. Whether you need a single cleanup or an ongoing service agreement for a large property, we can handle it.',
   },
 ];
+
+// ============================================================================
+// LOCATION-TARGETED LANDING PAGES (SEO)
+// Each entry generates a unique static page at /service-areas/{slug}
+// with city-specific intro copy, neighborhoods, characteristics, and FAQ.
+// Tier 1 = Gold Mine (densest GLL clusters), 2 = Strong Growth, 3 = Perimeter.
+// ============================================================================
+
+export const CITIES: readonly CityPage[] = [
+  // ── Tier 1 — Gold Mine Hubs ──────────────────────────────────────────────
+  {
+    slug: 'columbia-md',
+    name: 'Columbia',
+    fullName: 'Columbia, MD',
+    county: 'Howard County',
+    zips: ['21044', '21045', '21046'],
+    tier: 1,
+    neighborhoods: [
+      'Wilde Lake',
+      'Long Reach',
+      'Owen Brown',
+      'River Hill',
+      'Town Center',
+      'Harper’s Choice',
+      'Oakland Mills',
+      'Kings Contrivance',
+    ],
+    intro:
+      'Columbia is the heart of where Green Life Landscaping does its best work. James Rouse’s planned village system gave the city mature street trees, ten man-made lakes, and a tree canopy that — done right — needs a different maintenance rhythm than tract neighborhoods. We’ve been on properties in every village from Wilde Lake to River Hill, and we know the HOA design rules, the deer pressure on perennial beds, and the drainage realities of homes sitting downhill from Lake Kittamaqundi or the Middle Patuxent. If you own a home in Columbia, you don’t need a generic landscaper — you need a crew that already knows your street.',
+    characteristics: [
+      {
+        title: 'Mature canopy that needs ongoing care',
+        body:
+          'Columbia’s 50-year-old oaks, maples, and tulip poplars are beautiful — and ready to crack open in a wind event without crown work. We prune, deadwood, and remove with ISA-certified climbers.',
+      },
+      {
+        title: 'HOA-aware design',
+        body:
+          'Every CA village has architectural review. Our hardscape and planting designs are written to pass first time — no back-and-forth with the New Town Architectural Committee.',
+      },
+      {
+        title: 'Deer-resistant planting palettes',
+        body:
+          'Boxwood, hellebore, hakonechloa, ornamental alliums — we install palettes that look intentional and don’t get eaten by morning.',
+      },
+      {
+        title: 'Lake-adjacent drainage',
+        body:
+          'Homes on the lake side of Wilde Lake or Centennial Lane often sit on grade that funnels water poorly. We install French drains and downspout extensions tuned for clay soil.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Do you handle Columbia Association (CA) architectural review submissions?',
+        a: 'Yes — for hardscape, plantings over a certain size, and any change visible from a public road, we prepare the drawings and material spec sheets that CA requires. Most of our submissions are approved on the first review.',
+      },
+      {
+        q: 'How quickly can you start a lawn-care contract in Columbia?',
+        a: 'We’re already in Columbia weekly — adding a new lawn to an existing route is typically 1–2 weeks from contract signing during the growing season, or earlier in the off-season.',
+      },
+      {
+        q: 'Do you serve all 10 Columbia villages?',
+        a: 'Yes. Wilde Lake, Long Reach, Owen Brown, River Hill, Town Center, Harper’s Choice, Oakland Mills, Kings Contrivance, Hickory Ridge, and Dorsey’s Search — we have active clients in every village.',
+      },
+    ],
+  },
+  {
+    slug: 'ellicott-city-md',
+    name: 'Ellicott City',
+    fullName: 'Ellicott City, MD',
+    county: 'Howard County',
+    zips: ['21042', '21043'],
+    tier: 1,
+    neighborhoods: [
+      'Historic District',
+      'Turf Valley',
+      'Centennial',
+      'Font Hill',
+      'Dunloggin',
+      'Burleigh Manor',
+      'Waverly Woods',
+    ],
+    intro:
+      'Ellicott City sits on Maryland’s steepest residential terrain west of the Patapsco, and that single fact shapes almost everything we do here. Slopes that the 2016 and 2018 floods exposed have made retaining-wall and drainage work the most-requested service in town, and the historic granite-quarried character of Old Ellicott City means hardscape choices need to reference the local stone vocabulary. Whether you own a 1990s colonial in Turf Valley or one of the cut-into-the-hillside homes along Main Street, we know the geological quirks of working in Howard County’s flood-aware corridor — and we build for the next storm, not just the next dry season.',
+    characteristics: [
+      {
+        title: 'Slope-rated retaining walls',
+        body:
+          'Geogrid-reinforced segmental walls engineered for the steep grades around Patapsco Valley. Built to spec, not stacked.',
+      },
+      {
+        title: 'Drainage that survives Maryland’s next 1,000-year storm',
+        body:
+          'After 2016 and 2018, drainage is no longer optional. We design French drains, dry wells, and graded swales tuned for Ellicott City’s flood corridors.',
+      },
+      {
+        title: 'Local-stone hardscape choices',
+        body:
+          'Patapsco granite blends seamlessly with the historic district vocabulary. We source from local quarries when it makes the design.',
+      },
+      {
+        title: 'Tree work on sloped lots',
+        body:
+          'Removals over a 30-foot drop need a different rigging plan. Our climbers and ground crew are insured and certified for it.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Do you do retaining-wall work in Ellicott City?',
+        a: 'It’s one of our top requests here. We build segmental walls up to 12 feet engineered for the slope, with proper geogrid reinforcement and base prep.',
+      },
+      {
+        q: 'Can you help with drainage problems from past flooding?',
+        a: 'Yes. We assess where water actually goes during a storm event — not just where it pools afterward — and design a drainage solution that diverts it away from your foundation and downhill neighbors.',
+      },
+      {
+        q: 'Do you work on historic-district properties?',
+        a: 'Yes. We respect the design vernacular of Old Ellicott City and use materials and plantings consistent with the period. We also handle the permits when work is visible from a public right-of-way.',
+      },
+    ],
+  },
+  {
+    slug: 'elkridge-md',
+    name: 'Elkridge',
+    fullName: 'Elkridge & Jessup, MD',
+    county: 'Howard County',
+    zips: ['21075', '20794'],
+    tier: 1,
+    alsoServes: 'Jessup',
+    neighborhoods: [
+      'Rockburn',
+      'Belmont',
+      'Sunset Park',
+      'Howard Square',
+      'Hammonds Promise',
+      'Jessup',
+    ],
+    intro:
+      'The I-95/Route 1 corridor between Baltimore and DC has quietly become one of Maryland’s densest residential and small-commercial growth zones, and Elkridge–Jessup sits right in the middle of it. We serve the new-construction townhouse communities along Montgomery Run as well as the older established lots on the Patapsco side of Route 1. What both sets of clients want from us is the same: a crew that shows up on schedule when their property is sandwiched between two interstates and they don’t have a Saturday morning to lose chasing down a no-show landscaper.',
+    characteristics: [
+      {
+        title: 'Townhouse-scale efficiency',
+        body:
+          'Most Elkridge yards are compact. We price honest weekly mowing programs that don’t pad hours.',
+      },
+      {
+        title: 'Commercial / mixed-use experience',
+        body:
+          'Office parks, light industrial, and HOA common areas along Route 1 — we hold accounts in all three.',
+      },
+      {
+        title: 'Sound-buffer plantings',
+        body:
+          'Properties backing I-95 benefit from layered evergreen screens. We design and install for noise reduction as well as visual privacy.',
+      },
+      {
+        title: 'Quick-turn small jobs',
+        body:
+          'Single-day cleanups, mulch refreshes, and storm-cleanup turnaround for properties without time to waste.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Do you serve commercial properties along Route 1?',
+        a: 'Yes. We hold weekly contracts on several office and small-industrial properties between Elkridge and Jessup. Includes lawn care, hedge trimming, mulch refresh, and snow removal.',
+      },
+      {
+        q: 'How do you handle properties backing I-95?',
+        a: 'Sound and dust are the two issues. We typically install a 3-row evergreen screen (Norway spruce or Cryptomeria, layered with hollies and viburnum) that softens the wall of noise within 2–3 growing seasons.',
+      },
+      {
+        q: 'Can you do same-week service for new-construction punch lists?',
+        a: 'Usually yes. We get a lot of late-builder calls for grading repair, sod, and final mulch. As long as the schedule has room we can be on a new-construction property within 5–7 days.',
+      },
+    ],
+  },
+  {
+    slug: 'glen-burnie-md',
+    name: 'Glen Burnie',
+    fullName: 'Glen Burnie, MD',
+    county: 'Anne Arundel County',
+    zips: ['21060', '21061'],
+    tier: 1,
+    neighborhoods: [
+      'Marley',
+      'Cromwell',
+      'Furnace Branch',
+      'Tanyard Springs',
+      'Sun Valley',
+      'Solley',
+    ],
+    intro:
+      'Glen Burnie is one of Maryland’s most established residential markets — many of our clients here own homes built in the 1960s and 70s, which means we’re working with mature landscapes that have either been beautifully maintained for decades or are now overdue for a full reset. Either way, the conversation is usually about how to bring back the lawn, refresh tired beds, and update hardscape that’s starting to settle. We know the typical lot sizes, soil profiles, and tree species in Marley, Cromwell, and the older Furnace Branch neighborhoods, and we know what does — and doesn’t — work in established Anne Arundel County yards.',
+    characteristics: [
+      {
+        title: 'Established-lawn renovation',
+        body:
+          'Aeration, slit-seeding, and topdressing programs that bring a tired 50-year-old lawn back to life over one growing season.',
+      },
+      {
+        title: 'Mature bed renewal',
+        body:
+          'When yew foundation plantings are 40 years old and pressed against the siding, it’s time. We remove overgrown shrubs and re-plant with appropriately scaled options.',
+      },
+      {
+        title: 'Patio resurrects',
+        body:
+          'Settled flagstone and heaving brick patios from the original build era — relevel, re-set, and seal.',
+      },
+      {
+        title: 'Storm-drop tree removal',
+        body:
+          'Older neighborhoods have more mature trees and more wind-event damage. We respond within 24 hours for active clients.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Can you replace 40-year-old foundation shrubs with something more modern?',
+        a: 'Absolutely. We remove the overgrown plantings (usually yews, hollies, or junipers grown into the foundation), regrade the bed if needed, and install a new palette appropriate to your home’s style and the light conditions.',
+      },
+      {
+        q: 'Do you serve all of the 21060 / 21061 area?',
+        a: 'Yes — both ZIP codes. From Marley and Cromwell down through the Furnace Branch and Solley corridors.',
+      },
+      {
+        q: 'How long does a full lawn renovation take?',
+        a: 'Typically one growing season. Fall aeration + slit-seeding sets up a strong spring, then a summer of proper mowing and watering brings the turf back. We schedule the work and tell you exactly what to do between visits.',
+      },
+    ],
+  },
+
+  // ── Tier 2 — Strong Growth Hubs ──────────────────────────────────────────
+  {
+    slug: 'severna-park-md',
+    name: 'Severna Park',
+    fullName: 'Severna Park & Pasadena, MD',
+    county: 'Anne Arundel County',
+    zips: ['21146', '21122'],
+    tier: 2,
+    alsoServes: 'Pasadena',
+    neighborhoods: [
+      'Round Bay',
+      'Linstead',
+      'Olde Severna Park',
+      'Riviera Beach',
+      'Lake Shore',
+      'Magothy Beach',
+    ],
+    intro:
+      'The peninsula running from Pasadena down to Severna Park is Chesapeake Bay country, and the landscaping conversation always starts with two things: salt and slope. Many properties have water on at least one side, mature canopy that drops oak leaves into the shoreline buffer, and bulkheads or riprap that need vegetation transitions. Our crews understand which plants survive salt-spray microclimates along Magothy Beach, which patio materials hold up to humid-summer freeze-thaw on the Severn River side, and how to design outdoor living for homes that genuinely live outdoors six months of the year.',
+    characteristics: [
+      {
+        title: 'Waterfront-appropriate plantings',
+        body:
+          'Salt-tolerant native palette: switchgrass, beach plum, bayberry, eastern red cedar — chosen for the conditions, not the catalog.',
+      },
+      {
+        title: 'Shoreline buffer compliance',
+        body:
+          'Anne Arundel County critical-area rules govern the first 100 feet from the waterline. We design plantings that satisfy the buffer requirements and the homeowner.',
+      },
+      {
+        title: 'Outdoor-living hardscape',
+        body:
+          'Bay-side properties get the most out of patios, fire pits, and dining areas. We build for actual entertaining, not just curb appeal.',
+      },
+      {
+        title: 'Bulkhead-to-lawn transitions',
+        body:
+          'The 6-foot strip between a hard shoreline and the lawn is often a mess. We design proper transitions that look good and slow runoff.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Do you know the Anne Arundel County critical-area buffer rules?',
+        a: 'Yes. We design plantings that satisfy the Chesapeake Bay Critical Area Act buffer requirements while still meeting the homeowner’s aesthetic goals.',
+      },
+      {
+        q: 'Will my plants survive on a salt-spray property?',
+        a: 'The ones we pick will. We use a deliberate native palette of salt-tolerant species — switchgrass, beach plum, bayberry, eastern red cedar. We back every plant with a one-year replacement warranty.',
+      },
+      {
+        q: 'Can you build a paver patio close to the waterline?',
+        a: 'Yes, as long as we’re outside the buffer or have permits. We engineer the base for freeze-thaw stress that bay-front properties experience and use polymeric sand that handles humidity.',
+      },
+    ],
+  },
+  {
+    slug: 'annapolis-md',
+    name: 'Annapolis',
+    fullName: 'Annapolis, MD',
+    county: 'Anne Arundel County',
+    zips: ['21401', '21403', '21409'],
+    tier: 2,
+    neighborhoods: [
+      'Eastport',
+      'Murray Hill',
+      'Historic District',
+      'Wardour',
+      'Hillsmere',
+      'Bay Ridge',
+      'Annapolis Roads',
+    ],
+    intro:
+      'Annapolis is a different kind of client. The historic district has brick-and-boxwood vernacular that goes back to the 18th century; Eastport blends mid-century cottages with modern updates; and the Bay Ridge / Annapolis Roads communities have water views, mature trees, and architectural standards that take landscaping seriously. We do work for state-house staffers, Naval Academy faculty, and longtime Annapolitans, and the through line is the same: detail-level craftsmanship that respects the city’s aesthetic standards. If you’re looking for a crew that won’t replace your 200-year-old boxwood with leyland cypress, you’re in the right place.',
+    characteristics: [
+      {
+        title: 'Heritage-plant respect',
+        body:
+          'Boxwood, holly, and English-garden vocabulary appropriate to colonial-era architecture. We prune for shape — never shear.',
+      },
+      {
+        title: 'Brick & natural-stone hardscape',
+        body:
+          'We match the brick walks, granite curbs, and bluestone you see across the historic district. Modern installation, period material.',
+      },
+      {
+        title: 'Historic District commission readiness',
+        body:
+          'Exterior changes in the HPC area need approval. We prep the submission and walk it through.',
+      },
+      {
+        title: 'Mature tree assessment',
+        body:
+          'Annapolis has trees older than the country. We assess, preserve, and selectively prune — removal is the last option.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Do you work in the Annapolis Historic District?',
+        a: 'Yes — frequently. We prepare the Historic Preservation Commission submissions and use period-appropriate materials. Most of our HPC submissions are approved on the first review.',
+      },
+      {
+        q: 'Can you maintain a heritage boxwood garden?',
+        a: 'Yes. We hand-prune for shape rather than shearing, and we monitor for boxwood blight pressure — which has been increasing in Anne Arundel County over the last 5 years.',
+      },
+      {
+        q: 'Do you serve Eastport and Bay Ridge?',
+        a: 'Yes. We have active clients across the bridge in Eastport and out toward Hillsmere, Annapolis Roads, and Bay Ridge.',
+      },
+    ],
+  },
+  {
+    slug: 'bowie-md',
+    name: 'Bowie',
+    fullName: 'Bowie, MD',
+    county: 'Prince George’s County',
+    zips: ['20715', '20716', '20720', '20721'],
+    tier: 2,
+    neighborhoods: [
+      'Belair',
+      'Mitchellville',
+      'Old Town Bowie',
+      'Northridge',
+      'Saddlebrook',
+      'Hunters Mill',
+      'Pointer Ridge',
+    ],
+    intro:
+      'Bowie is a planned-community success story — the Levitt-built Belair neighborhoods turned 60 last year, and they’re still the largest single-developer community in the state. The mature trees that came with those original 1960s plantings are now reaching the end of their lifespan, which means tree work and full-yard refreshes dominate our Bowie schedule. The golf-course communities around Country Club Estates and the newer construction in Northridge round out the work. We know the original Levitt floor plans, the typical lot sizes, and what the soil tested at when the original sod went down — and we know what your house deserves now that it’s 60 years older.',
+    characteristics: [
+      {
+        title: 'End-of-life canopy management',
+        body:
+          'Many original Belair pin oaks and silver maples are showing signs of decline. We assess, prune, and where needed remove + replace with longer-lived natives.',
+      },
+      {
+        title: 'Golf-course-community standards',
+        body:
+          'Properties around Country Club Estates have HOA expectations. We meet them without making your yard a copy-paste of the neighbors’.',
+      },
+      {
+        title: 'Levitt-home landscape refresh',
+        body:
+          'A 1965 Belair home with original foundation plantings needs more than a trim. We do full bed refreshes that re-set the property for the next 30 years.',
+      },
+      {
+        title: 'Northridge new-construction completion',
+        body:
+          'New PG County builders rarely finish the yard properly. We do final grading, sod, irrigation review, and starter mulch.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Do you work on the original Belair / Levitt homes?',
+        a: 'A lot of our Bowie work is exactly that. The Belair homes are 60+ years old now and the original landscaping is mostly past its prime — we do full resets that respect the architecture.',
+      },
+      {
+        q: 'Are you familiar with the Country Club Estates HOA standards?',
+        a: 'Yes. We hold accounts in the community and know what passes architectural review and what doesn’t.',
+      },
+      {
+        q: 'Do you serve all of Bowie?',
+        a: 'Yes — Belair, Mitchellville, Old Town, Northridge, Saddlebrook, Hunters Mill, and the Country Club Estates corridor.',
+      },
+    ],
+  },
+  {
+    slug: 'catonsville-md',
+    name: 'Catonsville',
+    fullName: 'Catonsville, MD',
+    county: 'Baltimore County',
+    zips: ['21228', '21250'],
+    tier: 2,
+    neighborhoods: [
+      'Oak Forest',
+      'Hillsdale',
+      'Ten Hills',
+      'Westchester',
+      'Beechfield',
+      'Catonsville Manor',
+    ],
+    intro:
+      'Catonsville — “Music City of Maryland” — sits right on the western edge of the Baltimore beltway, and that location means we work on everything from 1920s craftsman bungalows on Frederick Road to 1990s colonials in Westchester. The defining feature of Catonsville landscapes is the mature tree canopy: oaks, beeches, and tulip poplars planted when the trolley still ran out Frederick Road. We do a lot of careful tree work here, a lot of shade-garden design (because nothing is in full sun), and a lot of hardscape that has to fit the older-home architecture rather than fight it. If your house has character, we’ll make sure the yard does too.',
+    characteristics: [
+      {
+        title: 'Shade-garden expertise',
+        body:
+          'Almost every Catonsville lot has more shade than sun. Our planting palettes feature hostas, ferns, heucheras, and shade-tolerant flowering shrubs that actually perform.',
+      },
+      {
+        title: 'Old-home-appropriate hardscape',
+        body:
+          'Bluestone, brick, and natural-stone walls that look like they’ve been there since 1920. We match the architecture, not the catalog.',
+      },
+      {
+        title: 'Champion-tree care',
+        body:
+          'Catonsville has some of Baltimore County’s largest residential trees. We prune, brace, cable, and assess risk — preservation first.',
+      },
+      {
+        title: 'Hillside lawn renovation',
+        body:
+          'A lot of Catonsville sits on real terrain. We aerate and overseed slopes that other crews struggle with.',
+      },
+    ],
+    faq: [
+      {
+        q: 'My yard is 90% shade — can anything grow?',
+        a: 'A lot. We install hostas, ferns, hellebores, heucheras, sweet woodruff, brunnera — palettes that thrive under mature canopies and look intentional rather than weedy.',
+      },
+      {
+        q: 'Do you work on the older homes along Frederick Road?',
+        a: 'Yes. We have several clients in the historic district around Frederick Road and Mellor Avenue. Hardscape and plantings respect the period of the home.',
+      },
+      {
+        q: 'My giant beech is concerning me — what do you do?',
+        a: 'We send our ISA-certified arborist to assess. We can prune for clearance, cable major limbs, or in worst cases remove safely. Most large beeches can be preserved with the right care.',
+      },
+    ],
+  },
+
+  // ── Tier 3 — Perimeter Hubs ──────────────────────────────────────────────
+  {
+    slug: 'laurel-md',
+    name: 'Laurel',
+    fullName: 'Laurel & Beltsville, MD',
+    county: 'Prince George’s County',
+    zips: ['20707', '20708', '20723', '20724', '20705'],
+    tier: 3,
+    alsoServes: 'Beltsville',
+    neighborhoods: [
+      'Russett',
+      'Maryland City',
+      'Montpelier',
+      'Konterra',
+      'Beltsville',
+      'Laurel Lakes',
+    ],
+    intro:
+      'Laurel and Beltsville sit on the soft border between the Baltimore and Washington metros, and our clients here reflect that — a mix of long-time PG County homeowners, federal-government commuters, and University of Maryland staff. The properties run the gamut: 1950s Cape Cods near Old Town, 1980s split-levels off Route 1, and newer Russett-area builds with HOA expectations. We do a lot of lawn care, a lot of cleanups, and a steady stream of tree work — the USDA Beltsville Agricultural Research Center next door means we’re also occasionally on commercial accounts adjacent to the research campus.',
+    characteristics: [
+      {
+        title: 'Federal-commuter scheduling',
+        body:
+          'Our crews work around your work-from-home schedule and don’t need someone home. Reliable lawn care for busy households.',
+      },
+      {
+        title: 'Russett HOA-compliant work',
+        body:
+          'Russett has architectural standards. We design and install to clear them on the first review.',
+      },
+      {
+        title: 'Mixed-housing-stock experience',
+        body:
+          '1950s Capes, 80s splits, 2000s colonials — we’ve worked on all of them and know what each needs.',
+      },
+      {
+        title: 'Cleanup & maintenance focus',
+        body:
+          'Many Laurel/Beltsville clients want consistent maintenance more than big renovations. We hold weekly and biweekly contracts that just run on autopilot.',
+      },
+    ],
+    faq: [
+      {
+        q: 'I work odd hours — does someone need to be home?',
+        a: 'No. As long as we have gate access (or your driveway gate code), we can mow, clean up, mulch, or plant without anyone home. We text photos when done.',
+      },
+      {
+        q: 'Do you serve both Laurel and Beltsville?',
+        a: 'Yes. Our crews are in both ZIP code zones weekly and there’s no minimum job size for those areas.',
+      },
+      {
+        q: 'My HOA in Russett is picky — can you handle the approval process?',
+        a: 'Yes. We prep the submission package with materials list and concept drawings and walk it through Russett’s architectural review.',
+      },
+    ],
+  },
+  {
+    slug: 'sykesville-md',
+    name: 'Sykesville',
+    fullName: 'Sykesville & Eldersburg, MD',
+    county: 'Carroll County',
+    zips: ['21784', '21104'],
+    tier: 3,
+    alsoServes: 'Eldersburg',
+    neighborhoods: [
+      'Fairhaven',
+      'Oklahoma Hills',
+      'Raincliffe',
+      'Piney Ridge',
+      'Stoneridge',
+      'Eldersburg',
+    ],
+    intro:
+      'Sykesville and Eldersburg are exurban — bigger lots, fewer HOAs, and the closest landscapers most homeowners know are 20 minutes away. The clients we hold here picked us because they wanted the design and execution quality of an inside-the-Beltway crew without the inside-the-Beltway hassle. The work tends to be larger in scope: half-acre and acre-lot properties, full-yard plantings, real hardscape budgets, and tree work on lots that often back to woods. If you’re tired of one-truck operations who don’t finish what they start, we’re worth the call out from Burtonsville.',
+    characteristics: [
+      {
+        title: 'Acre-lot capable',
+        body:
+          'We bring zero-turn mowers and bigger equipment that finishes a 1-acre lawn in the time others spend just unloading.',
+      },
+      {
+        title: 'Woodland-edge plantings',
+        body:
+          'Properties backing forest need a transition zone. We design native edge plantings that look intentional rather than overgrown.',
+      },
+      {
+        title: 'Full-yard hardscape scope',
+        body:
+          'Bigger lots mean bigger patios, fire-pit zones, and connecting walkways. We do whole-yard hardscape plans, not piecemeal additions.',
+      },
+      {
+        title: 'Storm response that actually shows up',
+        body:
+          'Carroll County’s rural roads slow most landscapers down. Our equipment travels and our crews don’t care about the drive.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Is Sykesville too far from your Burtonsville base?',
+        a: 'No. We hold active accounts there and have route capacity. The drive only matters if the crew minds it — ours doesn’t.',
+      },
+      {
+        q: 'Can you handle a full 1-acre lawn weekly?',
+        a: 'Yes. We bring 60-inch zero-turn mowers and a string-trim/blow crew. A 1-acre lawn typically finishes in 35–45 minutes including edging.',
+      },
+      {
+        q: 'I want a full master plan for my property — do you do that?',
+        a: 'Yes. Marcus will walk the property, sketch a concept, and price the work in phases so you can spread it over 2-3 seasons without committing to everything at once.',
+      },
+    ],
+  },
+] as const;
