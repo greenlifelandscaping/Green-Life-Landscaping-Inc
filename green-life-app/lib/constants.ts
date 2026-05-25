@@ -195,20 +195,20 @@ export const SERVICES: Service[] = [
     title: 'Snow Removal',
     icon: Snowflake,
     shortDescription:
-      'Residential and commercial snow plowing, salting, and ice management throughout the Maryland winter season. Available 24/7 during storms.',
+      'Residential and commercial snow plowing, salting, and ice management throughout the Maryland winter season. Reliable storm-event coverage.',
     longDescription:
-      'Maryland winters are unpredictable — when a storm hits, you need a crew that’s already on the road. Our seasonal contracts include automatic dispatch when accumulation thresholds are met, salting and pre-treatment, and 24/7 coverage during storm events.',
+      'Maryland winters are unpredictable — when a storm hits, you need a crew that’s already on the road. Our seasonal contracts include automatic dispatch when accumulation thresholds are met, salting and pre-treatment, and dependable coverage through every storm event.',
     inclusions: [
       'Residential driveway plowing',
       'Commercial parking lot service',
       'Salting & pre-treatment',
-      '24/7 storm-event dispatch',
+      'Reliable storm-event dispatch',
       'Seasonal contracts or per-event billing',
     ],
     startingPrice: 'Free assessment',
     seasonal: true,
     detail: {
-      headline: '24/7 Snow Removal in Burtonsville & Montgomery County',
+      headline: 'Snow Removal in Burtonsville & Montgomery County',
       paragraphs: [
         'When a storm hits, the crews that show up are the ones who were already on the road. Our seasonal contracts trigger automatic dispatch the moment accumulation crosses your threshold — so you don’t wake up snowed in waiting for a call back.',
         'We handle residential driveways and commercial parking lots, with pre-treatment, plowing, salting, and ice management as separate line items so you only pay for what you need. Sidewalks, walkways, and ADA-compliant clearing are available on commercial contracts.',

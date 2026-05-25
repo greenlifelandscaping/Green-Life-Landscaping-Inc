@@ -3,13 +3,29 @@ import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import type { ReactNode } from 'react';
 
+type Variant = 'green' | 'snow';
+
 type SubHeroProps = {
   overline?: string;
   title: string;
   description?: string;
   backgroundImage?: string;
   breadcrumbLabel?: string;
+  variant?: Variant;
   children?: ReactNode;
+};
+
+const variantStyles: Record<Variant, { bg: string; overlay: string; accent: string }> = {
+  green: {
+    bg: 'bg-brand-dark',
+    overlay: 'bg-gradient-to-br from-brand-dark/50 via-transparent to-brand-dark/70',
+    accent: 'text-brand-accent',
+  },
+  snow: {
+    bg: 'bg-haint-900',
+    overlay: 'bg-gradient-to-br from-haint-900/50 via-transparent to-haint-900/70',
+    accent: 'text-haint-300',
+  },
 };
 
 export function SubHero({
@@ -18,10 +34,12 @@ export function SubHero({
   description,
   backgroundImage,
   breadcrumbLabel,
+  variant = 'green',
   children,
 }: SubHeroProps) {
+  const v = variantStyles[variant];
   return (
-    <section className="relative bg-brand-dark overflow-hidden">
+    <section className={`relative ${v.bg} overflow-hidden`}>
       {backgroundImage && (
         <div className="absolute inset-0">
           <Image
@@ -32,7 +50,7 @@ export function SubHero({
             sizes="100vw"
             className="object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-dark/50 via-transparent to-brand-dark/70" />
+          <div className={`absolute inset-0 ${v.overlay}`} />
         </div>
       )}
       <div className="relative container-page py-12 sm:py-16 lg:py-[72px]">
@@ -41,7 +59,7 @@ export function SubHero({
             aria-label="Breadcrumb"
             className="flex items-center gap-2 font-display font-semibold text-[12px] tracking-[0.04em] uppercase text-white/60 mb-4 sm:mb-5"
           >
-            <Link href="/" className="text-brand-accent hover:text-green-300">
+            <Link href="/" className={`${v.accent} hover:opacity-80`}>
               Home
             </Link>
             <ChevronRight size={12} />
@@ -49,7 +67,7 @@ export function SubHero({
           </nav>
         )}
         {overline && !breadcrumbLabel && (
-          <span className="inline-block font-display font-bold text-overline text-brand-accent mb-4">
+          <span className={`inline-block font-display font-bold text-overline ${v.accent} mb-4`}>
             {overline}
           </span>
         )}

@@ -75,7 +75,8 @@ img, video, svg { max-width: 100%; height: auto; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-montserrat), 'Montserrat', sans-serif;
-  color: var(--text-primary);
+  /* No explicit color — inherit from parent so text-white on dark backgrounds
+     actually works. Body text-primary covers the default light-bg case. */
 }
 
 *:focus-visible {

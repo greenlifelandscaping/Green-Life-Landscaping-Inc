@@ -70,10 +70,6 @@ export default function ContactPage() {
                 </ContactItem>
                 <ContactItem icon={Clock} label="Hours">
                   {SITE.hours}
-                  <br />
-                  <span className="text-[13px] text-neutral-400">
-                    Snow removal available 24/7 during storm events
-                  </span>
                 </ContactItem>
               </div>
 

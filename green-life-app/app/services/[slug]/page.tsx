@@ -74,10 +74,15 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         title={detail?.headline ?? service.title}
         description={service.longDescription}
         backgroundImage={hero}
+        variant={isSnow ? 'snow' : 'green'}
       >
         <div className="flex flex-wrap gap-2">
           {service.startingPrice && (
-            <span className="inline-flex items-center gap-1.5 bg-white text-brand-primary font-display font-extrabold text-[11px] tracking-[0.06em] uppercase px-3 py-1.5 rounded-pill shadow-card">
+            <span
+              className={`inline-flex items-center gap-1.5 bg-white font-display font-extrabold text-[11px] tracking-[0.06em] uppercase px-3 py-1.5 rounded-pill shadow-card ${
+                isSnow ? 'text-haint-700' : 'text-brand-primary'
+              }`}
+            >
               {service.startingPrice}
             </span>
           )}
@@ -90,7 +95,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               key={label}
               className="inline-flex items-center gap-1.5 bg-white/10 border border-white/20 rounded-pill px-3.5 py-1.5 font-display font-semibold text-[12px] text-white/95"
             >
-              <IconBadge size={14} className="text-brand-accent" />
+              <IconBadge size={14} className={isSnow ? 'text-haint-300' : 'text-brand-accent'} />
               {label}
             </span>
           ))}
@@ -253,14 +258,22 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 </ul>
               </div>
 
-              <div className="bg-brand-dark text-white rounded-xl p-6 shadow-card">
-                <h3 className="font-display font-bold text-[16px] mb-2">Ready for a quote?</h3>
-                <p className="font-body text-[13px] text-white/80 leading-[1.6] mb-4">
+              <div
+                className={`text-white rounded-xl p-6 shadow-card ${
+                  isSnow ? 'bg-haint-900' : 'bg-brand-dark'
+                }`}
+              >
+                <h3 className="font-display font-extrabold text-[20px] leading-tight text-white mb-2.5">
+                  Ready for a quote?
+                </h3>
+                <p className="font-body text-[13px] text-white/80 leading-[1.6] mb-5">
                   Free, no-obligation estimates within one business day.
                 </p>
                 <Link
                   href={`/estimate?service=${service.slug}#estimate-form`}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-white text-brand-primary font-display font-bold text-[14px] tracking-[0.03em] px-5 py-3 rounded-md hover:bg-surface-alt transition-colors"
+                  className={`w-full inline-flex items-center justify-center gap-2 bg-white font-display font-bold text-[14px] tracking-[0.03em] px-5 py-3 rounded-md hover:bg-surface-alt transition-colors ${
+                    isSnow ? 'text-haint-700' : 'text-brand-primary'
+                  }`}
                 >
                   <Calendar size={15} strokeWidth={2.25} />
                   Free Estimate
@@ -279,11 +292,12 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       </section>
 
       <CTABanner
+        variant={isSnow ? 'snow' : 'green'}
         title={
           <>
             Ready to schedule
             <br />
-            <em className="not-italic text-brand-accent">
+            <em className={`not-italic ${isSnow ? 'text-haint-300' : 'text-brand-accent'}`}>
               your {service.title.replace(' Services', '').toLowerCase()}?
             </em>
           </>
