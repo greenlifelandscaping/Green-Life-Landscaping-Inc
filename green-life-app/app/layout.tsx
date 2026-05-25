@@ -72,7 +72,8 @@ export const metadata: Metadata = {
   // Next.js generated dynamic /icon.png + /apple-icon.png routes.
   icons: {
     icon: [
-      { url: '/icon.png', type: 'image/png', sizes: '64x64' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
     ],
     apple: [
       { url: '/apple-icon.png', type: 'image/png', sizes: '180x180' },

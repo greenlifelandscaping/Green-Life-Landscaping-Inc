@@ -1,0 +1,32 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  
+  <rect width="512" height="512" rx="112" ry="112" fill="#1b4d1e"></rect>
+
+  
+  <defs>
+    <linearGradient id="hl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.06"></stop>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"></stop>
+    </linearGradient>
+    <linearGradient id="leafgrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7fd084"></stop>
+      <stop offset="1" stop-color="#4ea552"></stop>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" ry="112" fill="url(#hl)"></rect>
+
+  
+  
+
+  
+  <g transform="translate(256 256)">
+    
+    <path d="&#xA;      M 0,-150&#xA;      C 82,-150 150,-82 150,0&#xA;      C 150,82 82,150 0,150&#xA;      C -82,150 -150,82 -150,0&#xA;      C -150,-82 -82,-150 0,-150 Z&#xA;&#xA;      M 0,-90&#xA;      C -50,-90 -90,-50 -90,0&#xA;      C -90,50 -50,90 0,90&#xA;      C 38,90 70,68 84,38&#xA;      L 10,38&#xA;      L 10,-12&#xA;      L 90,-12&#xA;      C 90,-58 50,-90 0,-90 Z&#xA;    " fill="url(#leafgrad)" fill-rule="evenodd"></path>
+
+    
+    <path d="&#xA;      M 80,-14&#xA;      C 130,-30 168,-52 180,-92&#xA;      C 144,-92 110,-72 88,-44&#xA;      C 80,-32 78,-22 80,-14 Z&#xA;    " fill="#a8e0ac"></path>
+    
+    <path d="M 88,-22 C 120,-44 152,-66 175,-86" stroke="#1b4d1e" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.55"></path>
+  </g>
+</svg>
