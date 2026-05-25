@@ -435,72 +435,48 @@ function Field({
 
 function AddressAutocomplete({ error }: { error?: string }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const placesLibRef = useRef<PlacesLibrary | null>(null);
   const sessionTokenRef = useRef<unknown>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIdx, setHighlightedIdx] = useState(-1);
 
+  // Just kick off Maps JS loading on mount; we resolve the library lazily
+  // inside fetchSuggestions so we don't depend on script.onload timing.
   useEffect(() => {
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
     if (!apiKey) return;
-    let cancelled = false;
-
-    const loadLib = async () => {
-      if (!window.google?.maps?.importLibrary) return;
-      try {
-        const lib = await window.google.maps.importLibrary('places');
-        if (!cancelled) {
-          placesLibRef.current = lib;
-          sessionTokenRef.current = new lib.AutocompleteSessionToken();
-        }
-      } catch (err) {
-        console.error('Places library load failed', err);
-      }
-    };
-
-    if (window.google?.maps?.importLibrary) {
-      loadLib();
-      return () => {
-        cancelled = true;
-      };
-    }
-
-    const SCRIPT_ID = 'google-maps-script';
-    const existing = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
-    if (existing) {
-      if (existing.dataset.loaded === 'true') loadLib();
-      else existing.addEventListener('load', loadLib, { once: true });
-      return () => {
-        cancelled = true;
-      };
-    }
+    if (typeof window === 'undefined') return;
+    if (window.google?.maps?.importLibrary) return;
+    if (document.getElementById('google-maps-script')) return;
 
     const script = document.createElement('script');
-    script.id = SCRIPT_ID;
+    script.id = 'google-maps-script';
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&loading=async&v=weekly`;
     script.async = true;
     script.defer = true;
-    script.addEventListener('load', () => {
-      script.dataset.loaded = 'true';
-      loadLib();
-    });
     document.head.appendChild(script);
-
-    return () => {
-      cancelled = true;
-    };
   }, []);
 
   async function fetchSuggestions(query: string) {
-    const lib = placesLibRef.current;
-    if (!lib || query.trim().length < 3) {
+    if (query.trim().length < 3) {
       setSuggestions([]);
       setIsOpen(false);
       return;
     }
     try {
+      const deadline = Date.now() + 8000;
+      while (!window.google?.maps?.importLibrary && Date.now() < deadline) {
+        await new Promise((r) => setTimeout(r, 100));
+      }
+      if (!window.google?.maps?.importLibrary) {
+        console.warn('[address autocomplete] Google Maps did not load');
+        return;
+      }
+      const lib = await window.google.maps.importLibrary('places');
+      if (!sessionTokenRef.current) {
+        sessionTokenRef.current = new lib.AutocompleteSessionToken();
+      }
       const { suggestions: results } = await lib.AutocompleteSuggestion.fetchAutocompleteSuggestions({
         input: query,
         includedRegionCodes: ['us'],
@@ -547,8 +523,15 @@ function AddressAutocomplete({ error }: { error?: string }) {
     } finally {
       setSuggestions([]);
       setIsOpen(false);
-      const lib = placesLibRef.current;
-      if (lib) sessionTokenRef.current = new lib.AutocompleteSessionToken();
+      // Refresh session token for the next billing session.
+      if (window.google?.maps?.importLibrary) {
+        try {
+          const lib = await window.google.maps.importLibrary('places');
+          sessionTokenRef.current = new lib.AutocompleteSessionToken();
+        } catch {
+          // ignore — token will lazy-init on next fetch
+        }
+      }
     }
   }
 
