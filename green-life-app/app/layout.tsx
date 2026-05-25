@@ -45,11 +45,27 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: SITE.url,
     siteName: SITE.name,
-    title: `${SITE.name} | Burtonsville, MD`,
+    // Intentionally does NOT include the brand name — Apple's Link Preview
+    // strips og:title segments that match og:site_name, which previously
+    // collapsed our preview to just "Burtonsville, MD".
+    title: 'Maryland Landscaping, Hardscaping & Snow Removal — Since 2005',
     description:
       'Reliable landscaping, lawn care, tree services & snow removal across Montgomery County. Licensed & insured. Free estimates.',
+    images: [
+      {
+        url: '/gallery/project-09.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Green Life Landscaping project — front-yard landscape and lawn care in Maryland',
+      },
+    ],
   },
-  twitter: { card: 'summary_large_image', title: SITE.name, description: SITE.description },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Maryland Landscaping, Hardscaping & Snow Removal — Since 2005',
+    description: SITE.description,
+    images: ['/gallery/project-09.jpeg'],
+  },
   robots: { index: true, follow: true },
   // Icons live in /public/ (not app/) so LiteSpeed serves them off its static
   // layer instead of through Node — avoids the Hostinger 503 we hit when
