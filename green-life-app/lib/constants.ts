@@ -235,39 +235,30 @@ export const SERVICES: Service[] = [
 export const REVIEWS: Review[] = [
   {
     id: 'r1',
-    author: 'Sarah M.',
-    location: 'Burtonsville, MD',
+    author: 'Andrea Ciniero',
+    location: 'Ellicott City, MD',
     rating: 5,
-    serviceType: 'Lawn Care',
+    serviceType: 'Landscaping + Cleanups',
     quote:
-      'Green Life showed up exactly when they said, worked clean, and the yard looks incredible. I’ve hired three other landscapers before — none came close to the quality or reliability.',
+      'If you want a reasonable landscaping company, Green Life is your company. They’ve been my landscaping company for over 10 years. They do an excellent job and their spring clean up just makes you stand back in awe. They do a great job on fall clean up as well. Need something special done… they do that too. They work super hard on every project they do. I highly recommend them if you want your yard to look great.',
   },
   {
     id: 'r2',
-    author: 'Robert J.',
-    location: 'Silver Spring, MD',
+    author: 'Linda Betts',
+    location: 'Woodlawn, MD',
     rating: 5,
-    serviceType: 'Tree Removal',
+    serviceType: 'Landscaping',
     quote:
-      'Had a large tree come down in a storm. They were out the next morning, cleaned everything up, and gave me a fair price. Honest work from honest people. Highly recommend.',
+      'This crew was amazing! My yard is challenging and chaotic and these guys were so professional and hard working. They made it look like a showplace!',
   },
   {
     id: 'r3',
-    author: 'Lisa T.',
-    location: 'Rockville, MD',
+    author: 'Joan Weeks',
+    location: 'Silver Spring, MD',
     rating: 5,
-    serviceType: 'Lawn Care + Cleanups',
+    serviceType: 'Landscaping',
     quote:
-      'We’ve used Green Life for lawn care and seasonal cleanups for three years. They’re consistent, professional, and our yard has never looked better. Worth every penny.',
-  },
-  {
-    id: 'r4',
-    author: 'Brian M.',
-    location: 'Olney, MD',
-    rating: 5,
-    serviceType: 'Hardscaping',
-    quote:
-      'Rebuilt our patio and walkway. Two winters in and it’s dead level — no settling, no weeds in the joints. The crew was respectful, the price was fair, and the work is excellent.',
+      'The planting team did a great job. I used my RING video system to guide them to the exact place to plant the Alberta Spruce and how to water it. It looks great — very healthy dwarf Alberta Spruce.',
   },
 ];
 
