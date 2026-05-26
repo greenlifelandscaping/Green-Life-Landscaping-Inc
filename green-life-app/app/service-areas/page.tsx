@@ -50,6 +50,16 @@ export default function ServiceAreasPage() {
           {tiers.map((tier) => {
             const cities = CITIES.filter((c) => c.tier === tier);
             const meta = TIER_LABELS[tier];
+            // Match lg column count to the tier's card count so the row fills with no orphan cells.
+            // Falls back to grid-cols-3 for counts that naturally divide evenly (3, 6, 9...).
+            const lgCols =
+              cities.length === 1
+                ? 'lg:grid-cols-1'
+                : cities.length === 2
+                  ? 'lg:grid-cols-2'
+                  : cities.length === 4
+                    ? 'lg:grid-cols-4'
+                    : 'lg:grid-cols-3';
             return (
               <section key={tier}>
                 <div className="mb-6">
@@ -64,7 +74,7 @@ export default function ServiceAreasPage() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div className={`grid grid-cols-1 sm:grid-cols-2 ${lgCols} gap-5`}>
                   {cities.map((city) => (
                     <Link
                       key={city.slug}
