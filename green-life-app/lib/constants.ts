@@ -884,6 +884,228 @@ export const CITIES: readonly CityPage[] = [
     ],
   },
 
+  {
+    slug: 'potomac-md',
+    name: 'Potomac',
+    fullName: 'Potomac, MD',
+    county: 'Montgomery County',
+    zips: ['20854', '20859'],
+    tier: 2,
+    neighborhoods: [
+      'Avenel',
+      'Bradley Hills',
+      'Falconhurst',
+      'Glen Hills',
+      'Stratton Woods',
+      'Potomac Village',
+      'Potomac Falls',
+    ],
+    intro:
+      'Potomac sits in a different category from anywhere else in Montgomery County. Lots run from a half-acre in Bradley Hills up to four or five in west Potomac and the equestrian corridor along River Road, and that scale changes everything we do — irrigation zones, mowing rotation, drainage strategy, even how we stage a crew. We’ve been on properties in Avenel, Glen Hills, Falconhurst, and Stratton Woods, and we know that a Potomac client expects manicured-not-just-mowed: edged beds, clean fence lines, healthy mature oaks. The neighborhood architectural committees expect documented work, and the older homes on Falls Road expect us to know what ‘historic landscape’ means before we put a shovel in the ground.',
+    characteristics: [
+      {
+        title: 'Estate-scale property work',
+        body:
+          'Half-acre to five-plus-acre lots are normal here. We bring zero-turn mowers, full irrigation crews, and the staging discipline you need on a property that takes a full day instead of an hour.',
+      },
+      {
+        title: 'Avenel and architectural-committee work',
+        body:
+          'Avenel, Falconhurst, and a dozen other neighborhoods have written landscape covenants. We document our designs and submit them to the committee — most pass on the first review.',
+      },
+      {
+        title: 'Aging hardwood canopy',
+        body:
+          'Bradley Hills and Glen Hills oaks were planted in the 60s and are starting to drop limbs. Emerald ash borer killed a generation of street ash. We prune, deadwood, and remove with ISA-certified climbers before storms do it for you.',
+      },
+      {
+        title: 'Rolling-terrain drainage',
+        body:
+          'Most of Potomac sits on grade. Driveways funnel water toward foundations, basements sit in fall lines, and clay soil holds water for days. We install French drains, regrades, and downspout extensions tuned for the way your lot actually drains.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Do you do Avenel and other gated/HOA properties?',
+        a: 'Yes. We’re already on properties in Avenel, Stratton Woods, and similar covenant-restricted communities. We carry the insurance limits the gates require and submit our designs to the architectural committee before we mobilize.',
+      },
+      {
+        q: 'Can you handle a 3+ acre property in one day?',
+        a: 'Yes. We bring multi-person crews, zero-turn mowers, and dedicated trimming teams. A typical 3-acre Potomac estate gets mowed, edged, blown clean, and out in 4–6 hours, depending on bed work.',
+      },
+      {
+        q: 'Do you remove bamboo runs?',
+        a: 'Yes, and we do them right. Cutting bamboo back doesn’t kill it — you have to dig out the rhizome network, sometimes install a barrier, and treat the cut stumps. We’ve cleared bamboo runs from a quarter-acre to half-acre and we don’t pretend it takes one visit.',
+      },
+    ],
+  },
+  {
+    slug: 'olney-md',
+    name: 'Olney',
+    fullName: 'Olney, MD',
+    county: 'Montgomery County',
+    zips: ['20832', '20833'],
+    tier: 2,
+    neighborhoods: [
+      'Olney Mill',
+      'Williamsburg Village',
+      'Cherrywood',
+      'James Creek',
+      'Norbeck Hills',
+      'Brooke Grove',
+      'Olney Square',
+      'Hidden Creek',
+    ],
+    intro:
+      'Olney is fifteen minutes north of our Burtonsville shop, which means we’re on properties out here more days than not. Most of the housing stock went up between 1975 and 1995 — Olney Mill, Williamsburg Village, Brooke Grove, Cherrywood, Norbeck Hills — and the landscapes that came with those homes are tired. Overgrown foundation shrubs, mulch beds that have lost their edge over twenty years, and oak canopies nobody has pruned since they were planted. What an Olney property usually needs isn’t a one-time mow, it’s a renovation: re-edged beds, thinned canopy, refreshed plantings that fit the home’s age. We do that work, and we do it for clients who plan to stay another twenty years.',
+    characteristics: [
+      {
+        title: 'Established suburbs with tired original landscapes',
+        body:
+          'Most homes in Olney Mill and Williamsburg Village are 40 years old. Foundation shrubs are leggy, beds have lost their bones, and trees have outgrown their original planting plan. We work in renovation mode, not maintenance mode.',
+      },
+      {
+        title: 'HOA-aware design',
+        body:
+          'Olney Mill, James Creek, and most other developments have architectural standards. We document our designs and submit for approval — not the homeowner’s problem.',
+      },
+      {
+        title: 'Mature canopy management',
+        body:
+          '40-year-old oaks, maples, and dogwoods need pruning rhythms most landscapers skip. We climb, deadwood, and thin so storms don’t take down half-trees over the driveway.',
+      },
+      {
+        title: 'Local, fast, dependable',
+        body:
+          'We’re 15 minutes from Olney. New lawn-care customers on existing routes are typically up and running within 1–2 weeks of contract signing.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Can you renovate an overgrown 1980s landscape, not just maintain it?',
+        a: 'Yes — that’s a lot of what we do in Olney. Renovation usually starts with selective shrub removal, re-edging the beds, fresh mulch, and a planting refresh that suits the architecture. We can do it as a one-time project or staged over a season.',
+      },
+      {
+        q: 'Do you handle James Creek and Brooke Grove HOA submissions?',
+        a: 'Yes. We prepare drawings and material specs for the architectural committees, and we don’t pull permits until approval is in hand.',
+      },
+      {
+        q: 'How quickly can you start weekly lawn care in Olney?',
+        a: 'Olney is on our route already. Adding a new property is typically 1–2 weeks from contract during the growing season, faster in the off-season.',
+      },
+    ],
+  },
+  {
+    slug: 'gaithersburg-md',
+    name: 'Gaithersburg',
+    fullName: 'Gaithersburg, MD',
+    county: 'Montgomery County',
+    zips: ['20877', '20878', '20879'],
+    tier: 2,
+    neighborhoods: [
+      'Kentlands',
+      'Lakelands',
+      'Quince Orchard',
+      'Washingtonian Woods',
+      'Saybrooke',
+      'Diamond Farms',
+      'Old Town',
+      'Mill Creek',
+    ],
+    intro:
+      'Gaithersburg is the largest city in Montgomery County and the most varied — Kentlands and Lakelands are tight-knit New Urbanist communities with strict design standards, Quince Orchard and Saybrooke are big-lot suburbs from the 80s and 90s, and Old Town has Victorian homes that need a different planting palette than anything else on the route. We work in all of it. The Kentlands Architectural Committee won’t approve a planting plan that doesn’t match the master code; Washingtonian Woods homeowners want the mature canopy preserved through every project; and the townhomes in Lakelands have alley-facing yards most landscapers don’t know how to handle. We work with the design standards instead of around them.',
+    characteristics: [
+      {
+        title: 'Kentlands & Lakelands design standards',
+        body:
+          'Both communities follow strict architectural codes covering plant species, lawn type, even mulch color. Our designs are written to pass committee review on the first submission.',
+      },
+      {
+        title: 'Older Quince Orchard canopy',
+        body:
+          'Quince Orchard, Saybrooke, and Washingtonian Woods have 30–40 year old shade trees that need ISA-certified pruning, not a homeowner with a chainsaw. We climb and crown-thin so the storms don’t.',
+      },
+      {
+        title: 'Townhome and alley-facing yards',
+        body:
+          'Lakelands and Kentlands townhomes have tiny front yards and back patios that abut a service alley. We do precision-scale landscape work: container plantings, narrow-bed edging, screening for the alley side.',
+      },
+      {
+        title: 'Old Town Gaithersburg historic plantings',
+        body:
+          'Victorian-era homes off Frederick Avenue need period-appropriate boxwood, hydrangeas, and bulb beds — not the same palette we’d use in Washingtonian Woods.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Do you submit landscape plans to the Kentlands and Lakelands architectural committees?',
+        a: 'Yes. We prepare drawings to the committee’s specifications, list plant species against the approved master list, and submit for review before any installation. Most submissions pass on the first review.',
+      },
+      {
+        q: 'Can you screen an alley-facing townhome yard in Kentlands?',
+        a: 'Yes. We install evergreen hedges, slim trellised plantings, or container compositions that work in the narrow space. Everything we install is on the Kentlands plant code.',
+      },
+      {
+        q: 'Do you serve Old Town Gaithersburg differently than newer developments?',
+        a: 'Yes. Old Town’s Victorian and craftsman homes need period-appropriate plantings — boxwood, hydrangeas, irises, peonies. We design to the era, not to the catalog.',
+      },
+    ],
+  },
+  {
+    slug: 'kensington-md',
+    name: 'Kensington',
+    fullName: 'Kensington, MD',
+    county: 'Montgomery County',
+    zips: ['20895'],
+    tier: 2,
+    neighborhoods: [
+      'Old Town Kensington',
+      'Rock Creek Hills',
+      'Kensington Heights',
+      'Town Center',
+      'Antique Row corridor',
+      'Kensington Estates',
+    ],
+    intro:
+      'Kensington is a small town that takes itself seriously — under a square mile inside the Beltway, an actual mayor, a designated historic district, and a town tree ordinance that protects every street tree over a certain caliper. The lots are tighter here than most of Montgomery County, and that changes how we work. A 0.15-acre lot in Old Town Kensington isn’t a property where you can just mow and blow; it’s a garden, and the bed-to-lawn ratio is usually closer to a 1920s English cottage than a modern subdivision. We do precision work: hand-edging, careful canopy work that respects the town tree ordinance, restorative plantings for Victorian and craftsman homes, and we work in close coordination with the town when permits or removals are involved.',
+    characteristics: [
+      {
+        title: 'Tight lots in the historic district',
+        body:
+          'Old Town Kensington lots run 0.1–0.2 acres. We work at garden scale, with hand tools where blowers and zero-turns won’t fit. Precision matters more than horsepower here.',
+      },
+      {
+        title: 'Town tree ordinance compliance',
+        body:
+          'Kensington’s tree ordinance protects mature street trees, and removals require town permits. We pull the permits, work with town arborists, and don’t drop a tree without sign-off.',
+      },
+      {
+        title: 'Victorian and craftsman plantings',
+        body:
+          'Most homes here pre-date 1940. Period-appropriate boxwood, peony beds, hydrangea, and hellebore beat anything from a contemporary catalog.',
+      },
+      {
+        title: 'Smaller scale, higher detail',
+        body:
+          'A Kensington job isn’t measured in acres — it’s measured in bed-feet of edge, hand-pruned shrubs, and how clean the lines look from the sidewalk. That’s how we bid it.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Do you pull permits for street tree work in Kensington?',
+        a: 'Yes. The town has a tree canopy ordinance and we work with the town arborist before any pruning or removal of a regulated tree. Permits are part of our bid, not a surprise add-on.',
+      },
+      {
+        q: 'Can you work on a tight lot where there’s no rear access?',
+        a: 'Yes. Most of Old Town Kensington has narrow gates or no side yard access. We bring the right equipment for it — walk-behinds, hand tools, and crews who don’t tear up brick walks.',
+      },
+      {
+        q: 'Do you handle plantings appropriate to historic homes?',
+        a: 'Yes. We design with period-appropriate species — boxwood, peony, hydrangea, hellebore, mountain laurel — that fit Victorian and craftsman architecture without looking like a modern subdivision border.',
+      },
+    ],
+  },
+
   // ── Tier 3 — Perimeter Hubs ──────────────────────────────────────────────
   {
     slug: 'laurel-md',
@@ -992,6 +1214,169 @@ export const CITIES: readonly CityPage[] = [
       {
         q: 'I want a full master plan for my property — do you do that?',
         a: 'Yes. Marcus will walk the property, sketch a concept, and price the work in phases so you can spread it over 2-3 seasons without committing to everything at once.',
+      },
+    ],
+  },
+  {
+    slug: 'millersville-md',
+    name: 'Millersville',
+    fullName: 'Millersville, MD',
+    county: 'Anne Arundel County',
+    zips: ['21108'],
+    tier: 3,
+    neighborhoods: [
+      'Robinson Glen',
+      'Sun Valley',
+      'Old Mill',
+      'Indian Knolls',
+      'Severnwood Estates',
+      'Lake Waterford area',
+      'Veterans Highway corridor',
+    ],
+    intro:
+      'Millersville sits in the middle of Anne Arundel County — close enough to Fort Meade, BWI, and Annapolis that everyone here commutes somewhere, and the housing reflects that. Subdivisions from the 80s and 90s with quarter-acre to acre lots, mature pin oak and tulip poplar canopy, and the rolling terrain that’s typical of the Severn Run watershed. Properties closer to the river fall under Maryland’s Critical Area buffer rules, which limit what you can clear inside 1,000 feet of tidal water. We know the rules, and we know how to design plantings that satisfy them without giving up the look the homeowner wanted. Most of our Millersville work is renovation and bed restoration on 30-year-old landscapes that need a refresh.',
+    characteristics: [
+      {
+        title: 'Severn Run / Critical Area buffer rules',
+        body:
+          'Properties within 1,000 feet of tidal water fall under Maryland’s Critical Area Act, which restricts clearing and impervious surface. We design plantings that comply and we know which native species satisfy the buffer requirement.',
+      },
+      {
+        title: '30-year-old subdivision renovations',
+        body:
+          'Robinson Glen, Severnwood Estates, and similar developments are full of tired late-80s/early-90s landscapes. We renovate beds, replace overgrown foundation shrubs, and refresh hardscape that’s hit its lifespan.',
+      },
+      {
+        title: 'Rolling-terrain drainage',
+        body:
+          'The Severn Run watershed runs through here, and most lots sit on grade. We install French drains, regrades, and downspout extensions that work with clay soil, not against it.',
+      },
+      {
+        title: 'Pin oak and tulip poplar canopy',
+        body:
+          'Both species are common here, both prone to dropping limbs in storms. We climb and deadwood with ISA-certified crews before insurance becomes a conversation.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Do you know the Maryland Critical Area buffer rules for the Severn Run watershed?',
+        a: 'Yes. We design plantings that meet the buffer requirements without sacrificing the homeowner’s vision, and we know which native species count toward your forest-conservation obligation.',
+      },
+      {
+        q: 'Can you renovate a 1990s subdivision landscape?',
+        a: 'Yes — that’s a lot of what we do in Millersville. Overgrown foundation shrubs come out, beds get re-edged, fresh mulch goes down, and we install a refreshed planting palette that fits the home’s actual scale.',
+      },
+      {
+        q: 'Do you handle drainage on sloped lots?',
+        a: 'Yes. French drains, downspout extensions, regrades, dry creek beds — all engineered for the clay soil and the rolling terrain that’s typical here.',
+      },
+    ],
+  },
+  {
+    slug: 'severn-md',
+    name: 'Severn',
+    fullName: 'Severn, MD',
+    county: 'Anne Arundel County',
+    zips: ['21144'],
+    tier: 3,
+    neighborhoods: [
+      'Pioneer City',
+      'Severn Crossing',
+      'Reece’s Crossing',
+      'Quail Run',
+      'Severnwood',
+      'Donaldson Estates',
+    ],
+    intro:
+      'Severn is Fort Meade country. Most of our clients here are military families who have been moved three times and will be moved again, and that shapes how they think about a yard — they want it to look sharp without being a project, and they want a crew that’s going to show up reliably whether they’re home for the weekly mow or deployed for nine months. We do that. Severn neighborhoods like Pioneer City and Reece’s Crossing are mid-90s and 2000s builds with quarter-acre lots, builder-grade landscapes, and the kind of clay-heavy soil that needs amendment before anything thrives. We renovate, install, and maintain — and we send invoice receipts the way military families need them for moving claims.',
+    characteristics: [
+      {
+        title: 'Military-family-friendly service',
+        body:
+          'Most Severn clients are connected to Fort Meade. We service properties whether the family is in town or deployed, and we provide the invoice documentation needed for PCS moves and rental property records.',
+      },
+      {
+        title: 'Builder-grade landscape renovation',
+        body:
+          'Pioneer City, Reece’s Crossing, and similar 90s/2000s developments came with builder-installed sod and a handful of foundation shrubs. We renovate to something the homeowner actually wants to come home to.',
+      },
+      {
+        title: 'Clay-heavy soil amendment',
+        body:
+          'Severn’s clay holds water and compacts. Any successful planting starts with soil amendment, drainage assessment, and species selection that fits the soil — not the catalog.',
+      },
+      {
+        title: 'Steady, reliable scheduling',
+        body:
+          'Military families need predictability. We commit to a service day and we hit it every week, with or without the homeowner present.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Will you service a property while the homeowner is deployed?',
+        a: 'Yes. We handle remote-managed properties for military families — same weekly schedule, invoiced via email, photographs sent for documentation if requested.',
+      },
+      {
+        q: 'Can you turn a builder-grade yard into something we actually like?',
+        a: 'Yes. Most Severn yards came with sod, mulch, and three sad shrubs. We renovate beds, add structural plantings, refresh hardscape, and bring the property up to where the home deserves.',
+      },
+      {
+        q: 'Do you provide invoices for PCS moves or rental records?',
+        a: 'Yes. We provide itemized invoices with all the documentation military families need for moving claims, rental property records, or unit reimbursement.',
+      },
+    ],
+  },
+  {
+    slug: 'hanover-md',
+    name: 'Hanover',
+    fullName: 'Hanover, MD',
+    county: 'Anne Arundel County',
+    zips: ['21076'],
+    tier: 3,
+    neighborhoods: [
+      'Arundel Preserve',
+      'Westport',
+      'The Provinces',
+      'Hanover Hills',
+      'Telegraph Road corridor',
+      'Stoney Run',
+    ],
+    intro:
+      'Hanover is one of the fastest-growing communities in Maryland — Arundel Preserve, Westport, The Provinces, and several other developments here are all under 20 years old, and most are still settling into the landscape they were built with. New-construction landscapes look great the day the family moves in, but by year three the sod has thin spots, the builder-planted maples are leaning, and the original mulch beds have lost their edge. We work in renovation mode on these properties — restoring sod, replacing the trees that didn’t take, building the bed structure the builder never installed. Hanover also has a stretch of older homes off Telegraph Road that need a different approach: full mature canopy, established beds, and 1970s landscape architecture that needs an honest assessment, not a sales pitch.',
+    characteristics: [
+      {
+        title: 'New-construction landscape recovery',
+        body:
+          'Arundel Preserve and Westport homes are typically 5–15 years old. Builder landscapes don’t age well: sod fails, trees lean, beds erode. We restore them to where they should have started.',
+      },
+      {
+        title: 'Townhome and zero-lot-line precision',
+        body:
+          'Many Hanover communities are HOA townhomes with shared bed lines and tight side yards. We work to community standards and don’t damage neighbor property in the process.',
+      },
+      {
+        title: 'BWI airport corridor planting',
+        body:
+          'Properties closer to BWI have noise-zone considerations and specific overlay-district plant requirements. We work within both.',
+      },
+      {
+        title: 'Older Telegraph Road homes',
+        body:
+          'Hanover’s pre-2000 housing stock has mature trees, established beds, and original 1970s landscape thinking that needs renovation. Different approach than the new builds.',
+      },
+    ],
+    faq: [
+      {
+        q: 'Can you save sod that’s failing on a newer Hanover yard?',
+        a: 'Sometimes yes — depends on what’s killing it. Compaction, drainage, or the wrong fescue blend are all fixable. If the soil’s too far gone, we strip and re-install with proper grade and amended soil — not just lay new sod on the same problem.',
+      },
+      {
+        q: 'Do you work on Arundel Preserve townhomes?',
+        a: 'Yes. Townhome work is precision work — narrow side yards, shared bed lines, HOA standards. We work to community spec and we don’t damage the neighbor’s side.',
+      },
+      {
+        q: 'Do you handle bigger property work or just lawn care?',
+        a: 'Both. We design, install, hardscape, and maintain across every property size in Hanover — from a Westport townhome to a half-acre on Telegraph Road.',
       },
     ],
   },
