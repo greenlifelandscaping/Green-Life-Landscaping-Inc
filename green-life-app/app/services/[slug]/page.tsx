@@ -183,28 +183,41 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     Why homeowners pick us for {service.title.toLowerCase()}
                   </h3>
                   <div className="grid sm:grid-cols-2 gap-4">
-                    {detail.benefits.map((b) => (
-                      <div
-                        key={b.title}
-                        className={`rounded-lg p-5 ${
-                          isSnow ? 'bg-haint-50' : 'bg-surface-alt'
-                        }`}
-                      >
+                    {detail.benefits.map((b, i) => {
+                      const isOrphan =
+                        detail.benefits.length % 2 === 1 &&
+                        i === detail.benefits.length - 1;
+                      return (
                         <div
-                          className={`h-9 w-9 rounded-md bg-white shadow-card flex items-center justify-center mb-3 ${
-                            isSnow ? 'text-haint-700' : 'text-brand-primary'
+                          key={b.title}
+                          className={`rounded-lg p-5 ${
+                            isSnow ? 'bg-haint-50' : 'bg-surface-alt'
+                          } ${
+                            isOrphan
+                              ? 'sm:col-span-2 sm:flex sm:items-start sm:gap-5'
+                              : ''
                           }`}
                         >
-                          <Check size={16} strokeWidth={2.5} />
+                          <div
+                            className={`h-9 w-9 rounded-md bg-white shadow-card flex items-center justify-center mb-3 ${
+                              isOrphan ? 'sm:mb-0 sm:shrink-0' : ''
+                            } ${
+                              isSnow ? 'text-haint-700' : 'text-brand-primary'
+                            }`}
+                          >
+                            <Check size={16} strokeWidth={2.5} />
+                          </div>
+                          <div>
+                            <h4 className="font-display font-bold text-[14px] text-neutral-900 mb-1.5">
+                              {b.title}
+                            </h4>
+                            <p className="font-body text-[13px] text-neutral-600 leading-[1.55]">
+                              {b.description}
+                            </p>
+                          </div>
                         </div>
-                        <h4 className="font-display font-bold text-[14px] text-neutral-900 mb-1.5">
-                          {b.title}
-                        </h4>
-                        <p className="font-body text-[13px] text-neutral-600 leading-[1.55]">
-                          {b.description}
-                        </p>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               )}

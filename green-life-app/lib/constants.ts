@@ -120,21 +120,19 @@ export const SERVICES: Service[] = [
       'Tree, shrub & perennial installation',
       'Mulch installation with crisp bed edging',
       'Sod installation & lawn renovation',
-      '1-year plant replacement warranty',
     ],
     startingPrice: 'Free assessment',
     detail: {
       headline: 'Landscape Design & Installation Across Montgomery County',
       paragraphs: [
         'A good landscape outlasts its installer. We start every project with a walk-through to understand how you actually use your yard, then design plantings that work with Maryland’s clay soil, summer humidity, and hard winters — not against them.',
-        'We install trees, shrubs, perennials, sod, and mulch beds sourced from local growers, and we hand-cut a 4-inch trench at every bed edge so the line stays crisp for the whole season. Every plant comes with a one-year replacement warranty.',
+        'We install trees, shrubs, perennials, sod, and mulch beds sourced from local growers, and we hand-cut a 4-inch trench at every bed edge so the line stays crisp for the whole season.',
         'Whether you’re refreshing a tired front yard or doing a full backyard transformation, we’re a single point of contact from design through install through ongoing maintenance.',
       ],
       benefits: [
         { title: 'Plants chosen for MD soil', description: 'No big-box-store plants that die in August. We use local growers and species that thrive in our zone.' },
         { title: 'Crisp hand-cut bed edges', description: 'A 4″ trench at every bed line keeps mulch in, grass out, and your beds looking sharp all season.' },
         { title: 'Design + install + maintain', description: 'One team handles the whole arc, so the design intent doesn’t get lost between phases.' },
-        { title: '1-year plant warranty', description: 'If a plant we installed doesn’t make it through the first year, we replace it on us.' },
       ],
     },
   },
@@ -722,7 +720,7 @@ export const CITIES: readonly CityPage[] = [
       },
       {
         q: 'Will my plants survive on a salt-spray property?',
-        a: 'The ones we pick will. We use a deliberate native palette of salt-tolerant species — switchgrass, beach plum, bayberry, eastern red cedar. We back every plant with a one-year replacement warranty.',
+        a: 'The ones we pick will. We use a deliberate native palette of salt-tolerant species — switchgrass, beach plum, bayberry, eastern red cedar — chosen specifically for waterfront conditions.',
       },
       {
         q: 'Can you build a paver patio close to the waterline?',
