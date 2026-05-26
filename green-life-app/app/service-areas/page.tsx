@@ -50,16 +50,29 @@ export default function ServiceAreasPage() {
           {tiers.map((tier) => {
             const cities = CITIES.filter((c) => c.tier === tier);
             const meta = TIER_LABELS[tier];
-            // Match lg column count to the tier's card count so the row fills with no orphan cells.
-            // Falls back to grid-cols-3 for counts that naturally divide evenly (3, 6, 9...).
+            const count = cities.length;
+            // Pick lg column count to minimize orphan cells.
+            //   1 → 1 col, 2 → 2 cols, 4 or 8 → 4 cols (perfect rows), everything else → 3 cols.
             const lgCols =
-              cities.length === 1
+              count === 1
                 ? 'lg:grid-cols-1'
-                : cities.length === 2
+                : count === 2
                   ? 'lg:grid-cols-2'
-                  : cities.length === 4
+                  : count === 4 || count === 8
                     ? 'lg:grid-cols-4'
                     : 'lg:grid-cols-3';
+            // Orphan-span on the last card if a perfect fit isn't possible.
+            // sm (always 2 cols): odd count → last spans 2 to fill the row.
+            // lg with 3 cols: remainder-1 → last spans 3 (full row); remainder-2 → last spans 2.
+            // lg with 1/2/4 cols: counts chosen to leave no orphan.
+            const smOrphan = count % 2 === 1 ? 'sm:col-span-2' : '';
+            const lgOrphan =
+              lgCols === 'lg:grid-cols-3' && count % 3 === 1
+                ? 'lg:col-span-3'
+                : lgCols === 'lg:grid-cols-3' && count % 3 === 2
+                  ? 'lg:col-span-2'
+                  : '';
+            const orphanSpan = `${smOrphan} ${lgOrphan}`.trim();
             return (
               <section key={tier}>
                 <div className="mb-6">
@@ -75,11 +88,13 @@ export default function ServiceAreasPage() {
                 </div>
 
                 <div className={`grid grid-cols-1 sm:grid-cols-2 ${lgCols} gap-5`}>
-                  {cities.map((city) => (
+                  {cities.map((city, idx) => (
                     <Link
                       key={city.slug}
                       href={`/service-areas/${city.slug}`}
-                      className="group flex flex-col bg-white rounded-lg shadow-card hover:shadow-card-hover transition-all duration-250 ease-out p-6 hover:-translate-y-0.5 h-full"
+                      className={`group flex flex-col bg-white rounded-lg shadow-card hover:shadow-card-hover transition-all duration-250 ease-out p-6 hover:-translate-y-0.5 h-full ${
+                        idx === count - 1 ? orphanSpan : ''
+                      }`}
                     >
                       <div className="flex items-center gap-2 mb-3">
                         <span className="h-9 w-9 rounded-md bg-surface-alt text-brand-primary flex items-center justify-center">

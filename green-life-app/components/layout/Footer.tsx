@@ -93,26 +93,26 @@ export function Footer() {
             <h4 className="font-display font-bold text-white text-[12px] tracking-[0.06em] uppercase mb-4">
               Top Service Areas
             </h4>
-            <ul className="space-y-2 text-[13px]">
+            {/* CSS multi-column flow at md+: a 12-entry list becomes two balanced
+                6-entry columns. Mobile stays single-column. */}
+            <ul className="text-[13px] md:columns-2 md:gap-x-4">
               {CITIES.filter((c) => c.tier <= 2).map((c) => (
-                <li key={c.slug}>
+                <li key={c.slug} className="mb-2 break-inside-avoid">
                   <Link
                     href={`/service-areas/${c.slug}`}
                     className="text-white/60 hover:text-brand-accent transition-colors"
                   >
-                    Landscaping in {c.name}, MD
+                    {c.name}, MD
                   </Link>
                 </li>
               ))}
-              <li className="pt-1">
-                <Link
-                  href="/service-areas"
-                  className="font-display font-bold text-[12px] tracking-[0.04em] uppercase text-brand-accent hover:text-white transition-colors"
-                >
-                  View all service areas →
-                </Link>
-              </li>
             </ul>
+            <Link
+              href="/service-areas"
+              className="mt-4 inline-block font-display font-bold text-[12px] tracking-[0.04em] uppercase text-brand-accent hover:text-white transition-colors"
+            >
+              View all service areas →
+            </Link>
           </div>
         </div>
       </div>
