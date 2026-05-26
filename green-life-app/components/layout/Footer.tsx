@@ -38,6 +38,8 @@ export function Footer() {
             <div className="mt-5 flex items-center gap-2.5">
               <a
                 href={SITE.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
                 className="h-9 w-9 inline-flex items-center justify-center rounded-md bg-white/10 hover:bg-brand-accent hover:text-brand-dark transition-colors"
               >
@@ -45,6 +47,8 @@ export function Footer() {
               </a>
               <a
                 href={SITE.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="h-9 w-9 inline-flex items-center justify-center rounded-md bg-white/10 hover:bg-brand-accent hover:text-brand-dark transition-colors"
               >

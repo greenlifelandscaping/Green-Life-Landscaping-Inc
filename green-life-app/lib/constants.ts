@@ -60,9 +60,9 @@ export const SITE = {
   license: 'Maryland Licensed & Insured',
   insured: 'Fully Insured',
   social: {
-    facebook: 'https://facebook.com/greenlifelandscapingmd',
-    instagram: 'https://instagram.com/greenlifelandscapingmd',
-    google: 'https://g.page/greenlifelandscapingmd',
+    facebook: 'https://www.facebook.com/share/1BBp2of58V/?mibextid=wwXIfr',
+    instagram: 'https://www.instagram.com/greenlifelandscaping_md?igsh=d28yc21yMjE5em54',
+    google: 'https://share.google/0smevVkYzD9OYuo35',
   },
 };
 
