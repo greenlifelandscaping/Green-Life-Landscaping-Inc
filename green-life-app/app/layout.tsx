@@ -119,8 +119,14 @@ const localBusinessSchema = {
   ],
   aggregateRating: {
     '@type': 'AggregateRating',
-    ratingValue: String(SITE.rating),
-    reviewCount: String(SITE.reviewCount),
+    // Google's strict Rich Results validator requires reviewCount to be a JSON
+    // number (Integer), not a string — wrapping with String() previously
+    // triggered an "Invalid object type" warning in GSC's Review snippets
+    // enhancement check. bestRating/worstRating are explicit for safety.
+    ratingValue: SITE.rating,
+    reviewCount: SITE.reviewCount,
+    bestRating: 5,
+    worstRating: 1,
   },
 };
 

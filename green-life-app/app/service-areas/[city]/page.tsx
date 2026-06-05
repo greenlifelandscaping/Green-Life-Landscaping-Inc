@@ -73,8 +73,13 @@ export default function CityPage({ params }: Props) {
     },
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: String(SITE.rating),
-      reviewCount: String(SITE.reviewCount),
+      // Numbers, not strings — matches the root layout's AggregateRating
+      // and satisfies Google's strict Integer/Number requirement on
+      // reviewCount/ratingValue. See layout.tsx for the GSC issue this fixes.
+      ratingValue: SITE.rating,
+      reviewCount: SITE.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
     },
   };
 
