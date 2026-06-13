@@ -358,6 +358,20 @@ const PROJECT_GALLERY: GalleryItem[] = [
   { id: 'g44', title: 'Landscape, trees & mulch', category: 'Landscaping', src: '/gallery/project-44.jpeg', alt: 'Landscape, tree, and mulch work by Green Life Landscaping' },
   { id: 'g45', title: 'Mulch & landscape', category: 'Landscaping', src: '/gallery/project-45.jpeg', alt: 'Mulch, landscape, and hardscape project by Green Life Landscaping' },
   { id: 'g49', title: 'Landscape, hardscape & tree', category: 'Landscaping', src: '/gallery/project-49.jpeg', alt: 'Combined landscape, hardscape, and tree project by Green Life' },
+  { id: 'g50', title: 'Pool stonework & beds', category: 'Landscaping', src: '/gallery/project-50.jpeg', alt: 'Stone spillover pool feature with planters and mulched beds by Green Life Landscaping' },
+  { id: 'g51', title: 'Poolside landscape bed', category: 'Landscaping', src: '/gallery/project-51.jpeg', alt: 'Poolside landscape bed with palms, daylilies, and fresh mulch by Green Life Landscaping' },
+  { id: 'g52', title: 'Astilbe shade plantings', category: 'Landscaping', src: '/gallery/project-52.jpeg', alt: 'Pink astilbe and shade plantings in a mulched bed by Green Life Landscaping' },
+  { id: 'g53', title: 'Front-yard landscape refresh', category: 'Landscaping', src: '/gallery/project-53.jpeg', alt: 'Front-yard landscape refresh with Japanese maple, lawn, and mulched bed by Green Life Landscaping' },
+  { id: 'g54', title: 'Patterned bed planting', category: 'Landscaping', src: '/gallery/project-54.jpeg', alt: 'Geometric mulched planting bed with patterned shrubs by Green Life Landscaping' },
+  { id: 'g55', title: 'Container plantings', category: 'Landscaping', src: '/gallery/project-55.jpeg', alt: 'Container plantings with pink and white petunias on stone steps by Green Life Landscaping' },
+  { id: 'g56', title: 'Walkway & front landscape', category: 'Landscaping', src: '/gallery/project-56.jpeg', alt: 'Front yard with stone walkway, mulched beds, and structured plantings by Green Life Landscaping' },
+  { id: 'g57', title: 'Patio-side landscape', category: 'Landscaping', src: '/gallery/project-57.jpeg', alt: 'Curved patio-side landscape bed with shrubs and container planter by Green Life Landscaping' },
+  { id: 'g58', title: 'Bed edging by patio', category: 'Landscaping', src: '/gallery/project-58.jpeg', alt: 'Variegated grasses and shrubs in a mulched bed along a flagstone patio by Green Life Landscaping' },
+  { id: 'g59', title: 'Shade garden in bloom', category: 'Landscaping', src: '/gallery/project-59.jpeg', alt: 'Shade garden with impatiens, astilbe, and hosta in full bloom by Green Life Landscaping' },
+  { id: 'g60', title: 'Sideyard plant refresh', category: 'Landscaping', src: '/gallery/project-60.jpeg', alt: 'Side-yard planting refresh with astilbe and fresh mulch by Green Life Landscaping' },
+  { id: 'g61', title: 'Mulch refresh & planting', category: 'Landscaping', src: '/gallery/project-61.jpeg', alt: 'Fresh mulch and new plantings along a stone-edged bed by Green Life Landscaping' },
+  { id: 'g62', title: 'Pool & water feature', category: 'Landscaping', src: '/gallery/project-62.jpeg', alt: 'Backyard pool with stone water feature and surrounding plantings by Green Life Landscaping' },
+  { id: 'g63', title: 'Poolside container display', category: 'Landscaping', src: '/gallery/project-63.jpeg', alt: 'Poolside container display with palm and petunias on a paver patio by Green Life Landscaping' },
 ];
 
 // Real snow-removal crew photos from the 2025-26 winter season.
