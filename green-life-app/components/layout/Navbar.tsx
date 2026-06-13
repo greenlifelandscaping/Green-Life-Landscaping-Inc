@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Phone, Calendar, ChevronDown, ArrowRight } from 'lucide-react';
+import { Menu, X, Phone, Calendar, ChevronDown, ArrowRight, MapPin } from 'lucide-react';
 import { Logo } from './Logo';
-import { NAV_ITEMS, SITE, SERVICES } from '@/lib/constants';
+import { NAV_ITEMS, SITE, SERVICES, CITIES } from '@/lib/constants';
 
 export function Navbar() {
   const pathname = usePathname();
@@ -125,7 +125,56 @@ export function Navbar() {
               </div>
             </li>
 
-            {NAV_ITEMS.filter((i) => !['/', '/about', '/services'].includes(i.href)).map(
+            <li className="relative group">
+              <Link
+                href="/service-areas"
+                aria-current={isActive('/service-areas') ? 'page' : undefined}
+                className={`inline-flex items-center gap-1 px-3.5 py-2 rounded-md font-display font-semibold text-[13px] transition-colors ${
+                  isActive('/service-areas')
+                    ? 'text-brand-primary bg-surface-alt'
+                    : 'text-neutral-700 hover:text-brand-primary hover:bg-surface-alt group-hover:text-brand-primary group-hover:bg-surface-alt'
+                }`}
+              >
+                Service Areas
+                <ChevronDown size={14} className="opacity-70 transition-transform group-hover:rotate-180" />
+              </Link>
+
+              <div
+                role="menu"
+                className="absolute top-full left-[-8px] min-w-[480px] bg-white rounded-lg shadow-[0_18px_48px_rgba(0,0,0,0.16),0_2px_6px_rgba(0,0,0,0.06)] border border-neutral-200 p-2 mt-3 opacity-0 invisible -translate-y-1.5 transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50 before:content-[''] before:absolute before:-top-3 before:inset-x-0 before:h-3"
+              >
+                <div className="grid grid-cols-2 gap-x-1">
+                  {CITIES.filter((c) => c.tier <= 2).map((c) => (
+                    <Link
+                      key={c.slug}
+                      href={`/service-areas/${c.slug}`}
+                      className="flex items-center gap-3 p-2.5 rounded-md transition-colors hover:bg-surface-alt"
+                    >
+                      <span className="flex items-center justify-center h-9 w-9 rounded-[9px] flex-shrink-0 bg-surface-alt text-brand-primary">
+                        <MapPin size={16} strokeWidth={2} />
+                      </span>
+                      <span className="flex flex-col gap-0.5 min-w-0">
+                        <span className="font-display font-bold text-[13.5px] text-neutral-900 truncate">
+                          {c.name}, MD
+                        </span>
+                        <span className="font-body text-[11.5px] text-neutral-600 leading-snug font-medium truncate">
+                          {c.county}
+                        </span>
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href="/service-areas"
+                  className="flex items-center justify-between px-3.5 py-2.5 mt-1 font-display font-bold text-[12px] tracking-[0.04em] uppercase text-brand-primary border-t border-neutral-200 hover:bg-surface-alt"
+                >
+                  View All Service Areas
+                  <ArrowRight size={13} strokeWidth={2.5} />
+                </Link>
+              </div>
+            </li>
+
+            {NAV_ITEMS.filter((i) => !['/', '/about', '/services', '/service-areas'].includes(i.href)).map(
               (item) => (
                 <li key={item.href}>
                   <Link
