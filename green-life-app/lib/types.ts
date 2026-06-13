@@ -57,6 +57,9 @@ export type CityPage = {
   tier: 1 | 2 | 3;
   /** Sister/secondary city covered on the same page, e.g. "Severna Park" */
   alsoServes?: string;
+  /** Path under /public/ for the page-hero image. MUST be unique across the
+   *  entire site — no other PAGE_HEROES entry or city.hero may share it. */
+  hero: string;
   /** Comma-list of well-known neighborhoods/communities — appears as chips on the page */
   neighborhoods: readonly string[];
   /** Unique opening paragraph for SEO — 80-140 words, city-specific narrative */

@@ -42,7 +42,7 @@ export default function ServiceAreasPage() {
         breadcrumbLabel="Service Areas"
         title="Maryland Communities We Serve"
         description="Green Life Landscaping has been on Maryland properties since 2005. Below are the cities where we hold the densest client coverage — but if your town isn’t listed, call us. We very likely already serve it."
-        backgroundImage={PAGE_HEROES.services}
+        backgroundImage={PAGE_HEROES.serviceAreas}
       />
 
       <section className="bg-surface-base section-pad">

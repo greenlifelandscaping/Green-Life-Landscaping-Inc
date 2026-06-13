@@ -388,11 +388,14 @@ const SNOW_GALLERY: GalleryItem[] = [
 
 export const GALLERY: GalleryItem[] = [...PROJECT_GALLERY, ...SNOW_GALLERY];
 
-// Curated heroes per page — sample from the project photos.
+// Curated heroes per page — every entry must be a unique image path.
+// City-page heroes live on each CityPage.hero instead (one unique image per city).
+// Don't reuse any of these paths across PAGE_HEROES or in any city.hero value.
 export const PAGE_HEROES = {
   home: '/gallery/project-01.jpeg',
-  about: '/gallery/project-04.jpeg',
+  about: '/gallery/project-09.jpeg',
   services: '/gallery/project-25.jpeg',
+  serviceAreas: '/gallery/project-49.jpeg',
   contact: '/gallery/project-21.jpeg',
   gallery: '/gallery/project-28.jpeg',
   estimate: '/gallery/project-35.jpeg',
@@ -458,6 +461,7 @@ export const CITIES: readonly CityPage[] = [
   // ── Tier 1 — Gold Mine Hubs ──────────────────────────────────────────────
   {
     slug: 'columbia-md',
+    hero: '/gallery/project-50.jpeg',
     name: 'Columbia',
     fullName: 'Columbia, MD',
     county: 'Howard County',
@@ -514,6 +518,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'ellicott-city-md',
+    hero: '/gallery/project-37.jpeg',
     name: 'Ellicott City',
     fullName: 'Ellicott City, MD',
     county: 'Howard County',
@@ -569,6 +574,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'elkridge-md',
+    hero: '/gallery/project-22.jpeg',
     name: 'Elkridge',
     fullName: 'Elkridge & Jessup, MD',
     county: 'Howard County',
@@ -624,6 +630,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'glen-burnie-md',
+    hero: '/gallery/project-42.jpeg',
     name: 'Glen Burnie',
     fullName: 'Glen Burnie, MD',
     county: 'Anne Arundel County',
@@ -680,6 +687,7 @@ export const CITIES: readonly CityPage[] = [
   // ── Tier 2 — Strong Growth Hubs ──────────────────────────────────────────
   {
     slug: 'severna-park-md',
+    hero: '/gallery/project-51.jpeg',
     name: 'Severna Park',
     fullName: 'Severna Park & Pasadena, MD',
     county: 'Anne Arundel County',
@@ -735,6 +743,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'annapolis-md',
+    hero: '/gallery/project-62.jpeg',
     name: 'Annapolis',
     fullName: 'Annapolis, MD',
     county: 'Anne Arundel County',
@@ -790,6 +799,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'bowie-md',
+    hero: '/gallery/project-53.jpeg',
     name: 'Bowie',
     fullName: 'Bowie, MD',
     county: 'Prince George’s County',
@@ -845,6 +855,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'catonsville-md',
+    hero: '/gallery/project-23.jpeg',
     name: 'Catonsville',
     fullName: 'Catonsville, MD',
     county: 'Baltimore County',
@@ -900,6 +911,7 @@ export const CITIES: readonly CityPage[] = [
 
   {
     slug: 'potomac-md',
+    hero: '/gallery/project-56.jpeg',
     name: 'Potomac',
     fullName: 'Potomac, MD',
     county: 'Montgomery County',
@@ -955,6 +967,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'olney-md',
+    hero: '/gallery/project-33.jpeg',
     name: 'Olney',
     fullName: 'Olney, MD',
     county: 'Montgomery County',
@@ -1011,6 +1024,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'gaithersburg-md',
+    hero: '/gallery/project-43.jpeg',
     name: 'Gaithersburg',
     fullName: 'Gaithersburg, MD',
     county: 'Montgomery County',
@@ -1067,6 +1081,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'kensington-md',
+    hero: '/gallery/project-54.jpeg',
     name: 'Kensington',
     fullName: 'Kensington, MD',
     county: 'Montgomery County',
@@ -1123,6 +1138,7 @@ export const CITIES: readonly CityPage[] = [
   // ── Tier 3 — Perimeter Hubs ──────────────────────────────────────────────
   {
     slug: 'laurel-md',
+    hero: '/gallery/project-39.jpeg',
     name: 'Laurel',
     fullName: 'Laurel & Beltsville, MD',
     county: 'Prince George’s County',
@@ -1178,6 +1194,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'sykesville-md',
+    hero: '/gallery/project-44.jpeg',
     name: 'Sykesville',
     fullName: 'Sykesville & Eldersburg, MD',
     county: 'Carroll County',
@@ -1233,6 +1250,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'millersville-md',
+    hero: '/gallery/project-40.jpeg',
     name: 'Millersville',
     fullName: 'Millersville, MD',
     county: 'Anne Arundel County',
@@ -1288,6 +1306,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'severn-md',
+    hero: '/gallery/project-08.jpeg',
     name: 'Severn',
     fullName: 'Severn, MD',
     county: 'Anne Arundel County',
@@ -1342,6 +1361,7 @@ export const CITIES: readonly CityPage[] = [
   },
   {
     slug: 'hanover-md',
+    hero: '/gallery/project-57.jpeg',
     name: 'Hanover',
     fullName: 'Hanover, MD',
     county: 'Anne Arundel County',

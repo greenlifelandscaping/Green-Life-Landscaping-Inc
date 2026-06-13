@@ -5,7 +5,7 @@ import { ArrowRight, MapPin, ShieldCheck, CalendarCheck, Phone, Calendar, Check 
 import { SubHero } from '@/components/sections/SubHero';
 import { CTABanner } from '@/components/sections/CTABanner';
 import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
-import { SITE, CITIES, SERVICES, PAGE_HEROES } from '@/lib/constants';
+import { SITE, CITIES, SERVICES } from '@/lib/constants';
 
 type Props = { params: { city: string } };
 
@@ -101,7 +101,7 @@ export default function CityPage({ params }: Props) {
         breadcrumbLabel={city.name}
         title={`Landscaping in ${city.fullName}`}
         description={`Lawn care, landscaping, hardscaping, tree services, and snow removal for ${city.name} homeowners and businesses. Locally based, licensed and insured, free no-obligation estimates.`}
-        backgroundImage={PAGE_HEROES.services}
+        backgroundImage={city.hero}
       >
         <div className="flex gap-2 flex-wrap">
           <span className="inline-flex items-center gap-1.5 bg-white text-brand-primary font-display font-extrabold text-[11px] tracking-[0.06em] uppercase px-3 py-1.5 rounded-pill shadow-card">
