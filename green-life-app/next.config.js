@@ -17,6 +17,25 @@ const nextConfig = {
       },
     ],
   },
+  // Permanent (308) redirects for legacy URLs from the pre-rebuild site that
+  // Google still crawls. Each points at the closest current service so any
+  // residual link equity / old bookmarks land somewhere relevant instead of
+  // a 404. These paths have no extension, so LiteSpeed passes them to Node
+  // and the redirect fires before the [slug] 404.
+  async redirects() {
+    return [
+      {
+        source: '/services/leaves-clean-up',
+        destination: '/services/lawn-care',
+        permanent: true,
+      },
+      {
+        source: '/services/weeding',
+        destination: '/services/landscaping',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
