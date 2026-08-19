@@ -121,6 +121,17 @@ export function Footer() {
         <div className="container-page py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-[12px] text-white/50">
           <p>© {year} {SITE.name}. All rights reserved.</p>
           <p>{SITE.license} · Serving Since {SITE.foundedYear}</p>
+          <p>
+            Website by{' '}
+            <a
+              href="https://brookframeworks.com"
+              target="_blank"
+              rel="noopener"
+              className="font-semibold text-white/70 hover:text-brand-accent transition-colors"
+            >
+              Brook Frameworks
+            </a>
+          </p>
         </div>
       </div>
     </footer>
