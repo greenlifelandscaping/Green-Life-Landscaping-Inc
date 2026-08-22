@@ -51,20 +51,26 @@ export const metadata: Metadata = {
     title: 'Maryland Landscaping, Hardscaping & Snow Removal — Since 2005',
     description:
       'Reliable landscaping, lawn care, tree services & snow removal across Montgomery County. Licensed & insured. Free estimates.',
+    // Compact square logo (256²) instead of a 1200×630 photo, so messengers
+    // (WhatsApp/iMessage) render the small "business-card" preview — logo
+    // thumbnail + title + link — rather than a full-width banner. Small
+    // image dimensions are the lever that nudges apps to the compact layout.
     images: [
       {
-        url: '/gallery/project-09.jpeg',
-        width: 1200,
-        height: 630,
-        alt: 'Green Life Landscaping project — front-yard landscape and lawn care in Maryland',
+        url: '/og-card.png',
+        width: 256,
+        height: 256,
+        alt: 'Green Life Landscaping Inc logo',
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    // 'summary' = compact card with a small square thumbnail;
+    // 'summary_large_image' was the big banner we're moving away from.
+    card: 'summary',
     title: 'Maryland Landscaping, Hardscaping & Snow Removal — Since 2005',
     description: SITE.description,
-    images: ['/gallery/project-09.jpeg'],
+    images: ['/og-card.png'],
   },
   robots: { index: true, follow: true },
   // Icons live in /public/ (not app/) so LiteSpeed serves them off its static
