@@ -51,23 +51,22 @@ export const metadata: Metadata = {
     title: 'Maryland Landscaping, Hardscaping & Snow Removal — Since 2005',
     description:
       'Reliable landscaping, lawn care, tree services & snow removal across Montgomery County. Licensed & insured. Free estimates.',
-    // Compact square logo (256²) instead of a 1200×630 photo, so messengers
-    // (WhatsApp/iMessage) render the small "business-card" preview — logo
-    // thumbnail + title + link — rather than a full-width banner. Small
-    // image dimensions are the lever that nudges apps to the compact layout.
+    // Designed 1200×630 "business-card" share image (og-card.png): a
+    // brand-green wash over a real property photo, with the logo, headline,
+    // phone, and trust line baked in. Large-card format so the whole
+    // designed card stays legible when the link is shared — a raw photo
+    // looked like an accidental billboard; this reads as an intentional card.
     images: [
       {
         url: '/og-card.png',
-        width: 256,
-        height: 256,
-        alt: 'Green Life Landscaping Inc logo',
+        width: 1200,
+        height: 630,
+        alt: 'Green Life Landscaping — Maryland landscaping, hardscaping & snow removal since 2005. Call (410) 905-2697.',
       },
     ],
   },
   twitter: {
-    // 'summary' = compact card with a small square thumbnail;
-    // 'summary_large_image' was the big banner we're moving away from.
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Maryland Landscaping, Hardscaping & Snow Removal — Since 2005',
     description: SITE.description,
     images: ['/og-card.png'],
